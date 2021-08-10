@@ -3,14 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Super Simpleton</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-    <script src="main.js"></script>
-
-    <div id="cell" style="height: 40px; width: 40px; background-color: #336699">
-    </div>
+    <style>
+        .urcloud {
+            /*opacity: 0;*/
+        }
+    </style>
 </head>
 <body>
+<div id="cell" style="height: 40px; width: 40px; background-color: #336699" >
+</div>
+
+<div id="help">
+    <h1>Help</h1>
+    <div class="urcloud urcloud1" >
+        <img ref="urCloud2images1" src='./img/test/test.png'>
+    </div>
+    <div class="urcloud urcloud2" >
+        <img ref="urCloud2images2" src='./img/test/test4.png'>
+    </div>
+    <div>
+        <img src='./img/textures/4-stripes-seamless-paper.jpg'>
+    </div>
+</div>
+<img src="./img/textures/1-certificate-paper-texture.jpg"/>
+<img src="./img/ur.svg"/>
+
+<script>
+
+</script>
+<script type="application/javascript">
+    window.addEventListener("load", function (event){
+        console.log('loaded')
+        window.main = gsap.timeline();
+        window.urtime = gsap.timeline();
+
+        window.main.from("#cell", {ease:"inout"}).to("#cell", {scale:2, x: 200, y: 200}, 0).reverse()
+
+        window.urtime.set( ['.urcloud1'], { opacity: 1});
+
+        window.urtime
+            .fromTo( '.urcloud1', {opacity: 1},{ opacity: 0, duration:4},0)
+            .fromTo( '.urcloud2', {opacity: 0},{ opacity: 1, duration:4},0)
+            .fromTo( '.urcloud2', {opacity: 1},{ opacity: 0, duration:4},4)
+            .fromTo( '.urcloud1', {opacity: 0},{ opacity: 1, duration:4},4)
+            .reverse()
+    })
+</script>
 
 </body>
 </html>
