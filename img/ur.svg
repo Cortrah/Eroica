@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 56892 32000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+<svg width="100%" height="100%" viewBox="0 0 56892 32000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+     style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
     <g transform="matrix(2,0,0,2,0,0)">
         <g transform="matrix(2.66667,0,0,2.66667,0,0)">
             <g id="bg" transform="matrix(4.1586,0,0,4.17559,-17.0833,-15.2244)">
                 <rect x="4.108" y="3.646" width="2564.97" height="1436.93" style="fill:rgb(3,3,0);"/>
             </g>
             <g id="fg" transform="matrix(1.48644,0,0,4.17559,3551.89,-15.2244)">
-                <rect x="4.108" y="3.646" width="2564.97" height="1436.93" style="fill:rgb(228,228,228);fill-opacity:0.67;"/>
+                <rect x="4.108" y="3.646" width="2564.97" height="1436.93" style="fill:rgb(1,228,228);fill-opacity:0.67;"/>
             </g>
             <g id="episode" transform="matrix(2.05628,0,0,1.96143,3815.26,396.017)">
                 <clipPath id="_clip1">
@@ -22,7 +23,7 @@
                     <path d="M235.05,389.005C199.02,426.207 231.8,492.678 245.295,513.509C255.154,528.73 290.292,572.985 312.685,596.796C332.537,617.904 375.513,613.417 391.058,601.152C419.087,579.036 440.515,542.728 455.801,527.031C472.361,510.027 517.825,443.769 465.959,388.764C433.557,354.402 384.454,348.53 355.028,347.684C324.621,346.811 267.702,355.291 235.05,389.005Z"/>
                 </clipPath>
                 <g clip-path="url(#_clip3)">
-                    <path id="episode1" serif:id="episode" d="M256.571,394.996C221.466,421.232 239.392,478.988 254.079,498.997C275.776,528.555 296.185,559.785 318.579,583.596C338.43,604.704 367.043,601.242 382.588,588.976C410.617,566.861 440.99,522.278 456.599,501.357C470.069,483.304 490.241,429.896 450.902,395.91C415.163,365.035 352.582,364.578 349.006,364.578C345.429,364.578 294.165,366.9 256.571,394.996Z" style="fill:rgb(236,228,96);fill-opacity:0.26;stroke:rgb(255,247,0);stroke-opacity:0.32;stroke-width:0.56px;"/>
+                    <path id="episode1" d="M256.571,394.996C221.466,421.232 239.392,478.988 254.079,498.997C275.776,528.555 296.185,559.785 318.579,583.596C338.43,604.704 367.043,601.242 382.588,588.976C410.617,566.861 440.99,522.278 456.599,501.357C470.069,483.304 490.241,429.896 450.902,395.91C415.163,365.035 352.582,364.578 349.006,364.578C345.429,364.578 294.165,366.9 256.571,394.996Z" style="fill:rgb(236,228,96);fill-opacity:0.26;stroke:rgb(255,247,0);stroke-opacity:0.32;stroke-width:0.56px;"/>
                     <g id="m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
                         <ellipse cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
                     </g>
@@ -49,7 +50,21 @@
             </g>
         </g>
     </g>
+    <svg width="100%" height="100%" viewBox="0 0 500 500"
+         version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+         style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,137.207,40.9513)">
+        <path d="M91.286,118.396C72.686,210.345 89.849,235.693 89.849,235.693L242.009,204.286L280.034,147.82C280.034,147.82 340.639,103.529 262.171,115.071C183.702,126.613 168.498,174.248 183.702,126.613C198.906,78.978 284.851,60.497 198.906,78.978C112.96,97.459 109.886,26.447 91.286,118.396Z"
+              style="fill:url(#_image2);fill-opacity:0.53;stroke:black;stroke-width:1px;"/>
+    </g>
+        <g transform="matrix(1,0,0,1,29.1588,-37.197)">
+        <path d="M158.286,206.496C115.21,287.526 82.354,211.099 115.21,287.526C148.066,363.953 48.1,405.839 148.066,363.953C248.032,322.067 338.668,436.405 248.032,322.067C157.396,207.729 201.363,125.466 158.286,206.496Z"
+              style="fill:rgb(60,172,63);fill-opacity:0.55;stroke:black;stroke-width:1px;"/>
+    </g>
+        <path d="M229.256,192.976L161.333,281.481C161.333,281.481 196.782,488.184 289.726,420.393C382.671,352.602 486.386,389.195 427.51,255.556C368.634,121.917 432.547,84.679 363.35,122.061C294.153,159.444 229.256,192.976 229.256,192.976Z"
+              style="fill:rgb(162,124,41);fill-opacity:0.57;stroke:black;stroke-width:1px;"/>
+    </svg>
     <defs>
-        <image id="_Image2" width="100px" height="100px" xlink:href="1-certificate-paper-texture.jpg"/>
+        <image id="_image2" width="100px" height="100px" xlink:href="1-certificate-paper-texture.jpg"/>
     </defs>
 </svg>
