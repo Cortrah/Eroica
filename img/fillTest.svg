@@ -1,0 +1,25 @@
+<svg width="400" height="400">
+
+    <defs>
+        <pattern id="imgpattern" x="0" y="0" width="1" height="1"
+                 viewBox="0 0 1024 576" preserveAspectRatio="xMidYMid slice">
+            <image width="1024" height="576" xlink:href="http://calciodanese.altervista.org/alterpages/hbkgepage.jpg"/>
+        </pattern>
+    </defs>
+
+
+    <path fill="url(#imgpattern)" stroke="black" stroke-width="4"
+          d="M 100,50 L 120,110 150,90 170,220 70,300 50,250 50,200 70,100 50,70 Z" />
+
+    <rect x="200" y="20" width="100" height="100"
+          fill="url(#imgpattern)" stroke="black"/>
+
+    <rect x="310" y="20" width="100" height="50"
+          fill="url(#imgpattern)" stroke="black"/>
+    <rect x="310" y="80" width="50" height="200"
+          fill="url(#imgpattern)" stroke="black"/>
+
+    <circle cx="220" cy="300" r="50"
+            fill="url(#imgpattern)" stroke="black"/>
+
+</svg>
