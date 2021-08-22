@@ -37,6 +37,9 @@
             line-height: 2;
             min-height: 40px;
         }
+         .urcloud {
+             opacity: 0;
+         }
         #glimmerer {
             min-width: 240px;
             position: absolute;
@@ -63,6 +66,15 @@
     <script src="./gsap-2021/minified/SplitText.min.js"></script>
 </head>
 <body>
+
+<div id="help">
+    <div class="urcloud urcloud1" >
+        <img ref="urCloud2images1" src='./img/thumbs/act1_a1_n4.png'>
+    </div>
+    <div class="urcloud urcloud2" >
+        <img ref="urCloud2images2" src='./img/thumbs/act1_a1_n1.png'>
+    </div>
+</div>
 
 <div id="glimmerer">
     <div id="glimmerThumb">
@@ -130,8 +142,6 @@
 
 <script type="application/javascript">
     window.addEventListener("load", function (event){
-        console.log('loaded')
-
         gsap.set("#glimmerer", {xPercent: -50, yPercent: -50});
         const glimmerer = document.querySelector("#glimmerer");
         const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -139,7 +149,6 @@
         const speed = 0.15;
         const xSet = gsap.quickSetter(glimmerer, "x", "px");
         const ySet = gsap.quickSetter(glimmerer, "y", "px");
-
 
         window.addEventListener("mousemove", e => {
             mouse.x = e.x;
@@ -150,6 +159,14 @@
             let currentGlimmerText = new SplitText(document.getElementById("glimmerText"), {type: "words,chars"})
             let timeline = new gsap.timeline()
             timeline.staggerFrom(currentGlimmerText.chars, 0.5, {opacity: 1, rotation: -180, y: -100, ease: Back.easeOut}, 0.02)
+
+            let urtime = new gsap.timeline();
+            urtime
+                .fromTo( '.urcloud1', {opacity: 1},{ opacity: 0, duration:4},0)
+                .fromTo( '.urcloud2', {opacity: 0},{ opacity: 1, duration:4},0)
+                .fromTo( '.urcloud2', {opacity: 1},{ opacity: 0, duration:4},4)
+                .fromTo( '.urcloud1', {opacity: 0},{ opacity: 1, duration:4},4)
+                .reverse()
         }
 
         gsap.ticker.add(() => {
