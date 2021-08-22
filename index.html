@@ -37,9 +37,6 @@
             line-height: 2;
             min-height: 40px;
         }
-         .urcloud {
-             opacity: 0;
-         }
         #glimmerer {
             min-width: 240px;
             position: absolute;
@@ -67,18 +64,10 @@
 </head>
 <body>
 
-<div id="help">
-    <div class="urcloud urcloud1" >
-        <img ref="urCloud2images1" src='./img/thumbs/act1_a1_n4.png'>
-    </div>
-    <div class="urcloud urcloud2" >
-        <img ref="urCloud2images2" src='./img/thumbs/act1_a1_n1.png'>
-    </div>
-</div>
 
 <div id="glimmerer">
     <div id="glimmerThumb">
-        <img src="img/thumbs/act1_v1_m1.png"/>
+        <img id="glimmerImg" src='./img/thumbs/act1_a1_n1.png'>
     </div>
     <div id="glimmerText">Problems and Prospects Going A gogo</div>
 </div>
@@ -150,24 +139,39 @@
         const xSet = gsap.quickSetter(glimmerer, "x", "px");
         const ySet = gsap.quickSetter(glimmerer, "y", "px");
 
+        window.numbguy = 1;
+
         window.addEventListener("mousemove", e => {
             mouse.x = e.x;
             mouse.y = e.y;
         });
 
+        document.getElementById("glimmerImg").addEventListener('load', function(){
+            changeGlimmererThumb()
+        })
+
         changeGlimmerer = function() {
             let currentGlimmerText = new SplitText(document.getElementById("glimmerText"), {type: "words,chars"})
             let timeline = new gsap.timeline()
-            timeline.staggerFrom(currentGlimmerText.chars, 0.5, {opacity: 1, rotation: -180, y: -100, ease: Back.easeOut}, 0.02)
-
-            let urtime = new gsap.timeline();
-            urtime
-                .fromTo( '.urcloud1', {opacity: 1},{ opacity: 0, duration:4},0)
-                .fromTo( '.urcloud2', {opacity: 0},{ opacity: 1, duration:4},0)
-                .fromTo( '.urcloud2', {opacity: 1},{ opacity: 0, duration:4},4)
-                .fromTo( '.urcloud1', {opacity: 0},{ opacity: 1, duration:4},4)
-                .reverse()
+            timeline.staggerFrom(currentGlimmerText.chars, 0.5, {
+                opacity: .1,
+                rotation: -180,
+                y: -100,
+                ease: "sine"
+            }, 0.02)
+            let newThumb = document.getElementById("glimmerImg")
+            if(window.numbguy < 4){
+                window.numbguy++
+            }
+            newThumb.src = './img/thumbs/act1_v1_n' + window.numbguy + '.png'
+            gsap.to("#glimmerThumb", {opacity: 0, duration: 2, ease: "Out"});
         }
+
+        changeGlimmererThumb = function() {
+            console.log('changeGlimmerThumb')
+            gsap.to("#glimmerThumb", {opacity: 1, duration: 2, ease: "In"}, 2);
+        }
+
 
         gsap.ticker.add(() => {
             // adjust speed for higher refresh monitors
