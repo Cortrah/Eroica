@@ -38,17 +38,38 @@
             min-height: 40px;
         }
         #glimmerer {
-            height: 40px;
-            width: 40px;
-            background-color: #336699;
+            min-width: 240px;
             position: absolute;
+            border: solid 1px whitesmoke;
+        }
+        #glimmerThumb {
+            position: relative;
+            top: -90px;
+            left: 80px;
+            horiz-align: center;
+            width: 93px;
+            border: solid 1px blue;
+        }
+        #glimmerText {
+            position: relative;
+            top: -90px;
+            width: 260px;
+            text-align: center;
+            color: whitesmoke;
+            border: solid 1px whitesmoke;
         }
     </style>
     <script src="./gsap-2021/minified/gsap.min.js"></script>
+    <script src="./gsap-2021/minified/SplitText.min.js"></script>
 </head>
 <body>
 
-<div id="glimmerer"></div>
+<div id="glimmerer">
+    <div id="glimmerThumb">
+        <img src="img/thumbs/act1_v1_m1.png"/>
+    </div>
+    <div id="glimmerText">Problems and Prospects Going A gogo</div>
+</div>
 
 <svg width="100%" height="100%" viewBox="0 0 5120 2880">
     <defs>
@@ -62,9 +83,10 @@
           d="M 100,50 L 120,110 150,90 1370,1320 70,300 50,250 50,200 70,100 50,70 Z" />
 
     <rect x="1300" y="0" width="2820" height="2880"
-          fill="url(#imgpattern)" stroke="black"/>
+          fill="url(#imgpattern)" stroke="black">
+    </rect>
 
-    <g id="episode" transform="matrix(2.05628,0,0,1.96143,3815.26,396.017)">
+    <g id="episode" style="position: absolute; top:200px; left:200px; matrix(2.05628,0,0,1.96143,3815.26,396.017)">
         <clipPath id="_clip1">
             <path d="M235.05,389.005C199.02,426.207 231.8,492.678 245.295,513.509C255.154,528.73 290.292,572.985 312.685,596.796C332.537,617.904 375.513,613.417 391.058,601.152C419.087,579.036 440.515,542.728 455.801,527.031C472.361,510.027 517.825,443.769 465.959,388.764C433.557,354.402 384.454,348.53 355.028,347.684C324.621,346.811 267.702,355.291 235.05,389.005Z"/>
         </clipPath>
@@ -104,6 +126,8 @@
     </g>
 </svg>
 
+<button onclick="changeGlimmerer()" style="width: 100px; height: 44px; position: fixed; top:400px; left:100px;"></button>
+
 <script type="application/javascript">
     window.addEventListener("load", function (event){
         console.log('loaded')
@@ -116,10 +140,17 @@
         const xSet = gsap.quickSetter(glimmerer, "x", "px");
         const ySet = gsap.quickSetter(glimmerer, "y", "px");
 
+
         window.addEventListener("mousemove", e => {
             mouse.x = e.x;
             mouse.y = e.y;
         });
+
+        changeGlimmerer = function() {
+            let currentGlimmerText = new SplitText(document.getElementById("glimmerText"), {type: "words,chars"})
+            let timeline = new gsap.timeline()
+            timeline.staggerFrom(currentGlimmerText.chars, 0.5, {opacity: 1, rotation: -180, y: -100, ease: Back.easeOut}, 0.02)
+        }
 
         gsap.ticker.add(() => {
             // adjust speed for higher refresh monitors
