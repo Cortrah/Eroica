@@ -40,7 +40,8 @@
         #glimmerer {
             min-width: 240px;
             position: absolute;
-            border: solid 1px whitesmoke;
+            display: none;
+            pointer-events: none;
         }
         #glimmerThumb {
             position: relative;
@@ -48,7 +49,6 @@
             left: 80px;
             horiz-align: center;
             width: 93px;
-            border: solid 1px blue;
         }
         #glimmerText {
             position: relative;
@@ -56,7 +56,6 @@
             width: 260px;
             text-align: center;
             color: whitesmoke;
-            border: solid 1px whitesmoke;
         }
     </style>
     <script src="./gsap-2021/minified/gsap.min.js"></script>
@@ -64,6 +63,15 @@
 </head>
 <body>
 
+<button onclick="playEpisode('act1_a1_n1')" onmouseenter="showGlimmerer('act1_a1_n1')" onmouseleave="hideGlimmerer()"
+        style="width: 100px; height: 44px; position: fixed; top:400px; left:100px;">
+</button>
+<button onclick="playEpisode('act1_v1_n2')" onmouseenter="showGlimmerer('act1_v1_n2')" onmouseleave="hideGlimmerer()"
+        style="width: 100px; height: 44px; position: fixed; top:460px; left:100px;">
+</button>
+<button onclick="playEpisode('act1_t1_n3')" onmouseenter="showGlimmerer('act1_t1_n3')" onmouseleave="hideGlimmerer()"
+        style="width: 100px; height: 44px; position: fixed; top:520px; left:100px;">
+</button>
 
 <div id="glimmerer">
     <div id="glimmerThumb">
@@ -127,8 +135,6 @@
     </g>
 </svg>
 
-<button onclick="changeGlimmerer()" style="width: 100px; height: 44px; position: fixed; top:400px; left:100px;"></button>
-
 <script type="application/javascript">
     window.addEventListener("load", function (event){
         gsap.set("#glimmerer", {xPercent: -50, yPercent: -50});
@@ -139,8 +145,6 @@
         const xSet = gsap.quickSetter(glimmerer, "x", "px");
         const ySet = gsap.quickSetter(glimmerer, "y", "px");
 
-        window.numbguy = 1;
-
         window.addEventListener("mousemove", e => {
             mouse.x = e.x;
             mouse.y = e.y;
@@ -150,7 +154,8 @@
             changeGlimmererThumb()
         })
 
-        changeGlimmerer = function() {
+        changeGlimmerer = function(episode) {
+            console.log('cg ' + episode)
             let currentGlimmerText = new SplitText(document.getElementById("glimmerText"), {type: "words,chars"})
             let timeline = new gsap.timeline()
             timeline.staggerFrom(currentGlimmerText.chars, 0.5, {
@@ -160,18 +165,30 @@
                 ease: "sine"
             }, 0.02)
             let newThumb = document.getElementById("glimmerImg")
-            if(window.numbguy < 4){
-                window.numbguy++
-            }
-            newThumb.src = './img/thumbs/act1_v1_n' + window.numbguy + '.png'
-            gsap.to("#glimmerThumb", {opacity: 0, duration: 2, ease: "Out"});
+            newThumb.src = './img/thumbs/' + episode + '.png'
+        }
+
+        showGlimmerer = function(episode) {
+            console.log('showGlimmerer')
+            changeGlimmerer(episode)
+            document.getElementById("glimmerer").style.display = 'block'
+            gsap.to("#glimmerer", {opacity: 1, duration: .4, ease: "In"});
+        }
+
+        hideGlimmerer = function() {
+            console.log('hideGlimmerer')
+            gsap.to("#glimmerer", {opacity: 0, duration: .2, ease: "Out"});
+            // document.getElementById("glimmerer").style.display = 'none'
+        }
+
+        playEpisode = function(episode) {
+            console.log('hideGlimmerer')
         }
 
         changeGlimmererThumb = function() {
             console.log('changeGlimmerThumb')
-            gsap.to("#glimmerThumb", {opacity: 1, duration: 2, ease: "In"}, 2);
+            //gsap.to("#glimmerThumb", {opacity: 1, duration: .4, ease: "In"});
         }
-
 
         gsap.ticker.add(() => {
             // adjust speed for higher refresh monitors
