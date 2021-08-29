@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ur World</title>
+  <style>
+    html {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://cortrah.github.io/eroica-2022/2.jpg');
+      background-repeat: repeat repeat;
+    }
+    a {
+      color: whitesmoke;
+      margin-left: 20px;
+      text-decoration:none;
+    }
+    a:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #daa520;
+    }
+    .nav-wrapper {
+      min-height: 50px;
+      opacity: .15;
+      transition:opacity .8s
+    }
+    .nav-wrapper:hover {
+      opacity:100%;
+      transition:opacity 1.2s
+    }
+    #nav {
+      font-family: 'Odibee Sans', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-size: 20px;
+      background-color: #222222;
+      border-bottom: #93742A;
+      border-width: 5px;
+      text-align: center;
+      vertical-align: text-bottom;
+      line-height: 2;
+      min-height: 40px;
+    }
+    #glimmerer {
+      min-width: 240px;
+      position: absolute;
+      display: none;
+      pointer-events: none;
+    }
+    #glimmerThumb {
+      position: relative;
+      top: -90px;
+      left: 80px;
+      horiz-align: center;
+      width: 93px;
+    }
+    #glimmerText {
+      position: relative;
+      top: -90px;
+      width: 260px;
+      text-align: center;
+      color: #a4702d;
+    }
+    /*#mainWrapper {*/
+    /*  display: flex;*/
+    /*  align-items: center;*/
+    /*  justify-content: center;*/
+    /*  background-color: #2B333F;*/
+    /*  height: 100%;*/
+    /*  width: 100%;*/
+    /*}*/
+  </style>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+
+  <script src="./gsap-2021/minified/gsap.min.js"></script>
+  <script src="./gsap-2021/minified/SplitText.min.js"></script>
+</head>
+<body>
+
+<div id="glimmerer">
+  <div id="glimmerThumb">
+    <img id="glimmerImg" src='./img/thumbs/act1_a1_n1.png'>
+  </div>
+  <div id="glimmerText">Problems and Prospects Going A gogo</div>
+</div>
+
+<div class="nav-wrapper">
+  <div id="nav">
+    <a href="index.html">Eroica</a>
+    <a href="introduction.html">Introduction</a>
+    <a href="urworld.html">Ur World</a>
+    <a href="progress.html">Progress</a>
+    <a href="help.html">Help</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
+<!--<div id="mainWrapper">-->
+  <svg width="100%" height="100%" viewBox="0 0 5120 2880">
+    <defs>
+      <pattern id="imgpattern" x="0" y="0" width="1" height="1"
+               viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
+        <image width="500" height="300" xlink:href="./img/textures/1-certificate-paper-texture.jpg"/>
+      </pattern>
+    </defs>
+
+    <path fill="url(#imgpattern)" stroke="black" stroke-width="14"
+          d="M 100,50 L 120,110 150,300 50,250 50,200 70,100 50,70 Z" />
+
+    <rect x="1300" y="0" width="2820" height="2880"
+          fill="url(#imgpattern)" stroke="black">
+    </rect>
+
+    <g id="episode" style="position: absolute; top:200px; left:200px; matrix(2.05628,0,0,1.96143,3815.26,396.017)">
+      <clipPath id="_clip1">
+        <path d="M235.05,389.005C199.02,426.207 231.8,492.678 245.295,513.509C255.154,528.73 290.292,572.985 312.685,596.796C332.537,617.904 375.513,613.417 391.058,601.152C419.087,579.036 440.515,542.728 455.801,527.031C472.361,510.027 517.825,443.769 465.959,388.764C433.557,354.402 384.454,348.53 355.028,347.684C324.621,346.811 267.702,355.291 235.05,389.005Z"/>
+      </clipPath>
+      <g clip-path="url(#_clip1)">
+        <g transform="matrix(0.0911839,-0,-0,0.0955933,-1855.42,-201.902)">
+          <use xlink:href="#_Image2" x="22753" y="5750.09" width="2976.15px" height="2760.28px" transform="matrix(0.999714,0,0,0.99974,0,0)"/>
+        </g>
+      </g>
+      <clipPath id="_clip3">
+        <path d="M235.05,389.005C199.02,426.207 231.8,492.678 245.295,513.509C255.154,528.73 290.292,572.985 312.685,596.796C332.537,617.904 375.513,613.417 391.058,601.152C419.087,579.036 440.515,542.728 455.801,527.031C472.361,510.027 517.825,443.769 465.959,388.764C433.557,354.402 384.454,348.53 355.028,347.684C324.621,346.811 267.702,355.291 235.05,389.005Z"/>
+      </clipPath>
+      <g clip-path="url(#_clip3)">
+        <path id="episode1" d="M256.571,394.996C221.466,421.232 239.392,478.988 254.079,498.997C275.776,528.555 296.185,559.785 318.579,583.596C338.43,604.704 367.043,601.242 382.588,588.976C410.617,566.861 440.99,522.278 456.599,501.357C470.069,483.304 490.241,429.896 450.902,395.91C415.163,365.035 352.582,364.578 349.006,364.578C345.429,364.578 294.165,366.9 256.571,394.996Z" style="fill:rgb(236,228,96);fill-opacity:0.26;stroke:rgb(255,247,0);stroke-opacity:0.32;stroke-width:0.56px;"/>
+        <g id="m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_m1')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+        <g id="p2" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_p2')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+        <g id="p1" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_p1')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+        <g id="n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_n4')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+        <g id="n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_n3')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+        <g id="n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_n2')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+        <g id="n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse onmouseenter="showGlimmerer('act1_v1_n1')" onmouseleave="hideGlimmerer()"
+                   cx="49.975" cy="537.906" rx="71.767" ry="78.82" style="fill:rgb(235,235,235);fill-opacity:0.44;"/>
+        </g>
+      </g>
+      <path d="M235.05,389.005C199.02,426.207 231.8,492.678 245.295,513.509C255.154,528.73 290.292,572.985 312.685,596.796C332.537,617.904 375.513,613.417 391.058,601.152C419.087,579.036 440.515,542.728 455.801,527.031C472.361,510.027 517.825,443.769 465.959,388.764C433.557,354.402 384.454,348.53 355.028,347.684C324.621,346.811 267.702,355.291 235.05,389.005Z" style="fill:none;stroke:rgb(255,247,0);stroke-opacity:0.23;stroke-width:0.56px;"/>
+    </g>
+  </svg>
+<!--</div>-->
+
+
+<script type="application/javascript">
+  window.addEventListener("load", function (event){
+    gsap.set("#glimmerer", {xPercent: -50, yPercent: -50});
+    const glimmerer = document.querySelector("#glimmerer");
+    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const mouse = { x: pos.x, y: pos.y };
+    const speed = 0.15;
+    const xSet = gsap.quickSetter(glimmerer, "x", "px");
+    const ySet = gsap.quickSetter(glimmerer, "y", "px");
+
+    window.addEventListener("mousemove", e => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    document.getElementById("glimmerImg").addEventListener('load', function(){
+      changeGlimmererThumb()
+    })
+
+    changeGlimmerer = function(episode) {
+      console.log('cg ' + episode)
+      let currentGlimmerText = new SplitText(document.getElementById("glimmerText"), {type: "words,chars"})
+      let timeline = new gsap.timeline()
+      timeline.staggerFrom(currentGlimmerText.chars, 0.5, {
+        opacity: .1,
+        rotation: -180,
+        y: -100,
+        ease: "sine"
+      }, 0.02)
+      let newThumb = document.getElementById("glimmerImg")
+      newThumb.src = './img/thumbs/' + episode + '.png'
+    }
+
+    showGlimmerer = function(episode) {
+      console.log('showGlimmerer')
+      changeGlimmerer(episode)
+      document.getElementById("glimmerer").style.display = 'block'
+      gsap.to("#glimmerer", {opacity: 1, duration: .4, ease: "In"});
+    }
+
+    hideGlimmerer = function() {
+      console.log('hideGlimmerer')
+      gsap.to("#glimmerer", {opacity: 0, duration: .2, ease: "Out"});
+      // document.getElementById("glimmerer").style.display = 'none'
+    }
+
+    playEpisode = function(episode) {
+      console.log('hideGlimmerer')
+    }
+
+    changeGlimmererThumb = function() {
+      console.log('changeGlimmerThumb')
+      //gsap.to("#glimmerThumb", {opacity: 1, duration: .4, ease: "In"});
+    }
+
+    gsap.ticker.add(() => {
+      // adjust speed for higher refresh monitors
+      const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+      pos.x += (mouse.x - pos.x) * dt;
+      pos.y += (mouse.y - pos.y) * dt;
+      xSet(pos.x);
+      ySet(pos.y);
+    });
+  })
+</script>
+
+</body>
+</html>
