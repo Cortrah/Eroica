@@ -1,0 +1,99 @@
+----------------------------------------------------------------------
+------------  First Get Things to Work Right Technically  ------------
+----------------------------------------------------------------------
+
+
+======================================================================
+Urmap
+======================================================================
+1) Have Urmap and Video Control Share the screen
+
+2) either create an SVG urmap with all episodes, or dynamically place episode nodes
+
+3) mouseover highlight for episode nodes
+
+4) change episode nodes on visited state
+
+5) add all glimmertext and access it based on episode node
+
+6) trigger the video to go fullscreen
+
+======================================================================
+Progress
+======================================================================
+1) load progress and display episode node states from localstorage
+
+2) update episode node states on visitation
+
+3) track act visitation
+
+4) save progress to a file
+
+5) upload progress from a file
+
+======================================================================
+Hosting
+======================================================================
+1) push to github pages
+
+2) make sure everything works technically
+
+
+----------------------------------------------------------------------
+-------------------  Then start making things nice  ------------------
+----------------------------------------------------------------------
+
+
+======================================================================
+Urmap
+======================================================================
+5) improve glimmertext
+    with a background,
+    text width
+    and variable character animations
+
+6) really make the urmap look nice
+    clear distinction between worlds
+    lots of semitransparent textures
+    little animated flourishes
+
+7) Tone down the video player interface
+
+8) act2 and act3 cloud turbulence
+
+9) turbulence progression
+
+10) musical progression
+
+======================================================================
+Progress
+======================================================================
+6) make the page and controls look nice
+
+7) have little help tips on how to use it
+
+======================================================================
+Home
+======================================================================
+1) a nice splash graphic, maybe have lynn help
+
+2) some simple animated flourishes
+
+3) possibly some music
+
+======================================================================
+Intro
+======================================================================
+1) take the urmap and create an animation that introduces the worlds
+
+======================================================================
+About
+======================================================================
+Is good
+
+======================================================================
+Help
+======================================================================
+1) Take the urmap and explain the node icons and act progression
+
+2) Explain saving and loading progress
