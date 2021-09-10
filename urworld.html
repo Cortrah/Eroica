@@ -100,7 +100,7 @@
 </div>
 
 <div id="mainWrapper">
-  <svg width="100%" height="100%" viewBox="0 0 5120 2880">
+  <svg id="urMap" width="100%" height="100%" viewBox="0 0 5120 2880">
     <defs>
       <pattern id="imgpattern" x="0" y="0" width="1" height="1"
                viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
@@ -161,6 +161,14 @@
       <path d="M235.05,389.005C199.02,426.207 231.8,492.678 245.295,513.509C255.154,528.73 290.292,572.985 312.685,596.796C332.537,617.904 375.513,613.417 391.058,601.152C419.087,579.036 440.515,542.728 455.801,527.031C472.361,510.027 517.825,443.769 465.959,388.764C433.557,354.402 384.454,348.53 355.028,347.684C324.621,346.811 267.702,355.291 235.05,389.005Z" style="fill:none;stroke:rgb(255,247,0);stroke-opacity:0.23;stroke-width:0.56px;"/>
     </g>
   </svg>
+  <video id="videoPlayer"
+         width="800" height="600"
+         src="episodes/act1_v1_m1.mp4"
+         onended="endEpisode()"
+         autoplay controls>
+    <source :src="source" type="video/mp4">
+    Your browser does not support video.
+  </video>
 </div>
 
 
