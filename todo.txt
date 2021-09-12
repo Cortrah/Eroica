@@ -6,17 +6,23 @@
 ======================================================================
 Urmap
 ======================================================================
-1) Have Urmap and Video Control Share the screen
+X) Have Urmap and Video Control Share the screen
 
-2) either create an SVG urmap with all episodes, or dynamically place episode nodes
+X) Have Urmap and video control fade in and out as needed
 
-3) mouseover highlight for episode nodes
+X) detect when a video ends and hide video and show urmap
 
-4) change episode nodes on visited state
+4) mouseover highlight for episode nodes
 
-5) add all glimmertext and access it based on episode node
+5) change episode nodes on visited state
 
-6) trigger the video to go fullscreen
+3) either create an SVG urmap with all episodes,
+    or dynamically place episode nodes
+
+6) add all glimmertext and access it based on episode node
+
+7) trigger the video to go fullscreen and stop fullscrren when done
+   or maintain the users selection
 
 ======================================================================
 Progress
@@ -47,23 +53,23 @@ Hosting
 ======================================================================
 Urmap
 ======================================================================
-5) improve glimmertext
+8) improve glimmertext
     with a background,
     text width
     and variable character animations
 
-6) really make the urmap look nice
+9) really make the urmap look nice
     clear distinction between worlds
     lots of semitransparent textures
     little animated flourishes
 
-7) Tone down the video player interface
+10) Tone down the video player interface
 
-8) act2 and act3 cloud turbulence
+11) act2 and act3 cloud turbulence
 
-9) turbulence progression
+12) turbulence progression
 
-10) musical progression
+13) musical progression
 
 ======================================================================
 Progress
