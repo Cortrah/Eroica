@@ -72,18 +72,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100%;
-      width: 100%;
-    }
-    #urMapWrapper {
-      position: absolute;
-      top: 80px;
-      display: flex;
-      width: 800px;
-      height: 740px;
     }
     #urMap {
+      top: 80px;
       position: absolute;
+    }
+    #urMapGround {
     }
     #videoPlayer {
       display: none;
@@ -122,9 +116,10 @@
 
 <div id="mainWrapper">
   <div id="urMapWrapper">
-    <img src="img/ur/ur8-alhpa1.png">
 
-    <svg id="urMap" width="100%" height="100%" viewBox="0 0 5120 2880">
+    <img id="urMapGround" src="img/ur/ur8-alhpa1.png">
+
+    <svg id="urMap">
       <defs>
         <pattern id="imgpattern" x="0" y="0" width="1" height="1"
                  viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
@@ -135,10 +130,6 @@
           <image width="500" height="300" xlink:href="./img/ur/ur8-alhpa1.png"/>
         </pattern>
       </defs>
-
-      <rect x="1300" y="0" width="2820" height="2880"
-            fill="url(#ur)" fill-opacity=".2" stroke="black">
-      </rect>
 
       <g id="act1_v1" transform="translate(1400,40)">
         <g clip-path="url(#_clip3)">
