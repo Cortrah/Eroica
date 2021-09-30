@@ -71,17 +71,29 @@
     #mainWrapper {
       display: flex;
       justify-content: center;
-      align-items: center;
     }
-    #urMap {
-      top: 80px;
-      position: absolute;
+    #urMapWrapper {
+      display: flex;
+      height: 1351px;
+      width: 910px;
     }
     #urMapGround {
+      display: flex;
+      position: absolute;
+      height: 1351px;
+      width: 910px;
+    }
+    #urMap {
+      display: flex;
+      position: absolute;
+      height: 1351px;
+      width: 910px;
     }
     #videoPlayer {
+      position: relative;
+      left: 55px;
+      top: 55px;
       display: none;
-      position: absolute;
     }
     .nodeicon {
       fill: #b7b7b7;
@@ -117,9 +129,9 @@
 <div id="mainWrapper">
   <div id="urMapWrapper">
 
-    <img id="urMapGround" src="img/ur/ur8-alhpa1.png">
+    <img id="urMapGround" src="img/ur/ur8-alhpa2.png">
 
-    <svg id="urMap">
+    <svg id="urMap" viewBox="0 0 1800 2600">
       <defs>
         <pattern id="imgpattern" x="0" y="0" width="1" height="1"
                  viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
@@ -127,11 +139,11 @@
         </pattern>
         <pattern id="ur" x="0" y="0" width="1" height="1"
                  viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
-          <image width="500" height="300" xlink:href="./img/ur/ur8-alhpa1.png"/>
+          <image width="500" height="300" xlink:href="./img/ur/ur8-alhpa2.png"/>
         </pattern>
       </defs>
 
-      <g id="act1_v1" transform="translate(1400,40)">
+      <g id="act1_v1">
         <g clip-path="url(#_clip3)">
           <path id="episode1" d="M256.571,394.996C221.466,421.232 239.392,478.988 254.079,498.997C275.776,528.555 296.185,559.785 318.579,583.596C338.43,604.704 367.043,601.242 382.588,588.976C410.617,566.861 440.99,522.278 456.599,501.357C470.069,483.304 490.241,429.896 450.902,395.91C415.163,365.035 352.582,364.578 349.006,364.578C345.429,364.578 294.165,366.9 256.571,394.996Z" style="fill:rgb(236,228,96);fill-opacity:0.26;stroke:rgb(255,247,0);stroke-opacity:0.32;stroke-width:0.56px;"/>
           <g id="act1_v1_m1" onmouseenter="onEnter('act1_v1_m1')" onmouseleave="onLeave()" onclick="playEpisode('act1_v1_m1')" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
