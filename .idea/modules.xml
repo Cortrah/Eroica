@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../eroica-x/.idea/eroica-x.iml" filepath="$PROJECT_DIR$/../eroica-x/.idea/eroica-x.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/super-simpleton.iml" filepath="$PROJECT_DIR$/.idea/super-simpleton.iml" />
     </modules>
   </component>
