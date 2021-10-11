@@ -73,7 +73,7 @@
       top: -135px;
       width: 280px;
       text-align: center;
-      color: #000000;
+      color: #ffffcc;
       font-weight: bold;
     }
     #mainWrapper {
@@ -217,6 +217,15 @@
       stroke-opacity:0.34;
       stroke-width:8px;
     }
+    .available {
+      fill: #EEEECC66;
+    }
+    .visited {
+      fill: #000;
+    }
+    .unchosen {
+      fill: #EEEECC11;
+    }
   </style>
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -242,7 +251,7 @@
 <div id="mainWrapper">
   <div id="urMapWrapper">
 
-    <img id="urMapGround" src="img/ur/ur8-alhpa2.png">
+    <img id="urMapGround" src="img/ur/ur8-alhpa2.png" style="opacity: 0.2">
 
     <svg id="urMap" viewBox="0 0 1800 2600">
       <defs>
@@ -257,95 +266,157 @@
       </defs>
 
       <g id="act1_v1" transform="translate(200,0)">
-        <g id="act1_v1_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
-          <ellipse onmouseenter="showGlimmerer('act1_v1_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_m1')"
-                   cx="49.975" cy="537.906" rx="71" ry="75" class="vnodeicon" />
+        <g transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <g id="act1_v1_m1" onmouseenter="showGlimmerer('act1_v1_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_m1')">
+            <ellipse cx="49.975" cy="537.906" rx="71" ry="75" class="vnodeicon" />
+            <svg>
+              <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+            </svg>
+          </g>
         </g>
         <g id="act1_v1_p2" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_v1_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v1_p1" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_v1_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v1_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_v1_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v1_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_v1_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v1_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_v1_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v1_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_v1_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v1_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
-
       <g id="act1_v2" transform="translate(260,280)">
         <g id="act1_v2_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v2_p2" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v2_p1" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v2_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v2_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v2_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v2_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_v2_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v2_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
-
       <g id="act1_v3" transform="translate(300,560)">
         <g id="act1_v3_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v3_p2" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v3_p1" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v3_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v3_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v3_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_v3_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_v3_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_v3_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
 
@@ -353,90 +424,153 @@
         <g id="act1_t1_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t1_p1" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t1_p2" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t1_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t1_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t1_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t1_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_t1_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t1_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
       <g id="act1_t2" transform="translate(560,180)">
         <g id="act1_t2_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t2_p1" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t2_p2" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t2_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t2_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t2_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t2_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_t2_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t2_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
       <g id="act1_t3" transform="translate(560,460)">
         <g id="act1_t3_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t3_p1" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t3_p2" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t3_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t3_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t3_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_t3_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_t3_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_t3_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
 
@@ -444,90 +578,153 @@
         <g id="act1_a1_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_at1_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a1_p1" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a1_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a1_p2" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a1_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a1_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a1_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a1_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a1_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a1_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a1_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a1_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_a1_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a1_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
       <g id="act1_a2" transform="translate(860,280)">
         <g id="act1_a2_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a2_p1" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a2_p2" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a2_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a2_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a2_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a2_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_a2_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a2_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
       <g id="act1_a3" transform="translate(820,560)">
         <g id="act1_a3_m1" transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_m1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_m1')"
                    cx="49.975" cy="537.906" rx="71" ry="75" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a3_p1" transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_p1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_p1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a3_p2" transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_p2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_p2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a3_n4" transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_n4')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_n4')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a3_n3" transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_n3')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_n3')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a3_n2" transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_n2')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_n2')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
         <g id="act1_a3_n1" transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
           <ellipse onmouseenter="showGlimmerer('act1_a3_n1')" onmouseleave="hideGlimmerer()" onclick="playEpisode('act1_a3_n1')"
                    cx="49.975" cy="537.906" rx="71.767" ry="78.82" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="41" ry="45"></ellipse>
+          </svg>
         </g>
       </g>
 
@@ -545,8 +742,9 @@
                 d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
-                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="vmaskhighlight"/>
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"           />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_v4_s" transform="translate(280,1360)">
@@ -563,7 +761,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act2_v5_h" transform="translate(340,1300)">
@@ -581,7 +781,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_v5_s" transform="translate(400,1300)">
@@ -598,7 +800,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act2_v6_h" transform="translate(440,1360)">
@@ -616,7 +820,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_v6_s" transform="translate(500,1360)">
@@ -633,7 +839,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
 
@@ -652,7 +860,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_t4_s" transform="translate(740,1460)">
@@ -669,7 +879,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act2_t5_h" transform="translate(800,1400)">
@@ -687,7 +899,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_t5_s" transform="translate(860,1400)">
@@ -704,7 +918,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act2_t6_h" transform="translate(920,1460)">
@@ -722,7 +938,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_t6_s" transform="translate(980,1460)">
@@ -739,7 +957,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
 
@@ -758,7 +978,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_a4_s" transform="translate(1200,1360)">
@@ -775,7 +997,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act2_a5_h" transform="translate(1260,1300)">
@@ -793,7 +1017,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_a5_s" transform="translate(1320,1300)">
@@ -810,7 +1036,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act2_a6_h" transform="translate(1400,1360)">
@@ -828,7 +1056,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act2_a6_s" transform="translate(1460,1360)">
@@ -845,7 +1075,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
 
@@ -864,7 +1096,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act3_v_s" transform="translate(740,1660)">
@@ -881,7 +1115,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="vmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act3_t_h" transform="translate(800,1720)">
@@ -899,7 +1135,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act3_t_s" transform="translate(860,1720)">
@@ -916,7 +1154,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="tmaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
       <g id="act3_a_h" transform="translate(920,1660)">
@@ -934,7 +1174,9 @@
                 style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
           <path class="eyemouth"
                 d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
         </svg>
       </g>
       <g id="act3_a_s" transform="translate(980,1660)">
@@ -951,7 +1193,9 @@
                 style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
           <path class="eyemouth"
                 d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
-                class="amaskhighlight"/>
+                />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
         </svg>
       </g>
 
@@ -986,6 +1230,7 @@
   </div>
 </div>
 <script type="application/javascript">
+  const SplitText = require("./gsap-2021/esm/SplitText");
   window.addEventListener("load", function (event){
     // the default is to show video fullscreen but if a user has made it not fullscreen keep it that way
     // this should also eventually be an option that is saved in localstorage via progress (which may need renaming)
@@ -1125,34 +1370,12 @@
         let episodes =  JSON.parse(localStorageEpisodeData)
         let episodeCount = window.state.episodes.length
         for ( let i = 0; i < episodeCount; i++) {
-          console.log(i)
           // window.state.episodes[i] = episodes[i]
           // if (episodes[i].status === 'visited'){
-            let e = document.getElementById(window.state.episodes[i].code).children[0]
-            if(e.classList.contains('vnodeicon')){
-              e.classList.remove('vnodeicon')
-              e.classList.add('visitednodeicon')
-            }
-            if(e.classList.contains('tnodeicon')){
-              e.classList.remove('tnodeicon')
-              e.classList.add('visitednodeicon')
-            }
-            if(e.classList.contains('anodeicon')){
-              e.classList.remove('anodeicon')
-              e.classList.add('visitednodeicon')
-            }
-            if(e.classList.contains('vmaskhighlight')){
-              e.classList.remove('vmaskhighlight')
-              e.classList.add('maskvisited')
-            }
-            if(e.classList.contains('tmaskhighlight')){
-              e.classList.remove('tmaskhighlight')
-              e.classList.add('maskvisited')
-            }
-            if(e.classList.contains('amaskhighlight')){
-              e.classList.remove('amaskhighlight')
-              e.classList.add('maskvisited')
-            }
+          let episodeCode = window.state.episodes[i].code
+          console.log(episodeCode)
+
+            window.setVisited(episodeCode)
           //}
         }
       // }
@@ -1160,8 +1383,34 @@
       window.state.finaleAvailable = localStorageFinaleAvailable
     }
 
+    window.setVisited = function (episodeCode) {
+      // if it's an act 1 node
+      if(episodeCode.charAt(3)==='1'){
+        let stateLight = document.getElementById(episodeCode).children[1].children[0]
+        if (stateLight.classList.contains('available')){
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+      }
+      // if it's Act2 or 3 which have the same progress structure
+      if(episodeCode.charAt(3)==='2' || episodeCode.charAt(3)==='3' ) {
+        let stateLight = document.getElementById(episodeCode).children[0].children[4]
+        if (stateLight.classList.contains('available')){
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+      }
+      // if it's 'finale'
+      if (episodeCode === 'finale') {
+      }
+    }
+
     window.changeGlimmerer = function(episode) {
-      let currentGlimmerText = new SplitText(document.getElementById("glimmerText"), {type: "words,chars"})
+      let glimmerTextElem = document.getElementById("glimmerText")
+      let i = window.state.episodes.findIndex( episode => episode.code == episode)
+      console.log(window.state.episodes[i].glimmer)
+      glimmerTextElem.innerText = window.state.episodes[i].glimmer
+      let currentGlimmerText = new SplitText(glimmerTextElem, {type: "words,chars"})
       let timeline = new gsap.timeline()
       timeline.staggerFrom(currentGlimmerText.chars, 0.5, {
         opacity: .1,
@@ -1171,6 +1420,11 @@
       }, 0.02)
       let newThumb = document.getElementById("glimmerImg")
       newThumb.src = './img/thumbs/' + episode + '.png'
+    }
+
+    window.changeGlimmererThumb = function() {
+      console.log('changeGlimmerThumb')
+      //gsap.to("#glimmerThumb", {opacity: 1, duration: .4, ease: "In"});
     }
 
     window.showGlimmerer = function(episode) {
@@ -1208,11 +1462,6 @@
       if(videoPlayer.msRequestFullscreen){
         videoPlayer.msRequestFullscreen()
       }
-    }
-
-    window.changeGlimmererThumb = function() {
-      console.log('changeGlimmerThumb')
-      //gsap.to("#glimmerThumb", {opacity: 1, duration: .4, ease: "In"});
     }
 
     gsap.ticker.add(() => {
