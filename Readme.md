@@ -15,7 +15,7 @@
 
 - [ ] Add glimmertext for all episodes
 - [ ] Choose fonts for navigation, pages and glimmertext, possibly urmap as well
-- [ ] Do 3 very different urmaps
+- [ ] Do 3 very different urmaps, add textures to vector shapes
 - [ ] Choose one urmap and do Act2 clouds that partially obscure the masks
 - [ ] Act 3 clouds that partially obscure those masks
 - [ ] Finale cloud that partially obscures the scarab
