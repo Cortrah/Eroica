@@ -1,0 +1,120 @@
+
+## Phase 1 - Programming with Placeholder Graphics
+
+- [X] Fix bug with Act1 A1 M1
+- [ ] Rename repository from super-simpleton to Eroica
+- [ ] Keep track of visited status of act 1 nodes during a session via localstorage
+- [ ] Load progress status on revisiting the page
+- [ ] Re-align glimmertext to proper location when fullscreen
+- [ ] Re-align glimmertext when user has scrolled
+- [ ] Enable saving progress locally as a text file
+- [ ] Enable loading progress from a local text file
+- [ ] Hover state for finale scarab
+
+## Phase 2 - Creative Work
+
+- [ ] Add glimmertext for all episodes
+- [ ] Choose fonts for navigation, pages and glimmertext, possibly urmap as well
+- [ ] Do 3 very different urmaps
+- [ ] Choose one urmap and do Act2 clouds that partially obscure the masks
+- [ ] Act 3 clouds that partially obscure those masks
+- [ ] Finale cloud that partially obscures the scarab
+- [ ] Improve glimmertext backgrounds and text animation, make them semi-random and variable 
+- [ ] Possibly have the Act 2 clouds change in turbulence and possibly location color as the user progresses
+- [ ] Possibly add some other nice (possibly random) flourishes to the urmap as the user progresses through world
+
+## Phase 3 - Final Polish
+
+- [ ] Create a nice splash screen
+- [ ] Allow user to choose fullscreen or not for video
+- [ ] Make Introduction nicer using urmap graphics
+- [ ] Create help page to explain navigation and progress
+- [ ] Revisit videos and fix any slight encoding problems
+  - [ ] act1_v1_n1
+  - [ ] act1_v1_n2
+  - [ ] act1_v1_n3
+  - [ ] act1_v1_n4
+  - [ ] act1_v1_p1
+  - [ ] act1_v1_p2
+  - [ ] act1_v1_m1
+  - [ ] act1_t1_n1
+  - [ ] act1_t1_n2 - could trim a second at the end
+  - [ ] act1_t1_n3 - slight fuzzy audio artifact in the begining
+  - [ ] act1_t1_n4 - could trim a few seconds at the end
+  - [ ] act1_t1_p1
+  - [ ] act1_t1_p2
+  - [ ] act1_t1_m1
+  - [ ] act1_a1_n1
+  - [ ] act1_a1_n2
+  - [ ] act1_a1_n3
+  - [ ] act1_a1_n4
+  - [ ] act1_a1_p1
+  - [ ] act1_a1_p2
+  - [ ] act1_a1_m1
+  - [ ] act1_v2_n1
+  - [ ] act1_v2_n2
+  - [ ] act1_v2_n3
+  - [ ] act1_v2_n4
+  - [ ] act1_v2_p1
+  - [ ] act1_v2_p2
+  - [ ] act1_v2_m1
+  - [ ] act1_t2_n1
+  - [ ] act1_t2_n2
+  - [ ] act1_t2_n3
+  - [ ] act1_t2_n4
+  - [ ] act1_t2_p1
+  - [ ] act1_t2_p2
+  - [ ] act1_t2_m1
+  - [ ] act1_a2_n1
+  - [ ] act1_a2_n2
+  - [ ] act1_a2_n3
+  - [ ] act1_a2_n4
+  - [ ] act1_a2_p1
+  - [ ] act1_a2_p2
+  - [ ] act1_a2_m1
+  - [ ] act1_v3_n1
+  - [ ] act1_v3_n2
+  - [ ] act1_v3_n3
+  - [ ] act1_v3_n4
+  - [ ] act1_v3_p1
+  - [ ] act1_v3_p2
+  - [ ] act1_v3_m1
+  - [ ] act1_t3_n1
+  - [ ] act1_t3_n2
+  - [ ] act1_t3_n3
+  - [ ] act1_t3_n4
+  - [ ] act1_t3_p1
+  - [ ] act1_t3_p2
+  - [ ] act1_t3_m1
+  - [ ] act1_a3_n1
+  - [ ] act1_a3_n2
+  - [ ] act1_a3_n3
+  - [ ] act1_a3_n4
+  - [ ] act1_a3_p1
+  - [ ] act1_a3_p2
+  - [ ] act1_a3_m1
+  - [ ] act2_v4_h
+  - [ ] act2_v4_s
+  - [ ] act2_v5_h
+  - [ ] act2_v5_s
+  - [ ] act2_v6_h
+  - [ ] act2_v6_s
+  - [ ] act2_t4_h
+  - [ ] act2_t4_s
+  - [ ] act2_t5_h
+  - [ ] act2_t5_s
+  - [ ] act2_t6_h
+  - [ ] act2_t6_s
+  - [ ] act2_a4_h
+  - [ ] act2_a4_s
+  - [ ] act2_a5_h
+  - [ ] act2_a5_s
+  - [ ] act2_a6_h
+  - [ ] act2_a6_s
+  - [ ] act3_v_h
+  - [ ] act3_v_s
+  - [ ] act3_t_h
+  - [ ] act3_t_s
+  - [ ] act3_a_h
+  - [ ] act3_a_s
+  - [ ] finale
