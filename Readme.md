@@ -2,7 +2,7 @@
 ## Phase 1 - Programming with Placeholder Graphics
 
 - [X] Fix bug with Act1 A1 M1
-- [ ] Rename repository from super-simpleton to Eroica
+- [X] Rename repository from super-simpleton to Eroica
 - [ ] Keep track of visited status of act 1 nodes during a session via localstorage
 - [ ] Load progress status on revisiting the page
 - [ ] Re-align glimmertext to proper location when fullscreen
@@ -25,6 +25,7 @@
 
 ## Phase 3 - Final Polish
 
+- [ ] Configure custom domain 
 - [ ] Create a nice splash screen
 - [ ] Allow user to choose fullscreen or not for video
 - [ ] Make Introduction nicer using urmap graphics
