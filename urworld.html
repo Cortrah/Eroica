@@ -230,6 +230,9 @@
       fill: rgba(115, 115, 81, 0.82);
     }
     .unchosen {
+      fill: rgba(0, 0, 0);
+    }
+    .unchosen:hover {
       fill: #EEEECC11;
     }
   </style>
@@ -255,7 +258,6 @@
     <a href="progress.html">Progress</a>
     <a href="help.html">Help</a>
     <a href="about.html">About</a>
-    <button onclick="window.init()">ok</button>
   </div>
 </div>
 <div id="mainWrapper">
@@ -1376,12 +1378,40 @@
       }
       window.state.episodes[i].status = "visited"
     }
-    // if it's Act2 or 3 which have the same progress structure
-    if(episodeCode.charAt(3)==='2' || episodeCode.charAt(3)==='3' ) {
+    // if it's Act2
+    if(episodeCode.charAt(3)==='2') {
       let stateLight = document.getElementById(episodeCode).children[0].children[4]
       if (stateLight.classList.contains('available')){
         stateLight.classList.remove('available')
         stateLight.classList.add('visited')
+      }
+      if(episodeCode.charAt(8)=='h'){
+        window.state.episodes[i].status = "visited"
+      } else {
+        window.state.episodes[i+1].status = "unchosen"
+      }
+      if(episodeCode.charAt(8)=='s'){
+        window.state.episodes[i-1].status = "unchosen"
+      } else {
+        window.state.episodes[i].status = "visited"
+      }
+    }
+    // if it's Act3
+    if(episodeCode.charAt(3)==='3') {
+      let stateLight = document.getElementById(episodeCode).children[0].children[4]
+      if (stateLight.classList.contains('available')){
+        stateLight.classList.remove('available')
+        stateLight.classList.add('visited')
+      }
+      if(episodeCode.charAt(7)=='h'){
+        window.state.episodes[i].status = "visited"
+      } else {
+        window.state.episodes[i+1].status = "unchosen"
+      }
+      if(episodeCode.charAt(7)=='s'){
+        window.state.episodes[i].status = "visited"
+      } else {
+        window.state.episodes[i-1].status = "unchosen"
       }
     }
     // if it's 'finale'
@@ -1390,13 +1420,9 @@
   }
 
   window.changeGlimmerer = function(episode) {
-    // console.log('changeGlimmerer')
     let glimmerTextElem = document.getElementById("glimmerText")
-    // console.log(episode)
-    // console.log(window.state.episodes)
     for (let i = 0; i < 88; i++) {
       if(window.state.episodes[i].code == episode) {
-        // console.log('found')
         glimmerTextElem.innerText = window.state.episodes[i].glimmer
       }
     }
@@ -1412,22 +1438,14 @@
     newThumb.src = './img/thumbs/' + episode + '.png'
   }
 
-  window.changeGlimmererThumb = function() {
-    // console.log('changeGlimmerThumb')
-    //gsap.to("#glimmerThumb", {opacity: 1, duration: .4, ease: "In"});
-  }
-
   window.showGlimmerer = function(episode) {
-    // console.log('showGlimmerer')
     window.changeGlimmerer(episode)
     document.getElementById("glimmerer").style.display = 'block'
     gsap.to("#glimmerer", {opacity: 1, duration: .4, ease: "In"});
   }
 
   window.hideGlimmerer = function() {
-    // console.log('hideGlimmerer')
     gsap.to("#glimmerer", {opacity: 0, duration: .2, ease: "Out"});
-    // document.getElementById("glimmerer").style.display = 'none'
   }
 
   window.playEpisode = function(episode) {
@@ -1474,7 +1492,6 @@
   }
 
   window.addEventListener("load", function (event){
-    //console.log('window loaded')
     window.init()
 
     // the default is to show video fullscreen but if a user has made it not fullscreen keep it that way
@@ -1501,11 +1518,6 @@
       mouse.x = Math.min(e.pageX, 800)
       mouse.y = e.pageY-20;
     });
-
-    document.getElementById("glimmerImg").addEventListener('load', function(){
-      changeGlimmererThumb()
-    })
-
     gsap.ticker.add(() => {
       // adjust speed for higher refresh monitors
       const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
@@ -1517,7 +1529,6 @@
   })
 
   window.init = function() {
-    console.log('window init called')
     window.state = {
       isUr: true,
       currentAct: "act1",
