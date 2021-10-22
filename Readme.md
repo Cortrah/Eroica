@@ -5,8 +5,8 @@
 - [X] Rename repository from super-simpleton to Eroica
 - [ ] Keep track of visited status of act 1 nodes during a session via localstorage
 - [ ] Load progress status on revisiting the page
-- [ ] Re-align glimmertext to proper location when fullscreen
-- [ ] Re-align glimmertext when user has scrolled
+- [X] Re-align glimmertext to proper location when fullscreen
+- [X] Re-align glimmertext when user has scrolled
 - [ ] Enable saving progress locally as a text file
 - [ ] Enable loading progress from a local text file
 - [ ] Hover state for finale scarab

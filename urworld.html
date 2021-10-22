@@ -1366,7 +1366,7 @@
 </div>
 <script type="application/javascript">
 
-  window.setVisited = function (episodeCode) {
+  window.setVisited = function (i, episodeCode) {
     // if it's an act 1 node
     if(episodeCode.charAt(3)==='1'){
       let stateLight = document.getElementById(episodeCode).children[1].children[0]
@@ -1374,6 +1374,7 @@
         stateLight.classList.remove('available')
         stateLight.classList.add('visited')
       }
+      window.state.episodes[i].status = "visited"
     }
     // if it's Act2 or 3 which have the same progress structure
     if(episodeCode.charAt(3)==='2' || episodeCode.charAt(3)==='3' ) {
@@ -1433,7 +1434,9 @@
     const urMap = document.querySelector("#urMap")
     urMap.style.display = 'none'
 
-    window.setVisited(episode)
+    let episodeIndex = window.state.episodes.findIndex( e => e.code == episode);
+    window.setVisited(episodeIndex, episode)
+    window.updateLocalStorage()
 
     const videoPlayer = document.querySelector("#videoPlayer");
     videoPlayer.style.display = 'block'
@@ -1515,6 +1518,8 @@
 
   window.init = function() {
     //console.log('window init called')
+
+    // set the default state
     window.state = {
       isUr: false,
       currentAct: "act1",
@@ -1616,9 +1621,14 @@
         { code:"finale",     glimmer:"finale",     imago:"scarab",status:"not-visited"}
       ]
     }
-    let localStorageEpisodeData = localStorage.getItem('episodes')
+
+    // then get the saved state from localStorage
     let localStorageCurrentAct = localStorage.getItem('currentAct')
     let localStorageFinaleAvailable = localStorage.getItem('finaleAvailable')
+    window.state.currentAct = localStorageCurrentAct
+    window.state.finaleAvailable = localStorageFinaleAvailable
+
+    let localStorageEpisodeData = localStorage.getItem('episodes')
     if (localStorageEpisodeData !== null) {
       let episodes =  JSON.parse(localStorageEpisodeData)
       let episodeCount = window.state.episodes.length
@@ -1626,12 +1636,10 @@
         window.state.episodes[i] = episodes[i]
         if (episodes[i].status === 'visited'){
           let episodeCode = window.state.episodes[i].code
-          window.setVisited(episodeCode)
+          window.setVisited(i, episodeCode)
         }
       }
     }
-    window.state.currentAct = localStorageCurrentAct
-    window.state.finaleAvailable = localStorageFinaleAvailable
   }
 </script>
 
