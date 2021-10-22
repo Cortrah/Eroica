@@ -1498,8 +1498,8 @@
     const ySet = gsap.quickSetter(glimmerer, "y", "px");
 
     window.addEventListener("mousemove", e => {
-      mouse.x = e.x;
-      mouse.y = e.y;
+      mouse.x = Math.min(e.pageX, 800)
+      mouse.y = e.pageY-20;
     });
 
     document.getElementById("glimmerImg").addEventListener('load', function(){
@@ -1517,18 +1517,11 @@
   })
 
   window.init = function() {
-    //console.log('window init called')
-
-    // set the default state
+    console.log('window init called')
     window.state = {
-      isUr: false,
+      isUr: true,
       currentAct: "act1",
       finaleAvailable: false,
-      currentEpisode: {
-        code:"none", glimmer:"",
-        imago:"node",
-        status:"not-visited"
-      },
       displayingEpisode: false,
       episodes: [
         { code:"act1_v1_n1", glimmer:"Promptings and Seizures", imago:"node", status:"not-visited"},
