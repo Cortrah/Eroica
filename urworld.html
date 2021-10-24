@@ -258,7 +258,7 @@
     <a href="progress.html">Progress</a>
     <a href="help.html">Help</a>
     <a href="about.html">About</a>
-    <button onclick="window.clearProgress()">clear</button>
+    <!--    <button onclick="window.clearProgress()">clear</button>-->
   </div>
 </div>
 <div id="mainWrapper">
@@ -1376,7 +1376,7 @@
   // everything is initialized as 'available'
   // if an episode has already been visited this doesn't need to be called when played
   // if an episode has been unvisited, this doesn't need to be called when played
-  window.setVisited = function (i, episodeCode) {
+  window.setVisited = function (episodeIndex, episodeCode) {
 
     // if it's an act 1 node
     if(episodeCode.charAt(3)==='1'){
@@ -1385,106 +1385,8 @@
         stateLight.classList.remove('available')
         stateLight.classList.add('visited')
       }
-      window.state.episodes[i].status = "visited"
+      window.state.episodes[episodeIndex].status = "visited"
     }
-
-    // if it's Act2
-    if(episodeCode.charAt(3)==='2') {
-      let companionEpisodeCode = episodeCode
-      if (episodeCode.charAt(8) == 'h') {
-        companionEpisodeCode = episodeCode.replace('h', 's')
-      } else {
-        companionEpisodeCode = episodeCode.replace('s', 'h')
-      }
-      let stateLight = document.getElementById(episodeCode).children[0].children[4]
-      let compainonStateGround = document.getElementById(companionEpisodeCode).children[0].children[0]
-      let compainonStateEyeMouth = document.getElementById(companionEpisodeCode).children[0].children[3]
-      let compainonStateLight = document.getElementById(companionEpisodeCode).children[0].children[4]
-      if (episodeCode.charAt(8) == 'h') {
-        if (stateLight.classList.contains('available')) {
-          stateLight.classList.remove('available')
-          stateLight.classList.add('visited')
-        }
-        window.state.episodes[i].status = "visited"
-        if (compainonStateGround.classList.contains('ground')) {
-          compainonStateGround.classList.remove('ground')
-          compainonStateGround.classList.add('unchosen')
-        }
-        if (compainonStateLight.classList.contains('available')) {
-          compainonStateLight.classList.remove('available')
-          compainonStateLight.classList.add('unchosen')
-        }
-        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
-          compainonStateEyeMouth.classList.remove('eyemouth')
-          compainonStateEyeMouth.classList.add('unchosen')
-        }
-        window.state.episodes[i + 1].status = "unchosen"
-      }
-      if (episodeCode.charAt(8) == 's') {
-        if (stateLight.classList.contains('available')) {
-          stateLight.classList.remove('available')
-          stateLight.classList.add('visited')
-        }
-        window.state.episodes[i].status = "visited"
-        if (compainonStateGround.classList.contains('ground')) {
-          compainonStateGround.classList.remove('ground')
-          compainonStateGround.classList.add('unchosen')
-        }
-        if (compainonStateLight.classList.contains('available')) {
-          compainonStateLight.classList.remove('available')
-          compainonStateLight.classList.add('unchosen')
-        }
-        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
-          compainonStateEyeMouth.classList.remove('eyemouth')
-          compainonStateEyeMouth.classList.add('unchosen')
-        }
-        window.state.episodes[i - 1].status = "unchosen"
-      }
-    }
-
-    // if it's Act3
-    if(episodeCode.charAt(3)==='3') {
-      let companionEpisodeCode = episodeCode
-      if (episodeCode.charAt(7) == 'h') {
-        companionEpisodeCode = episodeCode.replace('h', 's')
-      } else {
-        companionEpisodeCode = episodeCode.replace('s', 'h')
-      }
-
-      let stateLight = document.getElementById(episodeCode).children[0].children[4]
-      let compainonStateLight = document.getElementById(companionEpisodeCode).children[0].children[0]
-      if(episodeCode.charAt(7)=='h'){
-        if (stateLight.classList.contains('available')){
-          stateLight.classList.remove('available')
-          stateLight.classList.add('visited')
-        }
-        window.state.episodes[i].status = "visited"
-        if (compainonStateLight.classList.contains('ground')){
-          compainonStateLight.classList.remove('ground')
-          compainonStateLight.classList.add('unchosen')
-        }
-        window.state.episodes[i+1].status = "unchosen"
-      }
-      if(episodeCode.charAt(7)=='s') {
-        if (stateLight.classList.contains('available')) {
-          stateLight.classList.remove('available')
-          stateLight.classList.add('visited')
-        }
-        window.state.episodes[i].status = "visited"
-        if (compainonStateLight.classList.contains('ground')) {
-          compainonStateLight.classList.remove('ground')
-          compainonStateLight.classList.add('unchosen')
-        }
-        window.state.episodes[i - 1].status = "unchosen"
-      }
-    }
-
-    // if it's 'finale'
-    if (episodeCode === 'finale') {
-    }
-  }
-
-  window.updateActProgression = function() {
 
     // if all act1 is now visited enable act2
     let act1visitedCount = 0
@@ -1499,99 +1401,231 @@
       window.state.currentAct = "act2"
     }
 
-    // if all 3 Vienna are chosen their act 3 is made visible and enabled
-    let act2StartVIndex = 63
-    let act2EndVIndex = 68
-    let act2VDecisionCount = 0
-    let act2VPositivity = 0
-    for( let i = act2StartVIndex; i <= act2EndVIndex; i++) {
-      let code = window.state.episodes[i].code
-      if (window.state.episodes[i].status === 'visited') {
-        act2VDecisionCount++
-        if (code.endsWith('h')) {
-          act2VPositivity++
+    // if it's Act2
+    if(episodeCode.charAt(3)==='2') {
+      let companionEpisodeCode = ''
+      if (episodeCode.charAt(8) == 'h') {
+        companionEpisodeCode = episodeCode.replace('h', 's')
+      } else {
+        companionEpisodeCode = episodeCode.replace('s', 'h')
+      }
+      let stateLight = document.getElementById(episodeCode).children[0].children[4]
+      let compainonStateGround = document.getElementById(companionEpisodeCode).children[0].children[0]
+      let compainonStateEyeMouth = document.getElementById(companionEpisodeCode).children[0].children[3]
+      let compainonStateLight = document.getElementById(companionEpisodeCode).children[0].children[4]
+      if (episodeCode.charAt(8) == 'h') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
         }
-        if (code.endsWith('s')) {
-          act2VPositivity--
+        window.state.episodes[episodeIndex].status = "visited"
+        if (compainonStateGround.classList.contains('ground')) {
+          compainonStateGround.classList.remove('ground')
+          compainonStateGround.classList.add('unchosen')
+        }
+        if (compainonStateLight.classList.contains('available')) {
+          compainonStateLight.classList.remove('available')
+          compainonStateLight.classList.add('unchosen')
+        }
+        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
+          compainonStateEyeMouth.classList.remove('eyemouth')
+          compainonStateEyeMouth.classList.add('unchosen')
+        }
+        window.state.episodes[episodeIndex + 1].status = "unchosen"
+      }
+      if (episodeCode.charAt(8) == 's') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+        window.state.episodes[episodeIndex].status = "visited"
+        if (compainonStateGround.classList.contains('ground')) {
+          compainonStateGround.classList.remove('ground')
+          compainonStateGround.classList.add('unchosen')
+        }
+        if (compainonStateLight.classList.contains('available')) {
+          compainonStateLight.classList.remove('available')
+          compainonStateLight.classList.add('unchosen')
+        }
+        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
+          compainonStateEyeMouth.classList.remove('eyemouth')
+          compainonStateEyeMouth.classList.add('unchosen')
+        }
+        window.state.episodes[episodeIndex - 1].status = "unchosen"
+      }
+
+      // if all 3 Vienna are chosen their act 3 is made visible and enabled
+      let act2StartVIndex = 63
+      let act2EndVIndex = 68
+      let act2VDecisionCount = 0
+      let act2VPositivity = 0
+      for( let i = act2StartVIndex; i <= act2EndVIndex; i++) {
+        let code = window.state.episodes[i].code
+        if (window.state.episodes[i].status === 'visited') {
+          act2VDecisionCount++
+          if (code.endsWith('h')) {
+            act2VPositivity++
+          }
+          if (code.endsWith('s')) {
+            act2VPositivity--
+          }
+        }
+        if (act2VDecisionCount >= 3) {
+          let unvisitedEpisodeCode = ''
+          if (act2VPositivity > 0) {
+            window.state.episodes[81].status = 'not-visited'
+            window.state.episodes[82].status = 'unchosen'
+            unvisitedEpisodeCode = window.state.episodes[82].code
+          } else {
+            window.state.episodes[81].status = 'unchosen'
+            window.state.episodes[82].status = 'not-visited'
+            unvisitedEpisodeCode = window.state.episodes[81].code
+          }
+          // get unvisited node and set it's classes
+          let unvisitedStateGround = document.getElementById(unvisitedEpisodeCode).children[0].children[0]
+          let unvisitedStateEyeMouth = document.getElementById(unvisitedEpisodeCode).children[0].children[3]
+          let unvisitedStateLight = document.getElementById(unvisitedEpisodeCode).children[0].children[4]
+          if (unvisitedStateGround.classList.contains('ground')) {
+            unvisitedStateGround.classList.remove('ground')
+            unvisitedStateGround.classList.add('unchosen')
+          }
+          if (unvisitedStateLight.classList.contains('available')) {
+            unvisitedStateLight.classList.remove('available')
+            unvisitedStateLight.classList.add('unchosen')
+          }
+          if (unvisitedStateEyeMouth.classList.contains('eyemouth')) {
+            unvisitedStateEyeMouth.classList.remove('eyemouth')
+            unvisitedStateEyeMouth.classList.add('unchosen')
+          }
         }
       }
-      if (act2VDecisionCount >= 3) {
-        if (act2VPositivity > 0) {
-          window.state.episodes[81].status = 'not-visited'
-          window.state.episodes[82].status = 'unchosen'
-        } else {
-          window.state.episodes[81].status = 'unchosen'
-          window.state.episodes[82].status = 'not-visited'
+
+      // if all 3 Tarrytown are chosen their act 3 is made visible and enabled
+      let act2StartTIndex = 69
+      let act2EndTIndex = 74
+      let act2TDecisionCount = 0
+      let act2TPositivity = 0
+      for( let i = act2StartTIndex; i <= act2EndTIndex; i++) {
+        let code = window.state.episodes[i].code
+        if (window.state.episodes[i].status === 'visited') {
+          act2TDecisionCount++
+          if (code.endsWith('h')) {
+            act2TPositivity++
+          }
+          if (code.endsWith('s')) {
+            act2TPositivity--
+          }
         }
+        if(act2TDecisionCount >= 3 ){
+          let unvisitedEpisodeCode = ''
+          if (act2TPositivity > 0) {
+            window.state.episodes[83].status = 'not-visited'
+            window.state.episodes[84].status = 'unchosen'
+            unvisitedEpisodeCode = window.state.episodes[84].code
+          } else {
+            window.state.episodes[83].status = 'unchosen'
+            window.state.episodes[84].status = 'not-visited'
+            unvisitedEpisodeCode = window.state.episodes[83].code
+          }
+          // get unvisited node and set it's classes
+          let unvisitedStateGround = document.getElementById(unvisitedEpisodeCode).children[0].children[0]
+          let unvisitedStateEyeMouth = document.getElementById(unvisitedEpisodeCode).children[0].children[3]
+          let unvisitedStateLight = document.getElementById(unvisitedEpisodeCode).children[0].children[4]
+          if (unvisitedStateGround.classList.contains('ground')) {
+            unvisitedStateGround.classList.remove('ground')
+            unvisitedStateGround.classList.add('unchosen')
+          }
+          if (unvisitedStateLight.classList.contains('available')) {
+            unvisitedStateLight.classList.remove('available')
+            unvisitedStateLight.classList.add('unchosen')
+          }
+          if (unvisitedStateEyeMouth.classList.contains('eyemouth')) {
+            unvisitedStateEyeMouth.classList.remove('eyemouth')
+            unvisitedStateEyeMouth.classList.add('unchosen')
+          }
+        }
+      }
+
+      // if all 3 Amazon are chosen their act 3 is made visible and enabled
+      let act2StartAIndex = 75
+      let act2EndAIndex = 80
+      let act2ADecisionCount = 0
+      let act2APositivity = 0
+      for( let i = act2StartAIndex; i <= act2EndAIndex; i++) {
+        let code = window.state.episodes[i].code
+        if (window.state.episodes[i].status === 'visited') {
+          act2ADecisionCount++
+          if (code.endsWith('h')) {
+            act2APositivity++
+          }
+          if (code.endsWith('s')) {
+            act2APositivity--
+          }
+        }
+        if (act2ADecisionCount >= 3) {
+          let unvisitedEpisodeCode = ''
+          if (act2APositivity > 0) {
+            window.state.episodes[85].status = 'not-visited'
+            window.state.episodes[86].status = 'unchosen'
+            unvisitedEpisodeCode = window.state.episodes[86].code
+          } else {
+            window.state.episodes[85].status = 'unchosen'
+            window.state.episodes[86].status = 'not-visited'
+            unvisitedEpisodeCode = window.state.episodes[85].code
+          }
+          // get unvisited node and set it's classes
+          let unvisitedStateGround = document.getElementById(unvisitedEpisodeCode).children[0].children[0]
+          let unvisitedStateEyeMouth = document.getElementById(unvisitedEpisodeCode).children[0].children[3]
+          let unvisitedStateLight = document.getElementById(unvisitedEpisodeCode).children[0].children[4]
+          if (unvisitedStateGround.classList.contains('ground')) {
+            unvisitedStateGround.classList.remove('ground')
+            unvisitedStateGround.classList.add('unchosen')
+          }
+          if (unvisitedStateLight.classList.contains('available')) {
+            unvisitedStateLight.classList.remove('available')
+            unvisitedStateLight.classList.add('unchosen')
+          }
+          if (unvisitedStateEyeMouth.classList.contains('eyemouth')) {
+            unvisitedStateEyeMouth.classList.remove('eyemouth')
+            unvisitedStateEyeMouth.classList.add('unchosen')
+          }
+        }
+      }
+      // if all 3 locations have chosen their 3 choices then we reveal and enable act3
+      if ((act2VDecisionCount >= 3) && (act2TDecisionCount >= 3) && (act2ADecisionCount >= 3)) {
+        window.state.currentAct = "act3"
       }
     }
 
-    // if all 3 Tarrytown are chosen their act 3 is made visible and enabled
-    let act2StartTIndex = 69
-    let act2EndTIndex = 74
-    let act2TDecisionCount = 0
-    let act2TPositivity = 0
-    for( let i = act2StartTIndex; i <= act2EndTIndex; i++) {
-      let code = window.state.episodes[i].code
-      if (window.state.episodes[i].status === 'visited') {
-        act2TDecisionCount++
-        if (code.endsWith('h')) {
-          act2TPositivity++
-        }
-        if (code.endsWith('s')) {
-          act2TPositivity--
-        }
+    // if it's Act3
+    if(episodeCode.charAt(3)==='3') {
+      let companionEpisodeCode = episodeCode
+      if (episodeCode.charAt(7) == 'h') {
+        companionEpisodeCode = episodeCode.replace('h', 's')
+      } else {
+        companionEpisodeCode = episodeCode.replace('s', 'h')
       }
-      if(act2TDecisionCount >= 3 ){
-        if (act2TPositivity > 0) {
-          window.state.episodes[83].status = 'not-visited'
-          window.state.episodes[84].status = 'unchosen'
-        } else {
-          window.state.episodes[83].status = 'unchosen'
-          window.state.episodes[84].status = 'not-visited'
-        }
-      }
-    }
 
-    // if all 3 Amazon are chosen their act 3 is made visible and enabled
-    let act2StartAIndex = 75
-    let act2EndAIndex = 80
-    let act2ADecisionCount = 0
-    let act2APositivity = 0
-    for( let i = act2StartAIndex; i <= act2EndAIndex; i++) {
-      let code = window.state.episodes[i].code
-      if (window.state.episodes[i].status === 'visited') {
-        act2ADecisionCount++
-        if (code.endsWith('h')) {
-          act2APositivity++
+      let stateLight = document.getElementById(episodeCode).children[0].children[4]
+      if(episodeCode.charAt(7)=='h'){
+        if (stateLight.classList.contains('available')){
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
         }
-        if (code.endsWith('s')) {
-          act2APositivity--
-        }
+        window.state.episodes[episodeIndex].status = "visited"
       }
-      if (act2ADecisionCount >= 3) {
-        if (act2APositivity > 0) {
-          window.state.episodes[85].status = 'not-visited'
-          window.state.episodes[86].status = 'unchosen'
-        } else {
-          window.state.episodes[85].status = 'unchosen'
-          window.state.episodes[86].status = 'not-visited'
+      if(episodeCode.charAt(7)=='s') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
         }
+        window.state.episodes[episodeIndex].status = "visited"
       }
-    }
-
-    // if all 3 locations have chosen their 3 choices then we enter act3
-    if ((act2VDecisionCount >= 3) && (act2TDecisionCount >= 3) && (act2ADecisionCount >= 3)) {
-      window.state.currentAct = "act3"
     }
 
     // Act 3
     let act3Count = 0
     if (window.state.currentAct === "act3") {
-      if (window.state.episodes[episodeIndex].status === 'not-visited') {
-        //set it to visited
-        window.state.episodes[episodeIndex].status = "visited"
-      }
       // if all act3 are chosen and visited, finaleAvailable = true
       for( let i = 81; i <= 86; i++) {
         if ((window.state.episodes[i].status === 'visited') || (window.state.episodes[i].status === 'unchosen')) {
@@ -1601,6 +1635,10 @@
       if(act3Count >= 6) {
         window.state.finaleAvailable = true
       }
+    }
+
+    // if it's 'finale'
+    if (episodeCode === 'finale') {
     }
   }
 
@@ -1646,7 +1684,7 @@
     const videoPlayer = document.querySelector("#videoPlayer");
     videoPlayer.style.display = 'block'
     videoPlayer.src = "./episodes/" + episode + ".mp4"
-    if(window.isVideoFullscreen){
+    if(window.showVideoFullScreen){
       window.makeVideoFullscreen()
     }
   }
@@ -1683,10 +1721,6 @@
   window.addEventListener("load", function (event){
     window.init()
 
-    // the default is to show video fullscreen but if a user has made it not fullscreen keep it that way
-    // this should also eventually be an option that is saved in localstorage via progress (which may need renaming)
-    window.isVideoFullscreen = false;
-
     const videoPlayer = document.querySelector('#videoPlayer');
     videoPlayer.addEventListener('ended', (event) => {
       videoPlayer.src = ""
@@ -1704,9 +1738,9 @@
     const ySet = gsap.quickSetter(glimmerer, "y", "px");
 
     window.addEventListener("mousemove", e => {
-      console.log("x:"+e.pageX)
-      console.log("w:"+window.innerWidth/4)
-      console.log("s:"+e.screenX)
+      // console.log("x:"+e.pageX)
+      // console.log("w:"+window.innerWidth/4)
+      // console.log("s:"+e.screenX)
       mouse.x = Math.min(e.pageX, 660)
       mouse.y = e.pageY-20;
     });
@@ -1723,6 +1757,7 @@
   window.init = function() {
     window.state = {
       isUr: true,
+      showVideoFullScreen: false,
       currentAct: "act1",
       finaleAvailable: false,
       displayingEpisode: false,

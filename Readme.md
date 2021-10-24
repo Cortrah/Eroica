@@ -3,8 +3,8 @@
 
 - [X] Fix bug with Act1 A1 M1
 - [X] Rename repository from super-simpleton to Eroica
-- [ ] Keep track of visited status of act 1 nodes during a session via localstorage
-- [ ] Load progress status on revisiting the page
+- [X] Keep track of visited status of act 1 nodes during a session via localstorage
+- [X] Load progress status on revisiting the page
 - [X] Re-align glimmertext to proper location when fullscreen
 - [X] Re-align glimmertext when user has scrolled
 - [ ] Enable saving progress locally as a text file
