@@ -230,10 +230,10 @@
       fill: rgba(115, 115, 81, 0.82);
     }
     .unchosen {
-      fill: rgba(0, 0, 0);
+      fill: rgb(60 42 16);
     }
     .unchosen:hover {
-      fill: #EEEECC11;
+      fill: rgb(60 42 16);
     }
   </style>
 
@@ -258,6 +258,7 @@
     <a href="progress.html">Progress</a>
     <a href="help.html">Help</a>
     <a href="about.html">About</a>
+    <button onclick="window.clearProgress()">clear</button>
   </div>
 </div>
 <div id="mainWrapper">
@@ -1082,7 +1083,7 @@
       </g>
       <g id="act2_t6_s" transform="translate(980,1460)">
         <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
-             onmouseenter="window.showGlimmerer('act2_v6_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v6_s')"
+             onmouseenter="window.showGlimmerer('act2_t6_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t6_s')"
              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
           <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
                 style="fill-opacity:0.98;"/>
@@ -1259,7 +1260,7 @@
       </g>
       <g id="act3_t_h" transform="translate(800,1720)">
         <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
-             onmouseenter="window.showGlimmerer('act2_t5_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t5_h')"
+             onmouseenter="window.showGlimmerer('act3_t_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_t_h')"
              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
           <path class="ground"
                 d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
@@ -1366,9 +1367,17 @@
     </div>
   </div>
 </div>
+
 <script type="application/javascript">
 
+  // setVistited sets the status of window.state.episodes
+  // and applies the 'visited' and 'unselected' classes to the svg icons
+  // the visited one can be relied upon to set the display of the unvisited one
+  // everything is initialized as 'available'
+  // if an episode has already been visited this doesn't need to be called when played
+  // if an episode has been unvisited, this doesn't need to be called when played
   window.setVisited = function (i, episodeCode) {
+
     // if it's an act 1 node
     if(episodeCode.charAt(3)==='1'){
       let stateLight = document.getElementById(episodeCode).children[1].children[0]
@@ -1378,44 +1387,220 @@
       }
       window.state.episodes[i].status = "visited"
     }
+
     // if it's Act2
     if(episodeCode.charAt(3)==='2') {
+      let companionEpisodeCode = episodeCode
+      if (episodeCode.charAt(8) == 'h') {
+        companionEpisodeCode = episodeCode.replace('h', 's')
+      } else {
+        companionEpisodeCode = episodeCode.replace('s', 'h')
+      }
       let stateLight = document.getElementById(episodeCode).children[0].children[4]
-      if (stateLight.classList.contains('available')){
-        stateLight.classList.remove('available')
-        stateLight.classList.add('visited')
-      }
-      if(episodeCode.charAt(8)=='h'){
+      let compainonStateGround = document.getElementById(companionEpisodeCode).children[0].children[0]
+      let compainonStateEyeMouth = document.getElementById(companionEpisodeCode).children[0].children[3]
+      let compainonStateLight = document.getElementById(companionEpisodeCode).children[0].children[4]
+      if (episodeCode.charAt(8) == 'h') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
         window.state.episodes[i].status = "visited"
-      } else {
-        window.state.episodes[i+1].status = "unchosen"
+        if (compainonStateGround.classList.contains('ground')) {
+          compainonStateGround.classList.remove('ground')
+          compainonStateGround.classList.add('unchosen')
+        }
+        if (compainonStateLight.classList.contains('available')) {
+          compainonStateLight.classList.remove('available')
+          compainonStateLight.classList.add('unchosen')
+        }
+        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
+          compainonStateEyeMouth.classList.remove('eyemouth')
+          compainonStateEyeMouth.classList.add('unchosen')
+        }
+        window.state.episodes[i + 1].status = "unchosen"
       }
-      if(episodeCode.charAt(8)=='s'){
-        window.state.episodes[i-1].status = "unchosen"
-      } else {
+      if (episodeCode.charAt(8) == 's') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
         window.state.episodes[i].status = "visited"
+        if (compainonStateGround.classList.contains('ground')) {
+          compainonStateGround.classList.remove('ground')
+          compainonStateGround.classList.add('unchosen')
+        }
+        if (compainonStateLight.classList.contains('available')) {
+          compainonStateLight.classList.remove('available')
+          compainonStateLight.classList.add('unchosen')
+        }
+        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
+          compainonStateEyeMouth.classList.remove('eyemouth')
+          compainonStateEyeMouth.classList.add('unchosen')
+        }
+        window.state.episodes[i - 1].status = "unchosen"
       }
     }
+
     // if it's Act3
     if(episodeCode.charAt(3)==='3') {
-      let stateLight = document.getElementById(episodeCode).children[0].children[4]
-      if (stateLight.classList.contains('available')){
-        stateLight.classList.remove('available')
-        stateLight.classList.add('visited')
-      }
-      if(episodeCode.charAt(7)=='h'){
-        window.state.episodes[i].status = "visited"
+      let companionEpisodeCode = episodeCode
+      if (episodeCode.charAt(7) == 'h') {
+        companionEpisodeCode = episodeCode.replace('h', 's')
       } else {
+        companionEpisodeCode = episodeCode.replace('s', 'h')
+      }
+
+      let stateLight = document.getElementById(episodeCode).children[0].children[4]
+      let compainonStateLight = document.getElementById(companionEpisodeCode).children[0].children[0]
+      if(episodeCode.charAt(7)=='h'){
+        if (stateLight.classList.contains('available')){
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+        window.state.episodes[i].status = "visited"
+        if (compainonStateLight.classList.contains('ground')){
+          compainonStateLight.classList.remove('ground')
+          compainonStateLight.classList.add('unchosen')
+        }
         window.state.episodes[i+1].status = "unchosen"
       }
-      if(episodeCode.charAt(7)=='s'){
+      if(episodeCode.charAt(7)=='s') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
         window.state.episodes[i].status = "visited"
-      } else {
-        window.state.episodes[i-1].status = "unchosen"
+        if (compainonStateLight.classList.contains('ground')) {
+          compainonStateLight.classList.remove('ground')
+          compainonStateLight.classList.add('unchosen')
+        }
+        window.state.episodes[i - 1].status = "unchosen"
       }
     }
+
     // if it's 'finale'
     if (episodeCode === 'finale') {
+    }
+  }
+
+  window.updateActProgression = function() {
+
+    // if all act1 is now visited enable act2
+    let act1visitedCount = 0
+    let act1EpisodeCount = 63
+    for( let i = 0; i < act1EpisodeCount; i++) {
+      if (window.state.episodes[i].status === 'visited') {
+        act1visitedCount++
+      }
+    }
+    if (act1visitedCount === act1EpisodeCount) {
+      // reveal act2
+      window.state.currentAct = "act2"
+    }
+
+    // if all 3 Vienna are chosen their act 3 is made visible and enabled
+    let act2StartVIndex = 63
+    let act2EndVIndex = 68
+    let act2VDecisionCount = 0
+    let act2VPositivity = 0
+    for( let i = act2StartVIndex; i <= act2EndVIndex; i++) {
+      let code = window.state.episodes[i].code
+      if (window.state.episodes[i].status === 'visited') {
+        act2VDecisionCount++
+        if (code.endsWith('h')) {
+          act2VPositivity++
+        }
+        if (code.endsWith('s')) {
+          act2VPositivity--
+        }
+      }
+      if (act2VDecisionCount >= 3) {
+        if (act2VPositivity > 0) {
+          window.state.episodes[81].status = 'not-visited'
+          window.state.episodes[82].status = 'unchosen'
+        } else {
+          window.state.episodes[81].status = 'unchosen'
+          window.state.episodes[82].status = 'not-visited'
+        }
+      }
+    }
+
+    // if all 3 Tarrytown are chosen their act 3 is made visible and enabled
+    let act2StartTIndex = 69
+    let act2EndTIndex = 74
+    let act2TDecisionCount = 0
+    let act2TPositivity = 0
+    for( let i = act2StartTIndex; i <= act2EndTIndex; i++) {
+      let code = window.state.episodes[i].code
+      if (window.state.episodes[i].status === 'visited') {
+        act2TDecisionCount++
+        if (code.endsWith('h')) {
+          act2TPositivity++
+        }
+        if (code.endsWith('s')) {
+          act2TPositivity--
+        }
+      }
+      if(act2TDecisionCount >= 3 ){
+        if (act2TPositivity > 0) {
+          window.state.episodes[83].status = 'not-visited'
+          window.state.episodes[84].status = 'unchosen'
+        } else {
+          window.state.episodes[83].status = 'unchosen'
+          window.state.episodes[84].status = 'not-visited'
+        }
+      }
+    }
+
+    // if all 3 Amazon are chosen their act 3 is made visible and enabled
+    let act2StartAIndex = 75
+    let act2EndAIndex = 80
+    let act2ADecisionCount = 0
+    let act2APositivity = 0
+    for( let i = act2StartAIndex; i <= act2EndAIndex; i++) {
+      let code = window.state.episodes[i].code
+      if (window.state.episodes[i].status === 'visited') {
+        act2ADecisionCount++
+        if (code.endsWith('h')) {
+          act2APositivity++
+        }
+        if (code.endsWith('s')) {
+          act2APositivity--
+        }
+      }
+      if (act2ADecisionCount >= 3) {
+        if (act2APositivity > 0) {
+          window.state.episodes[85].status = 'not-visited'
+          window.state.episodes[86].status = 'unchosen'
+        } else {
+          window.state.episodes[85].status = 'unchosen'
+          window.state.episodes[86].status = 'not-visited'
+        }
+      }
+    }
+
+    // if all 3 locations have chosen their 3 choices then we enter act3
+    if ((act2VDecisionCount >= 3) && (act2TDecisionCount >= 3) && (act2ADecisionCount >= 3)) {
+      window.state.currentAct = "act3"
+    }
+
+    // Act 3
+    let act3Count = 0
+    if (window.state.currentAct === "act3") {
+      if (window.state.episodes[episodeIndex].status === 'not-visited') {
+        //set it to visited
+        window.state.episodes[episodeIndex].status = "visited"
+      }
+      // if all act3 are chosen and visited, finaleAvailable = true
+      for( let i = 81; i <= 86; i++) {
+        if ((window.state.episodes[i].status === 'visited') || (window.state.episodes[i].status === 'unchosen')) {
+          act3Count++
+        }
+      }
+      if(act3Count >= 6) {
+        window.state.finaleAvailable = true
+      }
     }
   }
 
@@ -1453,8 +1638,10 @@
     urMap.style.display = 'none'
 
     let episodeIndex = window.state.episodes.findIndex( e => e.code == episode);
-    window.setVisited(episodeIndex, episode)
-    window.updateLocalStorage()
+    if(window.state.episodes[episodeIndex].status == 'not-visited'){
+      window.setVisited(episodeIndex, episode)
+      window.updateLocalStorage()
+    }
 
     const videoPlayer = document.querySelector("#videoPlayer");
     videoPlayer.style.display = 'block'
@@ -1470,6 +1657,8 @@
       localStorage.setItem(i.toString(), "not-visited")
     }
     localStorage.setItem('episodes', JSON.stringify(window.state.episodes))
+    localStorage.setItem('currentAct', 'act1')
+    localStorage.setItem('finaleAvailable', false)
   }
 
   window.updateLocalStorage = function() {
@@ -1515,7 +1704,10 @@
     const ySet = gsap.quickSetter(glimmerer, "y", "px");
 
     window.addEventListener("mousemove", e => {
-      mouse.x = Math.min(e.pageX, 800)
+      console.log("x:"+e.pageX)
+      console.log("w:"+window.innerWidth/4)
+      console.log("s:"+e.screenX)
+      mouse.x = Math.min(e.pageX, 660)
       mouse.y = e.pageY-20;
     });
     gsap.ticker.add(() => {
