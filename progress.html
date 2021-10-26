@@ -19,6 +19,14 @@
             background-image: url('https://cortrah.github.io/eroica-2022/2.jpg');
             background-repeat: repeat repeat;
         }
+        h1 {
+            font-family: 'Didact Gothic', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-size: 20px;
+        }
+        h3 {
+            font-family: 'Didact Gothic', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-size: 16px;
+        }
         a {
             color: whitesmoke;
             margin-left: 20px;
@@ -50,6 +58,11 @@
             height: 100%;
             width: 100%;
         }
+
+        .aligncenter {
+            text-align: center;
+        }
+
     </style>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -72,6 +85,593 @@
         <a href="about.html">About</a>
     </div>
 </div>
+<div style="color: whitesmoke; margin:20px">
+    <h1>Progress</h1>
+    <h3>
+        Download Progress as
+    </h3>
+    <input id="fileNameInput" value="eroica.txt"/>
+    <button onclick="window.downloadProgress()">
+        Save
+    </button>
+    <br/>
+    <br/>
+
+    <h3 onclick="window.uploadProgress()">
+        Upload Progress from
+    </h3>
+    <input id='fileNameUploadInput' type="file" onchange="loadTextFromFile(event)">
+    <br/>
+    <br/>
+
+    <h3>
+        Clear All Progress
+    </h3>
+    <button onclick="window.clearProgressAndGoBack()">
+        Clear
+    </button>
+    <br/>
+    <br/>
+
+    <p class="aligncenter">
+        <img src="img/icons/eye-sm.png" oncontextmenu="window.toggleTests(event)"/>
+    </p>
+    <div id="tests" style="display: none;float: right">
+        <br/>
+        <h3 style="text-align: center">
+            Tests
+        </h3>
+        <button onclick="testAFewInAct1()" style="width: 260px">A few selected in Act 1</button>
+        <br/>
+        <button onclick="testAboutToFinishAct1()" style="width: 260px">About to finish Act 1</button>
+        <br/>
+        <button onclick="testAboutToFinishAct2()" style="width: 260px">About to finish Act 2</button>
+        <br/>
+        <button onclick="testEnableFinale()" style="width: 260px">About to enable finale</button>
+        <br/>
+    </div>
+
+</div>
+<script>
+    let aFewInAct1 = { episodes: [
+            { code:"act1_v1_n1", glimmer:"Promptings and seizures", imago:"node", status:"visited"},
+            { code:"act1_v1_n2", glimmer:"Sounding brass", imago:"node",  status:"visited"},
+            { code:"act1_v1_n3", glimmer:"A whited sepulcher", imago:"node",  status:"visited"},
+            { code:"act1_v1_n4", glimmer:"Demon dance of the new", imago:"node",  status:"visited"},
+            { code:"act1_v1_p1", glimmer:"Window mirror eye", imago:"node",  status:"visited"},
+            { code:"act1_v1_p2", glimmer:"Wings and talons", imago:"node",  status:"visited"},
+            { code:"act1_v1_m1", glimmer:"A puddle of tallow", imago:"node",  status:"visited"},
+            { code:"act1_t1_n1", glimmer:"The consummate design", imag:"node",  status:"visited"},
+            { code:"act1_t1_n2", glimmer:"Ahh skin ...", imag:"node",  status:"not-visited"},
+            { code:"act1_t1_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t1_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t1_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a1_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a1_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a1_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a1_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a1_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v2_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t2_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a2_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_v3_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_t3_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_n1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_n2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_n3", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_n4", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_p1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_p2", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act1_a3_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act2_v4_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_v4_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_v5_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_v5_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_v6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_v6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_t4_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_t4_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_t5_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_t5_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_t6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_t6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_a4_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_a4_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_a5_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_a5_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_a6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_a6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act3_v_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_v_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act3_t_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_t_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act3_a_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_a_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"finale",     glimmer:"gogo", imag:"scarab",status:"not-visited"}
+        ]};
+
+    let aboutToFinishAct1 = { episodes: [
+            { code:"act1_v1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_m1", glimmer:"gogo", imag:"node",  status:"not-visited"},
+            { code:"act2_v4_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_v4_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_v5_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_v5_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_v6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_v6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_t4_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_t4_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_t5_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_t5_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_t6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_t6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_a4_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_a4_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_a5_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_a5_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act2_a6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act2_a6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act3_v_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_v_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act3_t_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_t_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"act3_a_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_a_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            { code:"finale",     glimmer:"gogo", imag:"scarab",status:"not-visited"}
+        ]};
+
+    let aboutToFinishAct2 = { episodes: [
+            {  code:"act1_v1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_v3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_t3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act1_a3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            {  code:"act2_v4_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_v4_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_v5_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_v5_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_v6_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_v6_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_t4_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_t4_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_t5_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_t5_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_t6_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_t6_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_a4_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_a4_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_a5_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            {  code:"act2_a5_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            {  code:"act2_a6_h",  glimmer:"gogo", imag:"left",  status:"not-visited"},
+            {  code:"act2_a6_s",  glimmer:"gogo", imag:"right", status:"not-visited"},
+            {  code:"act3_v_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            {  code:"act3_v_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            {  code:"act3_t_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            {  code:"act3_t_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            {  code:"act3_a_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            {  code:"act3_a_s",   glimmer:"gogo", imag:"right", status:"not-visited"},
+            {  code:"finale",     glimmer:"gogo", imag:"scarab",status:"not-visited"}
+        ]};
+
+    let enableFinale = { episodes: [
+            { code:"act1_v1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a1_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a2_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_v3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_t3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n3", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_n4", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_p1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_p2", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act1_a3_m1", glimmer:"gogo", imag:"node",  status:"visited"},
+            { code:"act2_v4_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_v4_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_v5_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_v5_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_v6_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_v6_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_t4_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_t4_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_t5_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_t5_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_t6_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_t6_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_a4_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_a4_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_a5_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_a5_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act2_a6_h",  glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act2_a6_s",  glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act3_v_h",   glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act3_v_s",   glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act3_t_h",   glimmer:"gogo", imag:"left",  status:"visited"},
+            { code:"act3_t_s",   glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"act3_a_h",   glimmer:"gogo", imag:"left",  status:"not-visited"},
+            { code:"act3_a_s",   glimmer:"gogo", imag:"right", status:"unchosen"},
+            { code:"finale",     glimmer:"gogo", imag:"scarab",status:"not-visited"}
+        ]};
+
+    window.addEventListener("load", function (event){
+        window.state = {
+            isUr: false,
+            showVideoFullScreen: false,
+            currentAct: "act1",
+            finaleAvailable: false,
+            displayingEpisode: false,
+            episodes: [
+                { code:"act1_v1_n1", glimmer:"Promptings and Seizures", imago:"node", status:"not-visited"},
+                { code:"act1_v1_n2", glimmer:"Sounding Brass", imago:"node",  status:"not-visited"},
+                { code:"act1_v1_n3", glimmer:"A Whited Sepulcher", imago:"node",  status:"not-visited"},
+                { code:"act1_v1_n4", glimmer:"Demon Dance of the New", imago:"node",  status:"not-visited"},
+                { code:"act1_v1_p1", glimmer:"Window Mirror Eye", imago:"node",  status:"not-visited"},
+                { code:"act1_v1_p2", glimmer:"Wings and Talons", imago:"node",  status:"not-visited"},
+                { code:"act1_v1_m1", glimmer:"A Puddle of Tallow", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_n1", glimmer:"The Consummate Design", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_n2", glimmer:"Ahh Skin ...", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_n3", glimmer:"Paint the Frieze", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_n4", glimmer:"Build the Temple", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_p1", glimmer:"Dream Brothers", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_p2", glimmer:"Rubblous Ghouls", imago:"node",  status:"not-visited"},
+                { code:"act1_t1_m1", glimmer:"An Eye, Sire", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_n1", glimmer:"Look to Mozart", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_n2", glimmer:"Faithful to Measure", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_n3", glimmer:"We Know Not", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_n4", glimmer:"act1_a1_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_p1", glimmer:"act1_a1_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_p2", glimmer:"act1_a1_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_a1_m1", glimmer:"act1_a1_m1", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_n1", glimmer:"act1_v2_n1", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_n2", glimmer:"act1_v2_n2", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_n3", glimmer:"act1_v2_n3", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_n4", glimmer:"act1_v2_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_p1", glimmer:"act1_v2_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_p2", glimmer:"act1_v2_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_v2_m1", glimmer:"act1_v2_m1", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_n1", glimmer:"act1_t2_n1", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_n2", glimmer:"act1_t2_n2", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_n3", glimmer:"act1_t2_n3", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_n4", glimmer:"act1_t2_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_p1", glimmer:"act1_t2_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_p2", glimmer:"act1_t2_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_t2_m1", glimmer:"act1_t2_m1", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_n1", glimmer:"act1_a2_n1", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_n2", glimmer:"act1_a2_n2", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_n3", glimmer:"act1_a2_n3", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_n4", glimmer:"act1_a2_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_p1", glimmer:"act1_a2_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_p2", glimmer:"act1_a2_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_a2_m1", glimmer:"act1_a2_m1", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_n1", glimmer:"act1_v3_n1", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_n2", glimmer:"act1_v3_n2", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_n3", glimmer:"act1_v3_n3", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_n4", glimmer:"act1_v3_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_p1", glimmer:"act1_v3_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_p2", glimmer:"act1_v3_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_v3_m1", glimmer:"act1_v3_m1", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_n1", glimmer:"act1_t3_n1", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_n2", glimmer:"act1_t3_n2", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_n3", glimmer:"act1_t3_n3", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_n4", glimmer:"act1_t3_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_p1", glimmer:"act1_t3_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_p2", glimmer:"act1_t3_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_t3_m1", glimmer:"act1_t3_m1", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_n1", glimmer:"act1_a3_n1", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_n2", glimmer:"act1_a3_n2", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_n3", glimmer:"act1_a3_n3", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_n4", glimmer:"act1_a3_n4", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_p1", glimmer:"act1_a3_p1", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_p2", glimmer:"act1_a3_p2", imago:"node",  status:"not-visited"},
+                { code:"act1_a3_m1", glimmer:"act1_a3_m1", imago:"node",  status:"not-visited"},
+                { code:"act2_v4_h",  glimmer:"act2_v4_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_v4_s",  glimmer:"act2_v4_s",  imago:"right", status:"not-visited"},
+                { code:"act2_v5_h",  glimmer:"act2_v5_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_v5_s",  glimmer:"act2_v5_s",  imago:"right", status:"not-visited"},
+                { code:"act2_v6_h",  glimmer:"act2_v6_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_v6_s",  glimmer:"act2_v6_s",  imago:"right", status:"not-visited"},
+                { code:"act2_t4_h",  glimmer:"act2_t4_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_t4_s",  glimmer:"act2_t4_s",  imago:"right", status:"not-visited"},
+                { code:"act2_t5_h",  glimmer:"act2_t5_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_t5_s",  glimmer:"act2_t5_s",  imago:"right", status:"not-visited"},
+                { code:"act2_t6_h",  glimmer:"act2_t6_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_t6_s",  glimmer:"act2_t6_s",  imago:"right", status:"not-visited"},
+                { code:"act2_a4_h",  glimmer:"act2_a4_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_a4_s",  glimmer:"act2_a4_s",  imago:"right", status:"not-visited"},
+                { code:"act2_a5_h",  glimmer:"act2_a5_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_a5_s",  glimmer:"act2_a5_s",  imago:"right", status:"not-visited"},
+                { code:"act2_a6_h",  glimmer:"act2_a6_h",  imago:"left",  status:"not-visited"},
+                { code:"act2_a6_s",  glimmer:"act2_a6_s",  imago:"right", status:"not-visited"},
+                { code:"act3_v_h",   glimmer:"act3_v_h",   imago:"left",  status:"not-visited"},
+                { code:"act3_v_s",   glimmer:"act3_v_s",   imago:"right", status:"not-visited"},
+                { code:"act3_t_h",   glimmer:"act3_t_h",   imago:"left",  status:"not-visited"},
+                { code:"act3_t_s",   glimmer:"act3_t_s",   imago:"right", status:"not-visited"},
+                { code:"act3_a_h",   glimmer:"act3_a_h",   imago:"left",  status:"not-visited"},
+                { code:"act3_a_s",   glimmer:"act3_a_s",   imago:"right", status:"not-visited"},
+                { code:"finale",     glimmer:"finale",     imago:"scarab",status:"not-visited"}
+            ]
+        }
+
+        // then get the saved state from localStorage
+        let localStorageCurrentAct = localStorage.getItem('currentAct')
+        let localStorageFinaleAvailable = localStorage.getItem('finaleAvailable')
+        window.state.currentAct = localStorageCurrentAct
+        window.state.finaleAvailable = localStorageFinaleAvailable
+
+        let localStorageEpisodeData = localStorage.getItem('episodes')
+        if (localStorageEpisodeData !== null) {
+            window.state.episodes =  JSON.parse(localStorageEpisodeData)
+        }
+    })
+
+    window.loadTextFromFile = function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            localStorage.setItem('episodes', e.target.result)
+            window.location.href="./urworld.html"
+        }
+        reader.readAsText(file);
+    }
+
+    window.downloadProgress = function() {
+        console.log('dl prog')
+        let body = localStorage.getItem('episodes')
+        let element = document.createElement('a');
+        element.setAttribute('href',
+            'data:text/plain;charset=utf-8, '
+            + encodeURIComponent(body));
+        let fileNameText = document.getElementById('fileNameInput').value
+        element.setAttribute('download', fileNameText);
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    window.clearProgressAndGoBack = function() {
+        for( let i = 0; i < window.state.episodes.length; i++) {
+            window.state.episodes[i].status = "not-visited"
+            localStorage.setItem(i.toString(), "not-visited")
+        }
+        localStorage.setItem('episodes', JSON.stringify(window.state.episodes))
+        localStorage.setItem('currentAct', 'act1')
+        localStorage.setItem('finaleAvailable', false)
+        window.location.href="./urworld.html"
+    }
+
+    window.testAFewInAct1 = function(){
+        localStorage.setItem('episodes', JSON.stringify(aFewInAct1.episodes))
+        window.location.href="./urworld.html"
+    }
+
+    window.testAboutToFinishAct1 = function(){
+        localStorage.setItem('episodes', JSON.stringify(aboutToFinishAct1.episodes))
+        window.location.href="./urworld.html"
+    }
+
+    window.testAboutToFinishAct2 = function(){
+        localStorage.setItem('episodes', JSON.stringify(aboutToFinishAct2.episodes))
+        window.location.href="./urworld.html"
+    }
+
+    window.testEnableFinale = function(){
+        localStorage.setItem('episodes', JSON.stringify(enableFinale.episodes))
+        window.location.href="./urworld.html"
+    }
+
+    window.toggleTests = function (e) {
+        if (document.getElementById('tests').style.display === 'none') {
+            document.getElementById('tests').style.display = 'block'
+        } else {
+            document.getElementById('tests').style.display = 'none'
+        }
+        e.preventDefault()
+    }
+</script>
 
 </body>
 </html>

@@ -1755,6 +1755,7 @@
   })
 
   window.init = function() {
+    console.log('init')
     window.state = {
       isUr: true,
       showVideoFullScreen: false,
@@ -1852,6 +1853,7 @@
         { code:"finale",     glimmer:"finale",     imago:"scarab",status:"not-visited"}
       ]
     }
+    console.log(window.state.episodes)
 
     // then get the saved state from localStorage
     let localStorageCurrentAct = localStorage.getItem('currentAct')
@@ -1860,6 +1862,7 @@
     window.state.finaleAvailable = localStorageFinaleAvailable
 
     let localStorageEpisodeData = localStorage.getItem('episodes')
+    console.log(localStorageEpisodeData)
     if (localStorageEpisodeData !== null) {
       let episodes =  JSON.parse(localStorageEpisodeData)
       let episodeCount = window.state.episodes.length
