@@ -1363,7 +1363,9 @@
       <div id="glimmerThumb">
         <img id="glimmerImg" src='./img/thumbs/act1_a1_n1.png'>
       </div>
-      <div id="glimmerText">Problems and Prospects Going A gogo</div>
+      <div id="glimmerText">
+        Problems and Prospects Going A gogo
+      </div>
     </div>
   </div>
 </div>
@@ -1755,10 +1757,16 @@
   })
 
   window.init = function() {
-    console.log('init')
+    // initialize whether to show video fullscreen but allow a local setting to override it
+    let showVideoFullScreen = true
+    let videoFullScreenLocal = localStorage.getItem('showVideoFullScreen')
+    if (videoFullScreenLocal === "false") {
+      showVideoFullScreen = false
+    }
+
     window.state = {
       isUr: true,
-      showVideoFullScreen: true,
+      showVideoFullScreen: showVideoFullScreen,
       currentAct: "act1",
       finaleAvailable: false,
       displayingEpisode: false,
@@ -1853,7 +1861,6 @@
         { code:"finale",     glimmer:"Scarab Exits",                      status:"not-visited"}
       ]
     }
-    console.log(window.state.episodes)
 
     // then get the saved state from localStorage
     let localStorageCurrentAct = localStorage.getItem('currentAct')
@@ -1862,7 +1869,6 @@
     window.state.finaleAvailable = localStorageFinaleAvailable
 
     let localStorageEpisodeData = localStorage.getItem('episodes')
-    console.log(localStorageEpisodeData)
     if (localStorageEpisodeData !== null) {
       let episodes =  JSON.parse(localStorageEpisodeData)
       let episodeCount = window.state.episodes.length
