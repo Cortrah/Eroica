@@ -13,7 +13,7 @@
 
 ## Phase 2 - Creative Work
 
-- [ ] Add glimmertext for all episodes
+- [X] Add glimmertext for all episodes
 - [ ] Improve glimmertext backgrounds and text animation, make them semi-random and variable
 - [ ] Choose fonts for navigation, pages and glimmertext, possibly urmap as well
 - [ ] Do 3 very different urmaps, add textures to vector shapes
