@@ -11,7 +11,14 @@
   </style>
 </head>
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script>
+<button onclick="playPause()">play/pause</button>
+<button onclick="showBufferGeometry()">bufferGeometry</button>
+<script src="./shaders/splatTexture.js"></script>
+<script src="./shaders/display.js"></script>
+<script src="./shaders/blurpass.js"></script>
+<script src="./shaders/deposit.js"></script>
+<script src="./shaders/particles.js"></script>
+<script src="./three.js"></script>
 <script src="vortex.js"></script>
 </body>
 </html>
