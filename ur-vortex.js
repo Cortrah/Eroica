@@ -19,8 +19,19 @@ function init() {
     document.getElementById("particleGround").appendChild(groundRenderer.domElement);
     groundCanvas = groundRenderer.domElement;
 
+
     groundScene = new THREE.Scene();
     particlesGround = new THREE.Scene();
+
+    // scene = new THREE.Scene();
+    // var light = new THREE.DirectionalLight( 0xffffff );
+    // light.position.set( 1, -1, 1 ).normalize();
+    // scene.add(light);
+    // var geometry = new THREE.CubeGeometry( 10, 10, 10);
+    // var material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
+    // cubeMesh = new THREE.Mesh(geometry, material );
+    // cubeMesh.position.z = -30;
+    // scene.add( cubeMesh );
 
     camera = new THREE.PerspectiveCamera(70, groundCanvas.width / groundCanvas.height, 1, 1000);
     initMaterials();
