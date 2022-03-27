@@ -1,10 +1,16 @@
 var camera;
 var scene;
-var renderer;
+var episodesRenderer;
+var particleRenderer;
+
 var cubeMesh;
 var clock;
 var deltaTime;
 var particleEpisodes;
+
+let groundCanvas;
+let particlesGround;
+let groundScene
 
 init();
 animateEpisodes();
@@ -120,30 +126,38 @@ function init() {
     particleEpisodes = createparticleEpisodes();
     scene.add(particleEpisodes);
 
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+    episodesRenderer = new THREE.WebGLRenderer();
+    episodesRenderer.setSize( 500, 500 );
+    episodesRenderer.domElement.id = "episodesCanvas"
+
+    particleRenderer = new THREE.WebGLRenderer();
+    particleRenderer.setSize( 400, 400 );
+    particleRenderer.domElement.id = "particleCanvas"
+
+    document.body.appendChild(episodesRenderer.domElement)
+    document.body.appendChild(particleRenderer.domElement)
+
     window.addEventListener( 'resize', onWindowResize, false );
-    render();
+    renderEpisodes();
 }
 
 function animateEpisodes() {
     deltaTime = clock.getDelta();
     cubeMesh.rotation.x += 1 * deltaTime;
     cubeMesh.rotation.y += 2 * deltaTime;
-    render();
+    renderEpisodes();
     requestAnimationFrame( animateEpisodes );
 }
 
-function render() {
-    renderer.render( scene, camera );
+function renderEpisodes() {
+    episodesRenderer.render( scene, camera );
 }
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    render();
+    episodesRenderer.setSize( window.innerWidth, window.innerHeight );
+    renderEpisodes();
 }
 
 function createparticleEpisodes() {
@@ -158,8 +172,6 @@ function createparticleEpisodes() {
         var x = episodes[e].x/10 - 40;
         var y = episodes[e].y/10 - 40;
         var z = -30;
-        console.log(x)
-        console.log(y)
 
         // Create the vertex
         var particle = new THREE.Vector3(x, -y, z);
@@ -330,8 +342,6 @@ let running = true;
 function step(dt, now) {
     count++;
     if (running) {
-        console.log(count)
-
         // ********* sense step - updates the pos/dir framebuffer ***********
         particlesMesh.material = senseAndMovePass;
         senseAndMovePass.uniforms.dt.value               = dt;
