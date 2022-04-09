@@ -82,7 +82,7 @@ void main() {
     }
 
     if(rTrailValue == lTrailValue && (rTrailValue > cTrailValue || lTrailValue > cTrailValue)) {
-        if(fract(vParticleIndex.x * 0.3242 + uTime) > 0.5) {
+        if(fract(vParticleIndex.x * 0.1242 + uTime) > 0.5) {
             newDir = rDir;
         } else {
             newDir = lDir;
@@ -92,7 +92,7 @@ void main() {
     float moveStep = 1.0 + sin(vParticleIndex.x * 0.333) * 0.35;  
     moveStep *= 0.1;
     // the higher the density found, the faster it goes!
-    moveStep += (highestValue * 0.015);
+    moveStep += (highestValue * 0.065);
 
     vec2 newPos = clampSensorPosition(vPosition + newDir * moveStep);
     // ********* finding the new direction & position - END *********

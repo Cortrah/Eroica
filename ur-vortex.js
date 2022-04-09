@@ -23,15 +23,24 @@ function init() {
     groundScene = new THREE.Scene();
     particlesGround = new THREE.Scene();
 
-    // scene = new THREE.Scene();
-    // var light = new THREE.DirectionalLight( 0xffffff );
-    // light.position.set( 1, -1, 1 ).normalize();
-    // scene.add(light);
-    // var geometry = new THREE.CubeGeometry( 10, 10, 10);
-    // var material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
-    // cubeMesh = new THREE.Mesh(geometry, material );
-    // cubeMesh.position.z = -30;
-    // scene.add( cubeMesh );
+    clock = new THREE.Clock(true);
+    scene = particlesGround
+    // const geometry = new THREE.SphereGeometry( 8, 16, 8 );
+    // const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
+    // sphereMesh = new THREE.Mesh(geometry, material );
+    // sphereMesh.position.z = -80
+    // sphereMesh.position.x = -20
+    // sphereMesh.position.y = 40
+    // scene.add( sphereMesh );
+    addEpisodeGroup(scene, -22, 65)
+    addEpisodeGroup(scene, 0, 65)
+    addEpisodeGroup(scene, 22, 65)
+    addEpisodeGroup(scene, -22, 45)
+    addEpisodeGroup(scene, 0, 45)
+    addEpisodeGroup(scene, 22, 45)
+    addEpisodeGroup(scene, -22, 25)
+    addEpisodeGroup(scene, 0, 25)
+    addEpisodeGroup(scene, 22, 25)
 
     camera = new THREE.PerspectiveCamera(70, groundCanvas.width / groundCanvas.height, 1, 1000);
     initMaterials();
@@ -39,6 +48,16 @@ function init() {
     initParticlesTexture();
     initTrailTexture();
     animateGround();
+}
+
+function addEpisodeGroup(scene, x, y) {
+    const geometry = new THREE.SphereGeometry( 8, 16, 8 );
+    const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
+    sphereMesh = new THREE.Mesh(geometry, material );
+    sphereMesh.position.z = -120
+    sphereMesh.position.x = x
+    sphereMesh.position.y = y
+    scene.add( sphereMesh );
 }
 
 function createDoubleFBO (w, h, filtering) {
@@ -152,11 +171,6 @@ function initMaterials() {
 
 function playPause() {
     running = !running
-}
-function showBufferGeometry() {
-    console.log(quadPlane.toJSON())
-    console.log(quadPlaneMesh.material.material)
-    console.log(groundCanvas.width)
 }
 
 function animateGround(now) {
