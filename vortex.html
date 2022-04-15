@@ -15,6 +15,8 @@
     html, body {
       overflow: hidden;
       background-color: #000;
+      height: 100%;
+      margin: 0;
     }
 
     body {
@@ -22,6 +24,9 @@
       position: fixed;
       width: 100%;
       height: 100%;
+      padding: 0;
+      background-image: url("img/ur/cloud-ground2.png");
+      background-repeat: repeat repeat;
     }
 
     canvas {
@@ -29,6 +34,237 @@
       height: 100%;
     }
   </style>
+  <style>
+    a {
+      color: whitesmoke;
+      margin-left: 20px;
+      text-decoration:none;
+    }
+    a:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #daa520;
+    }
+    .nav-wrapper {
+      min-height: 50px;
+      opacity: .15;
+      transition:opacity .8s
+    }
+    .nav-wrapper:hover {
+      opacity:100%;
+      transition:opacity 1.2s
+    }
+    #nav {
+      font-family: 'Didact Gothic', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-size: 20px;
+      background-color: #222222;
+      border-bottom: #93742A;
+      border-width: 5px;
+      text-align: center;
+      vertical-align: text-bottom;
+      line-height: 2;
+      min-height: 40px;
+    }
+    #glimmerer {
+      min-width: 240px;
+      position: absolute;
+      display: none;
+      pointer-events: none;
+    }
+    #glimmerGround {
+      position: absolute;
+      top: -150px;
+      width: 280px;
+      height: 110px;
+      background-color: rgba(54, 49, 49, 0.37);
+    }
+    #glimmerThumb {
+      position: relative;
+      top: -140px;
+      left: 80px;
+      horiz-align: center;
+      width: 93px;
+    }
+    #glimmerText {
+      position: relative;
+      top: -135px;
+      width: 280px;
+      text-align: center;
+      color: #ffffcc;
+      font-weight: bold;
+    }
+    #mainWrapper {
+      display: flex;
+      justify-content: center;
+    }
+    #urMapWrapper {
+      display: flex;
+      height: 1351px;
+      width: 910px;
+    }
+    #urMapGround {
+      display: flex;
+      position: absolute;
+      height: 1351px;
+      width: 910px;
+    }
+    #urMap {
+      display: flex;
+      position: absolute;
+      height: 1351px;
+      width: 910px;
+    }
+    #videoPlayer {
+      position: relative;
+      left: 55px;
+      top: 55px;
+      display: none;
+    }
+    .vpath {
+      fill: rgb(133, 107, 113);
+      fill-opacity:0.26;
+      stroke: rgb(180, 60, 83);
+      stroke-opacity:0.62;
+      stroke-width:3px;
+    }
+    .vouterpath {
+      fill: rgb(133, 44, 61);
+      fill-opacity:0.46;
+      stroke:rgb(243,0,47);
+      stroke-opacity:0.23;
+      stroke-width:6px;
+    }
+    .vnodeicon {
+      fill: #481a34;
+      fill-opacity: .7;
+    }
+    .vnodeicon:hover {
+      fill: #7c454f;
+      fill-opacity: .8;
+    }
+    .tpath {
+      fill: rgb(79, 149, 199);
+      fill-opacity:0.46;
+      stroke: rgb(0, 157, 255);
+      stroke-opacity:0.62;
+      stroke-width:3px;
+    }
+    .touterpath {
+      fill:none;
+      stroke: rgb(0, 150, 243);
+      stroke-opacity:0.23;
+      stroke-width:6px;
+    }
+    .tnodeicon {
+      fill: #253c49;
+      fill-opacity: .8;
+    }
+    .tnodeicon:hover {
+      fill: #68b4b1;
+      fill-opacity: .8;
+    }
+    .apath {
+      fill: rgb(117, 159, 68);
+      fill-opacity:0.46;
+      stroke: rgb(88, 98, 67);
+      stroke-opacity:0.62;
+      stroke-width:3px;
+    }
+    .aouterpath {
+      fill:none;
+      stroke: rgb(137, 175, 94);
+      stroke-opacity:0.23;
+      stroke-width:6px;
+    }
+    .anodeicon {
+      fill: #3a421f;
+      fill-opacity: .7;
+    }
+    .anodeicon:hover {
+      fill: #78a95d;
+      fill-opacity: .8;
+    }
+    .visitednodeicon {
+      fill: #000000;
+      fill-opacity: .8;
+    }
+    .visitednodeicon:hover {
+      fill: #444;
+      fill-opacity: .9;
+    }
+    vmaskhighlight {
+      fill: #b43c53;
+      fill-opacity: .8;
+    }
+    vmaskhighlight:hover {
+      fill: #ce2d4c;
+      fill-opacity: .9;
+    }
+    tmaskhighlight {
+      fill: #2582cb;
+      fill-opacity: .8;
+    }
+    tmaskhighlight:hover {
+      fill: #2582cb;
+      fill-opacity: .9;
+    }
+    amaskhighlight {
+      fill: #8ce723;
+      fill-opacity: .8;
+    }
+    amaskhighlight:hover {
+      fill: #8ce723;
+      fill-opacity: .9;
+    }
+    maskvisited {
+      fill: #101010;
+      fill-opacity: .8;
+    }
+    .finaleicon {
+      fill:rgba(77,23,23,0.64);
+      fill-opacity: 0.40;
+      stroke:#ffd300;
+      stroke-opacity:0.34;
+      stroke-width:8px;
+    }
+    .finaleicon:hover {
+      fill: rgba(79, 23, 23, 0.64);
+      fill-opacity: 0.60;
+      stroke: rgba(168, 147, 45, 0.29);
+      stroke-opacity:0.34;
+      stroke-width:8px;
+    }
+    .available {
+      fill: rgba(255, 245, 182, 0.67);
+    }
+    .available:hover {
+      fill: rgba(238, 238, 204, 0.82);
+    }
+    .visited {
+      fill: #110f06;
+    }
+    .visited:hover {
+      fill: rgba(115, 115, 81, 0.82);
+    }
+    .unchosen {
+      fill: rgb(60 42 16);
+    }
+    .unchosen:hover {
+      fill: rgb(60 42 16);
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+
+  <script src="./gsap-2021/minified/gsap.min.js"></script>
+  <script src="./gsap-2021/minified/SplitText.min.js"></script>
 </head>
 <body>
 <button onclick="playPause()">play/pause</button>
@@ -40,8 +276,1645 @@
 <script src="./three.js"></script>
 <script src="ur-vortex.js"></script>
 <!--<script src="episode-nodes.js"></script>-->
-<div id="particleGround" style="height: 100%; width: 100%; position: absolute"/>
-<div id="urEpisodes" style="height: 200px; width: 200px; position: absolute; background-color: #7c454f"></div>
+<div class="nav-wrapper">
+  <div id="nav">
+    <a href="index.html">Eroica</a>
+    <a href="introduction.html">Introduction</a>
+    <a href="urworld.html">Ur World</a>
+    <a href="progress.html">Progress</a>
+    <a href="help.html">Help</a>
+    <a href="about.html">About</a>
+    <!--    <button onclick="window.clearProgress()">clear</button>-->
+  </div>
+</div>
+<div id="mainWrapper">
+  <div id="urMapWrapper">
+
+    <img id="urMapGround" src="img/ur/ur9-flat-top3.png" style="opacity: .8">
+
+    <div id="particleGround" style="height: 100%; width: 910px; position: absolute; left: 0;opacity: .4"/>
+
+    <svg id="urMap" viewBox="0 0 1800 2600">
+      <defs>
+        <pattern id="imgpattern" x="0" y="0" width="1" height="1"
+                 viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
+          <image width="500" height="300" xlink:href="./img/textures/4-stripes-seamless-paper.jpg"/>
+        </pattern>
+        <pattern id="ur" x="0" y="0" width="1" height="1"
+                 viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice">
+          <image width="500" height="300" xlink:href="./img/ur/ur9.png"/>
+        </pattern>
+      </defs>
+
+      <g id="act1_v1" transform="translate(100,100)">
+        <g id="act1_v1_m1"
+           onmouseenter="window.showGlimmerer('act1_v1_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v1_p2"
+           onmouseenter="window.showGlimmerer('act1_v1_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_p2')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91.767" ry="98.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v1_p1"
+           onmouseenter="window.showGlimmerer('act1_v1_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_p1')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91.767" ry="98.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v1_n4"
+           onmouseenter="window.showGlimmerer('act1_v1_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91.767" ry="98.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v1_n3"
+           onmouseenter="window.showGlimmerer('act1_v1_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91.767" ry="98.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v1_n2"
+           onmouseenter="window.showGlimmerer('act1_v1_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91.767" ry="98.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v1_n1"
+           onmouseenter="window.showGlimmerer('act1_v1_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v1_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91.767" ry="98.82" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+      <g id="act1_v2" transform="translate(180,330)">
+        <g id="act1_v2_m1"
+           onmouseenter="window.showGlimmerer('act1_v2_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v2_p2"
+           onmouseenter="window.showGlimmerer('act1_v2_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_p2')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v2_p1"
+           onmouseenter="window.showGlimmerer('act1_v2_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_p1')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v2_n4"
+           onmouseenter="window.showGlimmerer('act1_v2_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v2_n3"
+           onmouseenter="window.showGlimmerer('act1_v2_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v2_n2"
+           onmouseenter="window.showGlimmerer('act1_v2_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v2_n1"
+           onmouseenter="window.showGlimmerer('act1_v2_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v2_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+      <g id="act1_v3" transform="translate(250,560)">
+        <g id="act1_v3_m1"
+           onmouseenter="window.showGlimmerer('act1_v3_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v3_p2"
+           onmouseenter="window.showGlimmerer('act1_v3_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_p2')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v3_p1"
+           onmouseenter="window.showGlimmerer('act1_v3_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_p1')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v3_n4"
+           onmouseenter="window.showGlimmerer('act1_v3_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v3_n3"
+           onmouseenter="window.showGlimmerer('act1_v3_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v3_n2"
+           onmouseenter="window.showGlimmerer('act1_v3_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_v3_n1"
+           onmouseenter="window.showGlimmerer('act1_v3_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_v3_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="vnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+
+      <g id="act1_t1" transform="translate(560,0)">
+        <g id="act1_t1_m1"
+           onmouseenter="window.showGlimmerer('act1_t1_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t1_p1"
+           onmouseenter="window.showGlimmerer('act1_t1_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_p1')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t1_p2"
+           onmouseenter="window.showGlimmerer('act1_t1_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_p2')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t1_n4"
+           onmouseenter="window.showGlimmerer('act1_t1_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t1_n3"
+           onmouseenter="window.showGlimmerer('act1_t1_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t1_n2"
+           onmouseenter="window.showGlimmerer('act1_t1_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t1_n1"
+           onmouseenter="window.showGlimmerer('act1_t1_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t1_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+      <g id="act1_t2" transform="translate(560,280)">
+        <g id="act1_t2_m1"
+           onmouseenter="window.showGlimmerer('act1_t2_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t2_p1"
+           onmouseenter="window.showGlimmerer('act1_t2_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_p1')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t2_p2"
+           onmouseenter="window.showGlimmerer('act1_t2_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_p2')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t2_n4"
+           onmouseenter="window.showGlimmerer('act1_t2_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t2_n3"
+           onmouseenter="window.showGlimmerer('act1_t2_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t2_n2"
+           onmouseenter="window.showGlimmerer('act1_t2_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t2_n1"
+           onmouseenter="window.showGlimmerer('act1_t2_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t2_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+      <g id="act1_t3" transform="translate(560,560)">
+        <g id="act1_t3_m1"
+           onmouseenter="window.showGlimmerer('act1_t3_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t3_p1"
+           onmouseenter="window.showGlimmerer('act1_t3_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_p1')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t3_p2"
+           onmouseenter="window.showGlimmerer('act1_t3_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_p2')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t3_n4"
+           onmouseenter="window.showGlimmerer('act1_t3_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t3_n3"
+           onmouseenter="window.showGlimmerer('act1_t3_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t3_n2"
+           onmouseenter="window.showGlimmerer('act1_t3_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_t3_n1"
+           onmouseenter="window.showGlimmerer('act1_t3_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_t3_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="tnodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+
+      <g id="act1_a1" transform="translate(1020,100)">
+        <g id="act1_a1_m1"
+           onmouseenter="window.showGlimmerer('act1_a1_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a1_p1"
+           onmouseenter="window.showGlimmerer('act1_a1_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_p1')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a1_p2"
+           onmouseenter="window.showGlimmerer('act1_a1_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_p2')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a1_n4"
+           onmouseenter="window.showGlimmerer('act1_a1_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a1_n3"
+           onmouseenter="window.showGlimmerer('act1_a1_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a1_n2"
+           onmouseenter="window.showGlimmerer('act1_a1_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a1_n1"
+           onmouseenter="window.showGlimmerer('act1_a1_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a1_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+      <g id="act1_a2" transform="translate(940,330)">
+        <g id="act1_a2_m1"
+           onmouseenter="window.showGlimmerer('act1_a2_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a2_p1"
+           onmouseenter="window.showGlimmerer('act1_a2_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_p1')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a2_p2"
+           onmouseenter="window.showGlimmerer('act1_a2_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_p2')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a2_n4"
+           onmouseenter="window.showGlimmerer('act1_a2_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a2_n3"
+           onmouseenter="window.showGlimmerer('act1_a2_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a2_n2"
+           onmouseenter="window.showGlimmerer('act1_a2_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a2_n1"
+           onmouseenter="window.showGlimmerer('act1_a2_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a2_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+      <g id="act1_a3" transform="translate(870,560)">
+        <g id="act1_a3_m1"
+           onmouseenter="window.showGlimmerer('act1_a3_m1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_m1')"
+           transform="matrix(0.285757,0,0,0.25175,339.979,407.745)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a3_p1"
+           onmouseenter="window.showGlimmerer('act1_a3_p1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_p1')"
+           transform="matrix(0.285757,0,0,0.25175,372.691,349.384)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a3_p2"
+           onmouseenter="window.showGlimmerer('act1_a3_p2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_p2')"
+           transform="matrix(0.285757,0,0,0.25175,304.4,349.314)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a3_n4"
+           onmouseenter="window.showGlimmerer('act1_a3_n4')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_n4')"
+           transform="matrix(0.285757,0,0,0.25175,423.952,297.613)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a3_n3"
+           onmouseenter="window.showGlimmerer('act1_a3_n3')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_n3')"
+           transform="matrix(0.285757,0,0,0.25175,371.362,274.623)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a3_n2"
+           onmouseenter="window.showGlimmerer('act1_a3_n2')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_n2')"
+           transform="matrix(0.285757,0,0,0.25175,309.861,273.378)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+        <g id="act1_a3_n1"
+           onmouseenter="window.showGlimmerer('act1_a3_n1')" onmouseleave="window.hideGlimmerer()"
+           onclick="window.playEpisode('act1_a3_n1')"
+           transform="matrix(0.285757,0,0,0.25175,257.393,297.283)">
+          <ellipse cx="49.975" cy="537.906" rx="91" ry="95" class="anodeicon" />
+          <svg>
+            <ellipse class="available" cx="49.975" cy="537.906" rx="51" ry="55"></ellipse>
+          </svg>
+        </g>
+      </g>
+
+      <g id="act2_v4_h" transform="translate(220,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act2_v4_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v4_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"           />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_v4_s" transform="translate(280,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act2_v4_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v4_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act2_v5_h" transform="translate(340,1350)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act2_v5_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v5_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_v5_s" transform="translate(400,1350)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act2_v5_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v5_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act2_v6_h" transform="translate(440,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act2_v6_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v6_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_v6_s" transform="translate(500,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act2_v6_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_v6_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+
+      <g id="act2_t4_h" transform="translate(720,1370)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act2_t4_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t4_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_t4_s" transform="translate(780,1370)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act2_t4_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t4_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act2_t5_h" transform="translate(840,1450)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act2_t5_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t5_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_t5_s" transform="translate(900,1450)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act2_t5_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t5_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act2_t6_h" transform="translate(960,1370)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act2_t6_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t6_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_t6_s" transform="translate(1020,1370)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act2_t6_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_t6_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+
+      <g id="act2_a4_h" transform="translate(1140,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act2_a4_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_a4_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_a4_s" transform="translate(1200,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act2_a4_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_a4_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act2_a5_h" transform="translate(1260,1350)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act2_a5_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_a5_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_a5_s" transform="translate(1320,1350)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act2_a5_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_a5_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act2_a6_h" transform="translate(1400,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act2_a6_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_a6_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act2_a6_s" transform="translate(1460,1270)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act2_a6_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act2_a6_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+
+      <g id="act3_v_h" transform="translate(720,1660)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act3_v_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_v_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act3_v_s" transform="translate(780,1660)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="vnodeicon"
+             onmouseenter="window.showGlimmerer('act3_v_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_v_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act3_t_h" transform="translate(840,1720)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act3_t_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_t_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act3_t_s" transform="translate(900,1720)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="tnodeicon"
+             onmouseenter="window.showGlimmerer('act3_t_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_t_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+      <g id="act3_a_h" transform="translate(960,1660)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act3_a_h')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_a_h')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground"
+                d="M30.992,1.254c1.832,1.724 3.017,4.094 3.555,7.003c0.862,4.094 1.186,8.51 1.078,13.143c-0.108,4.74 -1.076,8.861 -2.584,12.201c-0.93,1.168 -1.986,2.897 -4.45,4.352c-0.404,0.239 -0.808,0.434 -1.199,0.566c-1.293,0.215 -2.756,0.225 -4.048,0.118c-3.879,-1.185 -7.003,-2.909 -9.373,-5.387c-5.386,-5.279 -9.48,-11.958 -12.281,-19.822c-0.216,-1.724 -0.216,-2.693 -0.108,-3.017c0.97,-1.292 2.586,-1.723 4.848,-1.4c2.262,0.323 3.986,0.646 5.279,0.969c1.293,0 2.262,0 3.124,-0.107c1.185,-0.216 2.155,-0.431 3.124,-0.647c2.047,-0.538 3.569,-1.245 5.109,-2.368c2.65,-1.933 4.11,-5.119 6.526,-5.604c0.616,-0.123 0.969,-0.323 1.4,0Z"
+                style="fill-opacity:0.94;"/>
+          <path class="mask"
+                d="M29.742,5.002c1.596,1.461 2.629,3.471 3.099,5.937c0.751,3.471 1.033,7.216 0.939,11.144c-0.094,4.019 -0.937,7.514 -2.252,10.345c-0.811,0.99 -1.732,2.457 -3.88,3.691c-0.352,0.202 -0.705,0.368 -1.045,0.479c-1.127,0.183 -2.403,0.191 -3.53,0.1c-3.381,-1.005 -6.104,-2.466 -8.171,-4.567c-4.696,-4.476 -8.265,-10.139 -10.706,-16.807c-0.188,-1.462 -0.188,-2.284 -0.094,-2.558c0.845,-1.096 2.254,-1.462 4.226,-1.188c1.972,0.274 3.475,0.549 4.602,0.823c1.127,-0 1.972,-0 2.724,-0.092c1.033,-0.182 1.878,-0.365 2.723,-0.548c1.785,-0.457 3.112,-1.056 4.454,-2.008c2.31,-1.639 3.583,-4.34 5.69,-4.751c0.537,-0.105 0.845,-0.274 1.221,-0Z"
+                style="fill:rgba(103,103,103,0.49);fill-opacity:0.94;"/>
+          <path class="highlight"
+                d="M25.077,35.4c-0.083,0.085 -0.167,0.169 -0.25,0.169c-1.586,0.085 -2.922,-0.169 -3.924,-0.677c-5.296,-2.549 -8.679,-6.595 -11.438,-11.508c-0.79,-1.405 -3.126,-5.78 -3.34,-7.023c-0.209,-1.214 -0.417,-1.862 -0.25,-2.116c0.25,-0.592 1.108,-1.114 2.11,-1.198c1.002,-0.169 2.064,0.183 3.483,0.606c1.42,0.423 2.839,0.508 4.258,0.339c1.42,-0.254 2.379,-0.453 2.797,-0.537c1.453,4.978 2.612,8.769 4.195,14.633c-2.546,0.918 -6.743,-0.765 -7.995,-1.357c1.169,2.792 4.102,4.407 8.1,4.777c0.334,-0.085 0.829,-0.095 1.08,-0.18l1.174,4.072Z"
+                style="fill:rgba(0,0,0,0.76);fill-opacity:0.8;"/>
+          <path class="eyemouth"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"
+          />
+          <path class="available"
+                d="M24.88,32.322c-5.195,0.855 -10.431,-3.277 -11.212,-5.838c1.532,0.715 6.806,2.759 9.916,1.554c3.284,-1.273 7.09,-5.942 7.136,-5.851c0.871,1.74 -3.676,9.778 -5.84,10.135Zm-14.417,-11.233c1.985,-0.758 1.88,-5.912 7.081,-5.521c1.2,0.09 0.675,1.301 0.941,1.96c0.273,0.678 0.614,1.22 0.715,1.372c-1.8,0.1 -3.7,0.5 -5.6,1.1c-1.7,0.6 -3.698,1.304 -3.137,1.089Zm12.431,-3.68c0.676,-0.428 0.482,-1.686 -0.294,-2.209c-2.526,-1.703 0.936,-1.971 4.624,-1.946c2.131,0.014 3.645,2.744 3.368,2.493c-0.417,-0.376 -4.948,-0.559 -7.698,1.662c-0.023,0.015 -0.047,0.028 -0.072,0.041c0.024,-0.014 0.048,-0.028 0.072,-0.041Z"/>
+        </svg>
+      </g>
+      <g id="act3_a_s" transform="translate(1040,1660)">
+        <svg width="60px" height="60px" viewBox="0 0 40 40" class="anodeicon"
+             onmouseenter="window.showGlimmerer('act3_a_s')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('act3_a_s')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <path class="ground" d="M21.158,9.599c1.665,0.989 11.161,1.392 9.567,1.45c-1.007,0.036 4.518,-0.37 7.087,-0.023c0,0 0.999,0.659 1.221,1.098c0.222,0.33 0.179,1.285 0,2.308c-0.697,4.005 -8.007,14.005 -13.174,18.666c-3.48,3.139 -8.824,5.575 -11.975,6.144c-2.98,0.537 -4.159,0.029 -4.159,0.029c-5.329,-1.978 -7.995,-6.593 -7.995,-13.736c0,-0.11 0.221,-5.605 0.221,-5.714c1.11,-6.924 6.622,-18.44 6.66,-18.683c0.152,-0.987 2.028,-0.988 1.998,-0.439c3.109,2.527 6.218,5.164 9.105,7.911c0.444,0.439 0.888,0.769 1.444,0.989Z"
+                style="fill-opacity:0.98;"/>
+          <path class="mask"
+                d="M20.237,11.776c1.387,0.832 9.295,1.172 7.967,1.221c-0.838,0.031 3.762,-0.311 5.901,-0.019c-0,0 0.832,0.555 1.017,0.925c0.185,0.277 0.149,1.08 -0,1.941c-0.581,3.37 -6.669,11.783 -10.972,15.703c-2.898,2.641 -7.349,4.69 -9.973,5.168c-2.481,0.453 -3.463,0.024 -3.463,0.024c-4.438,-1.664 -6.657,-5.547 -6.657,-11.557c-0,-0.092 0.185,-4.715 0.185,-4.807c0.925,-5.825 5.516,-15.513 5.547,-15.718c0.127,-0.83 1.689,-0.831 1.665,-0.37c2.588,2.127 5.177,4.346 7.581,6.657c0.37,0.37 0.74,0.647 1.202,0.832Zm0.74,1.295c-2.219,4.623 -4.346,9.245 -6.38,13.776l-0,0.092c1.664,0.74 2.774,1.942 3.513,3.698l0,0.185c0,1.017 -0.092,1.757 -0.369,2.404l-0.093,0c-0.647,-2.034 -2.034,-3.421 -4.16,-3.975c0,0.092 0,0.092 -0.093,0.092c-0.924,2.126 -1.941,4.16 -2.958,6.195c0,0.739 0.369,1.017 1.109,0.924c0.74,-0.092 1.387,-0.185 2.034,-0.37c4.715,-1.017 8.414,-3.051 11.28,-6.009c2.404,-2.497 4.622,-5.455 6.841,-8.784c2.127,-3.328 3.051,-5.455 2.867,-6.472c-0.925,-0.924 -2.127,-1.294 -3.699,-1.109c-3.605,0.277 -6.841,0.185 -9.892,-0.647Z"
+                style="fill:rgba(96,96,96,0.35);fill-opacity:0.98;"/>
+          <path class="highlight"
+                d="M20.977,13.071c2.958,0.739 6.287,0.924 9.892,0.554c1.572,-0.184 2.774,0.185 3.699,1.11c0.284,1.404 -0.518,3.121 -2.645,6.449c-2.126,3.329 -4.443,6.353 -6.847,8.849c-2.866,2.959 -6.983,5.405 -11.698,6.422c-0.647,0.185 -1.512,0.146 -1.967,0.103c-0.833,-0.077 -1.067,-0.373 -0.974,-1.113c1.017,-2.034 2.034,-4.068 2.958,-6.194l0.093,-0.093c2.126,0.647 3.513,1.942 4.16,3.976l0.093,0c0.14,-0.307 0.309,-2.002 0.093,-2.722c-0.702,-2.331 -3.405,-3.391 -3.405,-3.391c2.126,-4.438 4.329,-9.327 6.548,-13.95Z"
+                style="fill:rgba(0,0,0,0.56);fill-opacity:0.5;"/>
+          <path class="eyemouth"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+          />
+          <path class="available"
+                d="M7.097,28.074c-1.472,-0.009 1.608,-3.218 7.487,-0.952c4.677,2.148 3.361,5.561 3.267,6.479c-0.379,-2.505 -7.438,-5.506 -10.754,-5.527Zm13.821,-9.372c-0.707,-0.323 3.269,-1.403 5.559,1.066c1.739,2.147 -1.437,3.716 -1.7,4.181c0.413,-1.408 -2.269,-4.52 -3.859,-5.247Zm-10.691,-2.379c-0.727,0.274 -0.986,-3.6 2.378,-3.484c2.75,0.279 3.92,3.93 4.064,4.445c-0.707,-1.285 -4.806,-1.577 -6.442,-0.961Z"
+        </svg>
+      </g>
+
+      <g id="finale" transform="translate(860, 2000)">
+        <svg width="130px" height="160px" viewBox="0 0 130 150"
+             onmouseenter="window.showGlimmerer('finale')" onmouseleave="window.hideGlimmerer()" onclick="window.playEpisode('finale')"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+          <path d="M13.906,11.18c-5.721,2.889 -5.297,2.216 -5.721,2.862c-0.425,0.646 -2.329,5.927 -2.329,5.927l3.7,11.909l3.377,5.12c0,0 1.934,2.345 0.451,5.836c-1.483,3.49 -1.615,3.526 -3.062,5.427c-1.446,1.901 -3.285,3.57 -4.534,7.811c-1.248,4.24 -0.647,5.424 0.328,7.94c0.976,2.517 2.926,1.144 3.291,4.973c0.366,3.83 -0.252,8.7 -0.527,11.123c-0.276,2.423 -0.47,4.659 -0.47,4.659c0,-0 0.572,4.082 1.313,7.156c0.741,3.074 7.405,7.816 10.53,8.361c3.124,0.546 5.166,2.297 6.192,-0.827c1.027,-3.123 2.336,-0.825 1.078,-5.212c-1.258,-4.387 -3.495,-4.993 0.078,-5.926c3.573,-0.933 3.292,-0.336 6.781,0.55c3.489,0.885 5.303,0.716 7.074,0.269c1.77,-0.448 2.892,-3.556 5.496,-2.206c2.603,1.351 2.652,-1.667 1.786,4.862c-0.865,6.529 -3.497,6.477 -0.815,7.44c2.681,0.963 3.324,0.998 6.871,1.414c3.548,0.416 5.93,1.6 7.985,-1.461c2.056,-3.062 3.174,-0.958 3.428,-7.048c0.255,-6.089 3.445,-7.419 1.669,-10.141c-1.776,-2.722 3.172,-7.767 3.498,-10.946c0.325,-3.18 0.958,-8.529 0.064,-11.222c-0.895,-2.693 -2.455,-8.644 -3.033,-9.355c-0.579,-0.71 -0.264,-5.464 -2.289,-7.62c-2.026,-2.157 -6.76,-0.502 -4.48,-5.524c2.281,-5.023 1.489,-3.657 5.405,-7.601c3.916,-3.944 4.03,-0.606 4.38,-6.653c0.351,-6.048 0.482,-5.607 -1.018,-8.783c-1.499,-3.177 -2.755,-3.075 -4.596,-3.443c-1.841,-0.368 -1.63,-1.421 -4.932,-0.448c-3.302,0.974 -0.805,-0.418 -5.206,1.609c-4.401,2.027 -4.558,2.862 -5.899,2.756c-1.342,-0.106 -1.604,-0.185 -2.709,-2.526c-1.105,-2.341 3.398,-3.121 -2.789,-3.84c-6.186,-0.72 -2.092,-0.316 -4.969,0.007c-2.878,0.323 -1.435,-1.184 -4.745,0.947c-3.31,2.131 -4.555,4.298 -4.555,4.298c0,0 2.34,0.751 -2.376,-1.267c-4.716,-2.017 -1.609,-2.531 -5.006,-2.858c-3.397,-0.328 -8.715,1.651 -8.715,1.651"
+                class="finaleicon"/>
+          <use id="Background" xlink:href="#_Image1" x="-3" y="10" width="130px" height="150px"/>
+          <defs>
+            <image id="_Image1" width="80px" height="100px" xlink:href="./img/ur/scarab.png"/>
+          </defs>
+        </svg>
+      </g>
+
+    </svg>
+
+    <video id="videoPlayer" width="800" height="600" src=""  autoplay controls>
+      <source :src="source" type="video/mp4">
+      Your browser does not support video.
+    </video>
+
+    <div id="glimmerer">
+      <div id="glimmerGround">
+      </div>
+      <div id="glimmerThumb">
+        <img id="glimmerImg" src='./img/thumbs/act1_a1_n1.png'>
+      </div>
+      <div id="glimmerText">
+        Problems and Prospects Going A gogo
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+
+  // setVistited sets the status of window.state.episodes
+  // and applies the 'visited' and 'unselected' classes to the svg icons
+  // the visited one can be relied upon to set the display of the unvisited one
+  // everything is initialized as 'available'
+  // if an episode has already been visited this doesn't need to be called when played
+  // if an episode has been unvisited, this doesn't need to be called when played
+  window.setVisited = function (episodeIndex, episodeCode) {
+
+    // if it's an act 1 node
+    if(episodeCode.charAt(3)==='1'){
+      let stateLight = document.getElementById(episodeCode).children[1].children[0]
+      if (stateLight.classList.contains('available')){
+        stateLight.classList.remove('available')
+        stateLight.classList.add('visited')
+      }
+      window.state.episodes[episodeIndex].status = "visited"
+    }
+
+    // if all act1 is now visited enable act2
+    let act1visitedCount = 0
+    let act1EpisodeCount = 63
+    for( let i = 0; i < act1EpisodeCount; i++) {
+      if (window.state.episodes[i].status === 'visited') {
+        act1visitedCount++
+      }
+    }
+    if (act1visitedCount === act1EpisodeCount) {
+      // reveal act2
+      window.state.currentAct = "act2"
+    }
+
+    // if it's Act2
+    if(episodeCode.charAt(3)==='2') {
+      let companionEpisodeCode = ''
+      if (episodeCode.charAt(8) == 'h') {
+        companionEpisodeCode = episodeCode.replace('h', 's')
+      } else {
+        companionEpisodeCode = episodeCode.replace('s', 'h')
+      }
+      let stateLight = document.getElementById(episodeCode).children[0].children[4]
+      let compainonStateGround = document.getElementById(companionEpisodeCode).children[0].children[0]
+      let compainonStateEyeMouth = document.getElementById(companionEpisodeCode).children[0].children[3]
+      let compainonStateLight = document.getElementById(companionEpisodeCode).children[0].children[4]
+      if (episodeCode.charAt(8) == 'h') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+        window.state.episodes[episodeIndex].status = "visited"
+        if (compainonStateGround.classList.contains('ground')) {
+          compainonStateGround.classList.remove('ground')
+          compainonStateGround.classList.add('unchosen')
+        }
+        if (compainonStateLight.classList.contains('available')) {
+          compainonStateLight.classList.remove('available')
+          compainonStateLight.classList.add('unchosen')
+        }
+        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
+          compainonStateEyeMouth.classList.remove('eyemouth')
+          compainonStateEyeMouth.classList.add('unchosen')
+        }
+        window.state.episodes[episodeIndex + 1].status = "unchosen"
+      }
+      if (episodeCode.charAt(8) == 's') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+        window.state.episodes[episodeIndex].status = "visited"
+        if (compainonStateGround.classList.contains('ground')) {
+          compainonStateGround.classList.remove('ground')
+          compainonStateGround.classList.add('unchosen')
+        }
+        if (compainonStateLight.classList.contains('available')) {
+          compainonStateLight.classList.remove('available')
+          compainonStateLight.classList.add('unchosen')
+        }
+        if (compainonStateEyeMouth.classList.contains('eyemouth')) {
+          compainonStateEyeMouth.classList.remove('eyemouth')
+          compainonStateEyeMouth.classList.add('unchosen')
+        }
+        window.state.episodes[episodeIndex - 1].status = "unchosen"
+      }
+
+      // if all 3 Vienna are chosen their act 3 is made visible and enabled
+      let act2StartVIndex = 63
+      let act2EndVIndex = 68
+      let act2VDecisionCount = 0
+      let act2VPositivity = 0
+      for( let i = act2StartVIndex; i <= act2EndVIndex; i++) {
+        let code = window.state.episodes[i].code
+        if (window.state.episodes[i].status === 'visited') {
+          act2VDecisionCount++
+          if (code.endsWith('h')) {
+            act2VPositivity++
+          }
+          if (code.endsWith('s')) {
+            act2VPositivity--
+          }
+        }
+        if (act2VDecisionCount >= 3) {
+          let unvisitedEpisodeCode = ''
+          if (act2VPositivity > 0) {
+            window.state.episodes[81].status = 'not-visited'
+            window.state.episodes[82].status = 'unchosen'
+            unvisitedEpisodeCode = window.state.episodes[82].code
+          } else {
+            window.state.episodes[81].status = 'unchosen'
+            window.state.episodes[82].status = 'not-visited'
+            unvisitedEpisodeCode = window.state.episodes[81].code
+          }
+          // get unvisited node and set it's classes
+          let unvisitedStateGround = document.getElementById(unvisitedEpisodeCode).children[0].children[0]
+          let unvisitedStateEyeMouth = document.getElementById(unvisitedEpisodeCode).children[0].children[3]
+          let unvisitedStateLight = document.getElementById(unvisitedEpisodeCode).children[0].children[4]
+          if (unvisitedStateGround.classList.contains('ground')) {
+            unvisitedStateGround.classList.remove('ground')
+            unvisitedStateGround.classList.add('unchosen')
+          }
+          if (unvisitedStateLight.classList.contains('available')) {
+            unvisitedStateLight.classList.remove('available')
+            unvisitedStateLight.classList.add('unchosen')
+          }
+          if (unvisitedStateEyeMouth.classList.contains('eyemouth')) {
+            unvisitedStateEyeMouth.classList.remove('eyemouth')
+            unvisitedStateEyeMouth.classList.add('unchosen')
+          }
+        }
+      }
+
+      // if all 3 Tarrytown are chosen their act 3 is made visible and enabled
+      let act2StartTIndex = 69
+      let act2EndTIndex = 74
+      let act2TDecisionCount = 0
+      let act2TPositivity = 0
+      for( let i = act2StartTIndex; i <= act2EndTIndex; i++) {
+        let code = window.state.episodes[i].code
+        if (window.state.episodes[i].status === 'visited') {
+          act2TDecisionCount++
+          if (code.endsWith('h')) {
+            act2TPositivity++
+          }
+          if (code.endsWith('s')) {
+            act2TPositivity--
+          }
+        }
+        if(act2TDecisionCount >= 3 ){
+          let unvisitedEpisodeCode = ''
+          if (act2TPositivity > 0) {
+            window.state.episodes[83].status = 'not-visited'
+            window.state.episodes[84].status = 'unchosen'
+            unvisitedEpisodeCode = window.state.episodes[84].code
+          } else {
+            window.state.episodes[83].status = 'unchosen'
+            window.state.episodes[84].status = 'not-visited'
+            unvisitedEpisodeCode = window.state.episodes[83].code
+          }
+          // get unvisited node and set it's classes
+          let unvisitedStateGround = document.getElementById(unvisitedEpisodeCode).children[0].children[0]
+          let unvisitedStateEyeMouth = document.getElementById(unvisitedEpisodeCode).children[0].children[3]
+          let unvisitedStateLight = document.getElementById(unvisitedEpisodeCode).children[0].children[4]
+          if (unvisitedStateGround.classList.contains('ground')) {
+            unvisitedStateGround.classList.remove('ground')
+            unvisitedStateGround.classList.add('unchosen')
+          }
+          if (unvisitedStateLight.classList.contains('available')) {
+            unvisitedStateLight.classList.remove('available')
+            unvisitedStateLight.classList.add('unchosen')
+          }
+          if (unvisitedStateEyeMouth.classList.contains('eyemouth')) {
+            unvisitedStateEyeMouth.classList.remove('eyemouth')
+            unvisitedStateEyeMouth.classList.add('unchosen')
+          }
+        }
+      }
+
+      // if all 3 Amazon are chosen their act 3 is made visible and enabled
+      let act2StartAIndex = 75
+      let act2EndAIndex = 80
+      let act2ADecisionCount = 0
+      let act2APositivity = 0
+      for( let i = act2StartAIndex; i <= act2EndAIndex; i++) {
+        let code = window.state.episodes[i].code
+        if (window.state.episodes[i].status === 'visited') {
+          act2ADecisionCount++
+          if (code.endsWith('h')) {
+            act2APositivity++
+          }
+          if (code.endsWith('s')) {
+            act2APositivity--
+          }
+        }
+        if (act2ADecisionCount >= 3) {
+          let unvisitedEpisodeCode = ''
+          if (act2APositivity > 0) {
+            window.state.episodes[85].status = 'not-visited'
+            window.state.episodes[86].status = 'unchosen'
+            unvisitedEpisodeCode = window.state.episodes[86].code
+          } else {
+            window.state.episodes[85].status = 'unchosen'
+            window.state.episodes[86].status = 'not-visited'
+            unvisitedEpisodeCode = window.state.episodes[85].code
+          }
+          // get unvisited node and set it's classes
+          let unvisitedStateGround = document.getElementById(unvisitedEpisodeCode).children[0].children[0]
+          let unvisitedStateEyeMouth = document.getElementById(unvisitedEpisodeCode).children[0].children[3]
+          let unvisitedStateLight = document.getElementById(unvisitedEpisodeCode).children[0].children[4]
+          if (unvisitedStateGround.classList.contains('ground')) {
+            unvisitedStateGround.classList.remove('ground')
+            unvisitedStateGround.classList.add('unchosen')
+          }
+          if (unvisitedStateLight.classList.contains('available')) {
+            unvisitedStateLight.classList.remove('available')
+            unvisitedStateLight.classList.add('unchosen')
+          }
+          if (unvisitedStateEyeMouth.classList.contains('eyemouth')) {
+            unvisitedStateEyeMouth.classList.remove('eyemouth')
+            unvisitedStateEyeMouth.classList.add('unchosen')
+          }
+        }
+      }
+      // if all 3 locations have chosen their 3 choices then we reveal and enable act3
+      if ((act2VDecisionCount >= 3) && (act2TDecisionCount >= 3) && (act2ADecisionCount >= 3)) {
+        window.state.currentAct = "act3"
+      }
+    }
+
+    // if it's Act3
+    if(episodeCode.charAt(3)==='3') {
+      let companionEpisodeCode = episodeCode
+      if (episodeCode.charAt(7) == 'h') {
+        companionEpisodeCode = episodeCode.replace('h', 's')
+      } else {
+        companionEpisodeCode = episodeCode.replace('s', 'h')
+      }
+
+      let stateLight = document.getElementById(episodeCode).children[0].children[4]
+      if(episodeCode.charAt(7)=='h'){
+        if (stateLight.classList.contains('available')){
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+        window.state.episodes[episodeIndex].status = "visited"
+      }
+      if(episodeCode.charAt(7)=='s') {
+        if (stateLight.classList.contains('available')) {
+          stateLight.classList.remove('available')
+          stateLight.classList.add('visited')
+        }
+        window.state.episodes[episodeIndex].status = "visited"
+      }
+    }
+
+    // Act 3
+    let act3Count = 0
+    if (window.state.currentAct === "act3") {
+      // if all act3 are chosen and visited, finaleAvailable = true
+      for( let i = 81; i <= 86; i++) {
+        if ((window.state.episodes[i].status === 'visited') || (window.state.episodes[i].status === 'unchosen')) {
+          act3Count++
+        }
+      }
+      if(act3Count >= 6) {
+        window.state.finaleAvailable = true
+      }
+    }
+
+    // if it's 'finale'
+    if (episodeCode === 'finale') {
+    }
+  }
+
+  window.changeGlimmerer = function(episode) {
+    let glimmerTextElem = document.getElementById("glimmerText")
+    for (let i = 0; i < 88; i++) {
+      if(window.state.episodes[i].code == episode) {
+        glimmerTextElem.innerText = window.state.episodes[i].glimmer
+      }
+    }
+    let currentGlimmerText = new SplitText(glimmerTextElem, {type: "words,chars"})
+    let timeline = new gsap.timeline()
+    timeline.staggerFrom(currentGlimmerText.chars, 0.5, {
+      opacity: .1,
+      rotation: -180,
+      y: -100,
+      ease: "sine"
+    }, 0.02)
+    let newThumb = document.getElementById("glimmerImg")
+    newThumb.src = './img/thumbs/' + episode + '.png'
+  }
+
+  window.showGlimmerer = function(episode) {
+    console.log(episode)
+    let episodeIndex = window.state.episodes.findIndex( e => e.code == episode);
+
+    window.changeGlimmerer(episode)
+    document.getElementById("glimmerer").style.display = 'block'
+    // document.getElementById("glimmerText").style.color = window.state.episodes[episodeIndex].clr
+    gsap.to("#glimmerer", {opacity: 1, duration: .4, ease: "In"});
+  }
+
+  window.hideGlimmerer = function() {
+    gsap.to("#glimmerer", {opacity: 0, duration: .2, ease: "Out"});
+  }
+
+  window.playEpisode = function(episode) {
+    const urMap = document.querySelector("#urMap")
+    urMap.style.display = 'none'
+
+    let episodeIndex = window.state.episodes.findIndex( e => e.code == episode);
+    if(window.state.episodes[episodeIndex].status == 'not-visited'){
+      window.setVisited(episodeIndex, episode)
+      window.updateLocalStorage()
+    }
+
+    const videoPlayer = document.querySelector("#videoPlayer");
+    videoPlayer.style.display = 'block'
+    videoPlayer.src = "./episodes/" + episode + ".mp4"
+    if(window.state.showVideoFullScreen){
+      window.makeVideoFullscreen()
+    }
+  }
+
+  window.clearProgress = function() {
+    for( let i = 0; i < window.state.episodes.length; i++) {
+      window.state.episodes[i].status = "not-visited"
+      localStorage.setItem(i.toString(), "not-visited")
+    }
+    localStorage.setItem('episodes', JSON.stringify(window.state.episodes))
+    localStorage.setItem('currentAct', 'act1')
+    localStorage.setItem('finaleAvailable', 'false')
+  }
+
+  window.updateLocalStorage = function() {
+    localStorage.setItem('episodes', JSON.stringify(window.state.episodes))
+    localStorage.setItem('currentAct', window.state.currentAct)
+    localStorage.setItem('finaleAvailable', window.state.finaleAvailable)
+  }
+
+  window.makeVideoFullscreen = function() {
+    const videoPlayer = document.querySelector("#videoPlayer");
+    if(videoPlayer.requestFullscreen){
+      videoPlayer.requestFullscreen()
+    }
+    if(videoPlayer.webkitRequestFullscreen){
+      videoPlayer.webkitRequestFullscreen()
+    }
+    if(videoPlayer.msRequestFullscreen){
+      videoPlayer.msRequestFullscreen()
+    }
+  }
+
+  window.addEventListener("load", function (event){
+    window.init()
+
+    const videoPlayer = document.querySelector('#videoPlayer');
+    videoPlayer.addEventListener('ended', (event) => {
+      videoPlayer.src = ""
+      videoPlayer.style.display = 'none'
+      const urMap = document.querySelector("#urMap")
+      urMap.style.display = 'block'
+    });
+
+    gsap.set("#glimmerer", {xPercent: -50, yPercent: -50});
+    const glimmerer = document.querySelector("#glimmerer");
+    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const mouse = { x: pos.x, y: pos.y };
+    const speed = 0.15;
+    const xSet = gsap.quickSetter(glimmerer, "x", "px");
+    const ySet = gsap.quickSetter(glimmerer, "y", "px");
+
+    window.addEventListener("mousemove", e => {
+      // console.log("x:"+e.pageX)
+      // console.log("w:"+window.innerWidth/4)
+      // console.log("s:"+e.screenX)
+      mouse.x = Math.min(e.pageX, 660)
+      mouse.y = e.pageY-20;
+    });
+    gsap.ticker.add(() => {
+      // adjust speed for higher refresh monitors
+      const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+      pos.x += (mouse.x - pos.x) * dt;
+      pos.y += (mouse.y - pos.y) * dt;
+      xSet(pos.x);
+      ySet(pos.y);
+    });
+  })
+
+  window.init = function() {
+    // initialize whether to show video fullscreen but allow a local setting to override it
+    let showVideoFullScreen = true
+    let videoFullScreenLocal = localStorage.getItem('showVideoFullScreen')
+    if (videoFullScreenLocal === "false") {
+      showVideoFullScreen = false
+    }
+
+    window.state = {
+      isUr: true,
+      showVideoFullScreen: showVideoFullScreen,
+      currentAct: "act1",
+      finaleAvailable: false,
+      displayingEpisode: false,
+      episodes: [
+        { code:"act1_v1_n1", clr:"#d2ae77", glimmer:"Promptings and Seizures",                  status:"not-visited"},
+        { code:"act1_v1_n2", clr:"#453636", glimmer:"Gypsy? Goat-man? Golem?",                  status:"not-visited"},
+        { code:"act1_v1_n3", clr:"#494f4f", glimmer:"A Whited Sepulcher!",                      status:"not-visited"},
+        { code:"act1_v1_n4", clr:"#ab948f", glimmer:"the tic-ridden golem.",                    status:"not-visited"},
+        { code:"act1_v1_p1", clr:"#aba9aa", glimmer:"Window...Mirror...Eye",                    status:"not-visited"},
+        { code:"act1_v1_p2", clr:"#590d18", glimmer:"Ecstasy has wings and talons.",            status:"not-visited"},
+        { code:"act1_v1_m1", clr:"#ffffff", glimmer:"Make it speak, said the Princess.",        status:"not-visited"},
+        { code:"act1_t1_n1", clr:"#bababa", glimmer:"This Terrible Century",                    status:"not-visited"},
+        { code:"act1_t1_n2", clr:"#7a0000", glimmer:"My Eric Red will burn us pure.",           status:"not-visited"},
+        { code:"act1_t1_n3", clr:"#804d41", glimmer:"A Chaos of Deformed Sound",                status:"not-visited"},
+        { code:"act1_t1_n4", clr:"#d08a8c", glimmer:"The Aryans of Hell",                       status:"not-visited"},
+        { code:"act1_t1_p1", clr:"#d14c1a", glimmer:"I am the mirror of your soul.",            status:"not-visited"},
+        { code:"act1_t1_p2", clr:"#73665b", glimmer:"What fire charred that piteous face?",     status:"not-visited"},
+        { code:"act1_t1_m1", clr:"#5a1b1b", glimmer:"...the war-torn tilth of the Underworld",  status:"not-visited"},
+        { code:"act1_a1_n1", clr:"#7c8265", glimmer:"Eyes deep as hell",                        status:"not-visited"},
+        { code:"act1_a1_n2", clr:"#4d3b38", glimmer:"The eagle has pierced your eye.",          status:"not-visited"},
+        { code:"act1_a1_n3", clr:"#feaa48", glimmer:"...doomed to burn itself to ash.",         status:"not-visited"},
+        { code:"act1_a1_n4", clr:"#e0d3c2", glimmer:"...a living nightmare of enslavement.",    status:"not-visited"},
+        { code:"act1_a1_p1", clr:"#2b2b2b", glimmer:"...the mirror of your dream.",             status:"not-visited"},
+        { code:"act1_a1_p2", clr:"#b5302b", glimmer:"how to divide faith from fire?",           status:"not-visited"},
+        { code:"act1_a1_m1", clr:"#aeaeae", glimmer:"Once in a backward bending of time ...",   status:"not-visited"},
+        { code:"act1_v2_n1", clr:"#52504f", glimmer:"My Painter's Eye",                         status:"not-visited"},
+        { code:"act1_v2_n2", clr:"#dcc2b7", glimmer:"The Music of the Spheres",                 status:"not-visited"},
+        { code:"act1_v2_n3", clr:"#09810d", glimmer:"...as chatoyant as a moonlit Sargasso",    status:"not-visited"},
+        { code:"act1_v2_n4", clr:"#b3b0b1", glimmer:"...the sweetlty tipped coronals",          status:"not-visited"},
+        { code:"act1_v2_p1", clr:"#82765f", glimmer:"cleft by ecstasy...folded in thought",     status:"not-visited"},
+        { code:"act1_v2_p2", clr:"#c27627", glimmer:"where love has no dimension",              status:"not-visited"},
+        { code:"act1_v2_m1", clr:"#61b899", glimmer:"The Eternal Pumice of Time",               status:"not-visited"},
+        { code:"act1_t2_n1", clr:"#ecab78", glimmer:"Copy the skull exact.",                    status:"not-visited"},
+        { code:"act1_t2_n2", clr:"#880808", glimmer:"The Subtle Churn of Viscera.",             status:"not-visited"},
+        { code:"act1_t2_n3", clr:"#664d51", glimmer:"Moonmad. Wild dreams.",                    status:"not-visited"},
+        { code:"act1_t2_n4", clr:"#7d778a", glimmer:"A Tomb of Maggoty Music",                  status:"not-visited"},
+        { code:"act1_t2_p1", clr:"#590e10", glimmer:"I, Eric the Red, desire fire.",            status:"not-visited"},
+        { code:"act1_t2_p2", clr:"#a7a5a5", glimmer:"...Deeper than the cave of Nihil...",      status:"not-visited"},
+        { code:"act1_t2_m1", clr:"#e10000", glimmer:"I graze on flames.",                       status:"not-visited"},
+        { code:"act1_a2_n1", clr:"#decdaa", glimmer:"Be as still as night...",                  status:"not-visited"},
+        { code:"act1_a2_n2", clr:"#71542d", glimmer:"...beat of bone on bone.",                 status:"not-visited"},
+        { code:"act1_a2_n3", clr:"#880200", glimmer:"...lines like vines one to one.",          status:"not-visited"},
+        { code:"act1_a2_n4", clr:"#914937", glimmer:"Paint my body, Nusala.",                   status:"not-visited"},
+        { code:"act1_a2_p1", clr:"#fac385", glimmer:"Will you walk with me, Sister?",           status:"not-visited"},
+        { code:"act1_a2_p2", clr:"#a61f24", glimmer:"Mine is not a serpent love.",              status:"not-visited"},
+        { code:"act1_a2_m1", clr:"#b21f18", glimmer:"Where I sing, love is fire.",              status:"not-visited"},
+        { code:"act1_v3_n1", clr:"#603516", glimmer:"...but ethically eage-eyed.",              status:"not-visited"},
+        { code:"act1_v3_n2", clr:"#d1a29f", glimmer:"Ach! The issue is beyond measure.",        status:"not-visited"},
+        { code:"act1_v3_n3", clr:"#979797", glimmer:"...but also wingéd.",                      status:"not-visited"},
+        { code:"act1_v3_n4", clr:"#6d5040", glimmer:"...and didn't she have a sweet face.",     status:"not-visited"},
+        { code:"act1_v3_p1", clr:"#a70f12", glimmer:"...in form like a dove.",                  status:"not-visited"},
+        { code:"act1_v3_p2", clr:"#a70f12", glimmer:"...petals baited with blood.",             status:"not-visited"},
+        { code:"act1_v3_m1", clr:"#9daef2", glimmer:"The tale will tell.",                      status:"not-visited"},
+        { code:"act1_t3_n1", clr:"#427b91", glimmer:"Come with me to the city",                 status:"not-visited"},
+        { code:"act1_t3_n2", clr:"#bb9fa3", glimmer:"He can a new self make.",                  status:"not-visited"},
+        { code:"act1_t3_n3", clr:"#96664b", glimmer:"...unleash the ravening beasts of prey.",  status:"not-visited"},
+        { code:"act1_t3_n4", clr:"#b4b2a7", glimmer:"...a demon who wears his spine on his back",              status:"not-visited"},
+        { code:"act1_t3_p1", clr:"#b4b2a7", glimmer:"...to Helene's maimed body.",                             status:"not-visited"},
+        { code:"act1_t3_p2", clr:"#afb1b0", glimmer:"Beauty dies. Art dies.",                                  status:"not-visited"},
+        { code:"act1_t3_m1", clr:"#acb1af", glimmer:"O Father Beware!",                                        status:"not-visited"},
+        { code:"act1_a3_n1", clr:"#d59731", glimmer:"Bizarre screed of chants and sticks.",                    status:"not-visited"},
+        { code:"act1_a3_n2", clr:"#a6a295", glimmer:"The whore of Babylon is dead.",                           status:"not-visited"},
+        { code:"act1_a3_n3", clr:"#aaa596", glimmer:"Up the river we must go.",                                status:"not-visited"},
+        { code:"act1_a3_n4", clr:"#fce2d4", glimmer:"The Great Teatro Amazonas.",                              status:"not-visited"},
+        { code:"act1_a3_p1", clr:"#b47b33", glimmer:"Do not blot me out of the Book of Life.",                 status:"not-visited"},
+        { code:"act1_a3_p2", clr:"#be8245", glimmer:"Show me the wings of freedom.",                           status:"not-visited"},
+        { code:"act1_a3_m1", clr:"#cfb086", glimmer:"Man eat cayman. Cayman eat man.",                         status:"not-visited"},
+        { code:"act2_v4_h",  clr:"#e8e3c0", glimmer:"Post coitum omne animalium triste est.",                  status:"not-visited"},
+        { code:"act2_v4_s",  clr:"#2e2e2e", glimmer:"...gone the lotuses blessing the air with chaste light.", status:"not-visited"},
+        { code:"act2_v5_h",  clr:"#980403", glimmer:"Crowing laughter unfurls like a crimson fan.",            status:"not-visited"},
+        { code:"act2_v5_s",  clr:"#d88c76", glimmer:"...as when fiery beasts leap to the fray...",             status:"not-visited"},
+        { code:"act2_v6_h",  clr:"#aea091", glimmer:"...to the chamber of futurity.",                          status:"not-visited"},
+        { code:"act2_v6_s",  clr:"#b42625", glimmer:"Angel, eagle, Eva, Engel.",                               status:"not-visited"},
+        { code:"act2_t4_h",  clr:"#a58a73", glimmer:"...where angels plummet past rundled windows...",         status:"not-visited"},
+        { code:"act2_t4_s",  clr:"#afb1b0", glimmer:"Flung from the maelstrom of Time...",                     status:"not-visited"},
+        { code:"act2_t5_h",  clr:"#bce8f4", glimmer:"Let the dead sleep, Berndt.",                             status:"not-visited"},
+        { code:"act2_t5_s",  clr:"#c5c5c5", glimmer:"Wind wrinkles the river, worries the curtains...",        status:"not-visited"},
+        { code:"act2_t6_h",  clr:"#aaaaaa", glimmer:"...a moonstruck bestiary, prancing and baying...",        status:"not-visited"},
+        { code:"act2_t6_s",  clr:"#7d0000", glimmer:"...demonic dreams of healing fire...",                    status:"not-visited"},
+        { code:"act2_a4_h",  clr:"#535554", glimmer:"...The forest weaves a covert of leaves.",                status:"not-visited"},
+        { code:"act2_a4_s",  clr:"#562834", glimmer:"Those are pits that were his eyes.",                      status:"not-visited"},
+        { code:"act2_a5_h",  clr:"#cabfaa", glimmer:"Who are these so strangely fashioned?",                   status:"not-visited"},
+        { code:"act2_a5_s",  clr:"#65594b", glimmer:"...bitter auguries of raucous fowl...",                   status:"not-visited"},
+        { code:"act2_a6_h",  clr:"#943420", glimmer:"...High piping pf ardent birds...",                       status:"not-visited"},
+        { code:"act2_a6_s",  clr:"#f91c1f", glimmer:"The specter in the fire fixes an eyeless gaze...",        status:"not-visited"},
+        { code:"act3_v_h",   clr:"#ab7534", glimmer:"Ah Eva. Engel, angel, apple of our eye.",                 status:"not-visited"},
+        { code:"act3_v_s",   clr:"#3f8060", glimmer:"...Impaled on the finial of a cat's eye...",              status:"not-visited"},
+        { code:"act3_t_h",   clr:"#6c3637", glimmer:"...music flares in the sky like a phoenix...",            status:"not-visited"},
+        { code:"act3_t_s",   clr:"#d48368", glimmer:"The wind of Chaos annihilates the antipodes.",            status:"not-visited"},
+        { code:"act3_a_h",   clr:"#c2da6e", glimmer:"All signs favorable, howlers subdued.",                   status:"not-visited"},
+        { code:"act3_a_s",   clr:"#c9c6ae", glimmer:"The house of the moon is grimed.",                        status:"not-visited"},
+        { code:"finale",     clr:"#abcb3a", glimmer:"Scarab Exits",                                            status:"not-visited"}
+      ]
+    }
+
+    // then get the saved state from localStorage
+    let localStorageCurrentAct = localStorage.getItem('currentAct')
+    let localStorageFinaleAvailable = localStorage.getItem('finaleAvailable')
+    window.state.currentAct = localStorageCurrentAct
+    window.state.finaleAvailable = localStorageFinaleAvailable
+
+    let localStorageEpisodeData = localStorage.getItem('episodes')
+    if (localStorageEpisodeData !== null) {
+      let episodes =  JSON.parse(localStorageEpisodeData)
+      let episodeCount = window.state.episodes.length
+      for ( let i = 0; i < episodeCount; i++) {
+        window.state.episodes[i] = episodes[i]
+        if (episodes[i].status === 'visited'){
+          let episodeCode = window.state.episodes[i].code
+          window.setVisited(i, episodeCode)
+        }
+      }
+    }
+  }
+</script>
+
 </body>
 </html>
 

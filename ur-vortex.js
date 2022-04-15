@@ -25,6 +25,8 @@ function init() {
 
     clock = new THREE.Clock(true);
     scene = particlesGround
+    scene.background = new THREE.Color( 0x00ffff );
+
     // const geometry = new THREE.SphereGeometry( 8, 16, 8 );
     // const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
     // sphereMesh = new THREE.Mesh(geometry, material );
