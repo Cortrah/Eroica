@@ -705,7 +705,7 @@
         const reader = new FileReader();
         reader.onload = function(e) {
             localStorage.setItem('episodes', e.target.result)
-            window.location.href="./urworld.html"
+            window.location.href="urworld_bk.html"
         }
         reader.readAsText(file);
     }
@@ -732,27 +732,27 @@
         localStorage.setItem('episodes', JSON.stringify(clearAll.episodes))
         localStorage.setItem('currentAct', 'act1')
         localStorage.setItem('finaleAvailable', 'false')
-        window.location.href="./urworld.html"
+        window.location.href="urworld_bk.html"
     }
 
     window.testAFewInAct1 = function(){
         localStorage.setItem('episodes', JSON.stringify(aFewInAct1.episodes))
-        window.location.href="./urworld.html"
+        window.location.href="urworld_bk.html"
     }
 
     window.testAboutToFinishAct1 = function(){
         localStorage.setItem('episodes', JSON.stringify(aboutToFinishAct1.episodes))
-        window.location.href="./urworld.html"
+        window.location.href="urworld_bk.html"
     }
 
     window.testAboutToFinishAct2 = function(){
         localStorage.setItem('episodes', JSON.stringify(aboutToFinishAct2.episodes))
-        window.location.href="./urworld.html"
+        window.location.href="urworld_bk.html"
     }
 
     window.testEnableFinale = function(){
         localStorage.setItem('episodes', JSON.stringify(enableFinale.episodes))
-        window.location.href="./urworld.html"
+        window.location.href="urworld_bk.html"
     }
 
     window.toggleTests = function (e) {

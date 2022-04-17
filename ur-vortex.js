@@ -3,6 +3,7 @@ window.addEventListener("load", init);
 let groundScene;
 let groundCanvas;
 let particlesGround;
+let vortexWidth = 910;
 let camera;
 function init() {
     groundRenderer = new THREE.WebGLRenderer({
@@ -13,7 +14,8 @@ function init() {
         preserveDrawingBuffer: true
     });
     groundRenderer.setPixelRatio( window.devicePixelRatio );
-    groundRenderer.setSize( innerWidth, innerHeight );
+    console.log(vortexWidth)
+    groundRenderer.setSize( vortexWidth, innerHeight );
     groundRenderer.autoClear = false;
 
     document.getElementById("particleGround").appendChild(groundRenderer.domElement);
@@ -110,12 +112,12 @@ let quadPlaneMesh;
 let particlesMesh;
 function initMaterials() {
     particlesPosDir = createDoubleFBO(particlesTextureSize, particlesTextureSize, THREE.NearestFilter);
-    trailMap        = createDoubleFBO(innerWidth, innerHeight, THREE.NearestFilter);
+    trailMap        = createDoubleFBO(vortexWidth, innerHeight, THREE.NearestFilter);
 
     senseAndMovePass = new THREE.ShaderMaterial({
         uniforms: {
             uTexelSize:       { value: 1 / particlesTextureSize },
-            uScreenSize:      { value: new THREE.Vector2(innerWidth, innerHeight) },
+            uScreenSize:      { value: new THREE.Vector2(vortexWidth, innerHeight) },
             uParticlesPosDir: { type: "t", value: particlesPosDir.read.texture },
             uTrailMap:        { type: "t", value: trailMap.read.texture },
             uTime:            { value: 0.0 },
@@ -128,7 +130,7 @@ function initMaterials() {
     depositPass = new THREE.ShaderMaterial( {
         uniforms: {
             uTexelSize:       { value: 1 / particlesTextureSize },
-            uScreenSize:      { value: new THREE.Vector2(innerWidth, innerHeight) },
+            uScreenSize:      { value: new THREE.Vector2(vortexWidth, innerHeight) },
             uParticlesPosDir: { type: "t", value: particlesPosDir.read.texture },
         },
         vertexShader: depositVert,
@@ -142,7 +144,7 @@ function initMaterials() {
 
     blurDecayPass = new THREE.ShaderMaterial( {
         uniforms: {
-            uTexelSize:       { value: new THREE.Vector2(1 / innerWidth, 1 / innerHeight) },
+            uTexelSize:       { value: new THREE.Vector2(1 / vortexWidth, 1 / innerHeight) },
             uTrailMap:        { type: "t", value: trailMap.read.texture },
             dt:               { value: 0.0 },
         },
@@ -196,8 +198,6 @@ let running = true;
 function step(dt, now) {
     count++;
     if (running) {
-        console.log(count)
-
         // ********* sense step - updates the pos/dir framebuffer ***********
         particlesMesh.material = senseAndMovePass;
         senseAndMovePass.uniforms.dt.value               = dt;
@@ -289,9 +289,9 @@ function initParticlesTexture() {
         let p  = new THREE.Vector2(
             Math.random() * 2 - 1,
             Math.random() * 2 - 1,
-        ).normalize().multiplyScalar(Math.random() * 300).add(new THREE.Vector2(innerWidth * 0.5, innerHeight * 0.5));
+        ).normalize().multiplyScalar(Math.random() * 300).add(new THREE.Vector2(vortexWidth * 0.5, innerHeight * 0.5));
 
-        let cp = new THREE.Vector2(innerWidth * 0.5, innerHeight * 0.5);
+        let cp = new THREE.Vector2(vortexWidth * 0.5, innerHeight * 0.5);
 
         // let v2 = new THREE.Vector2(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
         let v2 = p.clone().sub(cp).normalize();
@@ -328,9 +328,9 @@ function initTrailTexture() {
         let p  = new THREE.Vector2(
             Math.random() * 2 - 1,
             Math.random() * 2 - 1,
-        ).normalize().multiplyScalar(Math.random() * 300).add(new THREE.Vector2(innerWidth * 0.5, innerHeight * 0.5));
+        ).normalize().multiplyScalar(Math.random() * 300).add(new THREE.Vector2(vortexWidth * 0.5, innerHeight * 0.5));
 
-        let cp = new THREE.Vector2(innerWidth * 0.5, innerHeight * 0.5);
+        let cp = new THREE.Vector2(vortexWidth * 0.5, innerHeight * 0.5);
 
         // let v2 = new THREE.Vector2(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
         let v2 = p.clone().sub(cp).normalize();
