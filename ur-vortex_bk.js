@@ -14,6 +14,7 @@ function init() {
         preserveDrawingBuffer: true
     });
     groundRenderer.setPixelRatio( window.devicePixelRatio );
+    console.log(vortexWidth)
     groundRenderer.setSize( vortexWidth, innerHeight );
     groundRenderer.autoClear = false;
 
@@ -26,6 +27,8 @@ function init() {
 
     clock = new THREE.Clock(true);
     scene = particlesGround
+    scene.background = new THREE.Color( 0x00ffff );
+
     // const geometry = new THREE.SphereGeometry( 8, 16, 8 );
     // const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
     // sphereMesh = new THREE.Mesh(geometry, material );
@@ -33,15 +36,15 @@ function init() {
     // sphereMesh.position.x = -20
     // sphereMesh.position.y = 40
     // scene.add( sphereMesh );
-    addEpisodeGroup(scene, -40, 30)
-    addEpisodeGroup(scene, 0, 40)
-    addEpisodeGroup(scene, 40, 30)
-    addEpisodeGroup(scene, -33, 10)
-    addEpisodeGroup(scene, 0, 15)
-    addEpisodeGroup(scene, 33, 10)
-    addEpisodeGroup(scene, -28, -10)
-    addEpisodeGroup(scene, 0, -10)
-    addEpisodeGroup(scene, 28, -10)
+    addEpisodeGroup(scene, -22, 65)
+    addEpisodeGroup(scene, 0, 65)
+    addEpisodeGroup(scene, 22, 65)
+    addEpisodeGroup(scene, -22, 45)
+    addEpisodeGroup(scene, 0, 45)
+    addEpisodeGroup(scene, 22, 45)
+    addEpisodeGroup(scene, -22, 25)
+    addEpisodeGroup(scene, 0, 25)
+    addEpisodeGroup(scene, 22, 25)
 
     camera = new THREE.PerspectiveCamera(70, groundCanvas.width / groundCanvas.height, 1, 1000);
     initMaterials();
@@ -52,7 +55,7 @@ function init() {
 }
 
 function addEpisodeGroup(scene, x, y) {
-    const geometry = new THREE.SphereGeometry( 10, 10, 10 );
+    const geometry = new THREE.SphereGeometry( 8, 16, 8 );
     const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
     sphereMesh = new THREE.Mesh(geometry, material );
     sphereMesh.position.z = -120
@@ -195,8 +198,6 @@ let running = true;
 function step(dt, now) {
     count++;
     if (running) {
-        console.log(count)
-
         // ********* sense step - updates the pos/dir framebuffer ***********
         particlesMesh.material = senseAndMovePass;
         senseAndMovePass.uniforms.dt.value               = dt;
