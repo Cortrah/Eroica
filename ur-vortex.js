@@ -19,20 +19,11 @@ function init() {
 
     document.getElementById("particleGround").appendChild(groundRenderer.domElement);
     groundCanvas = groundRenderer.domElement;
-
-
     groundScene = new THREE.Scene();
     particlesGround = new THREE.Scene();
 
     clock = new THREE.Clock(true);
     scene = particlesGround
-    // const geometry = new THREE.SphereGeometry( 8, 16, 8 );
-    // const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
-    // sphereMesh = new THREE.Mesh(geometry, material );
-    // sphereMesh.position.z = -80
-    // sphereMesh.position.x = -20
-    // sphereMesh.position.y = 40
-    // scene.add( sphereMesh );
     addEpisodeGroup(scene, -40, 30)
     addEpisodeGroup(scene, 0, 40)
     addEpisodeGroup(scene, 40, 30)
@@ -42,6 +33,8 @@ function init() {
     addEpisodeGroup(scene, -28, -10)
     addEpisodeGroup(scene, 0, -10)
     addEpisodeGroup(scene, 28, -10)
+    addShape(scene, 0, -30)
+    addFrame(scene)
 
     camera = new THREE.PerspectiveCamera(70, groundCanvas.width / groundCanvas.height, 1, 1000);
     initMaterials();
@@ -53,12 +46,50 @@ function init() {
 
 function addEpisodeGroup(scene, x, y) {
     const geometry = new THREE.SphereGeometry( 10, 10, 10 );
-    const material = new THREE.MeshPhongMaterial( { color: 0x0033ff, specular: 0x555555, shininess: 30 } );
+    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
     sphereMesh = new THREE.Mesh(geometry, material );
     sphereMesh.position.z = -120
     sphereMesh.position.x = x
     sphereMesh.position.y = y
     scene.add( sphereMesh );
+}
+
+function addShape(scene, x, y) {
+    const heartShape = new THREE.Shape();
+    heartShape.moveTo( x + 5, y + 5 );
+    heartShape.bezierCurveTo( x + 5, y + 5, x + 4, y, x, y );
+    heartShape.bezierCurveTo( x - 6, y, x - 6, y + 7,x - 6, y + 7 );
+    heartShape.bezierCurveTo( x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19 );
+    heartShape.bezierCurveTo( x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7 );
+    heartShape.bezierCurveTo( x + 16, y + 7, x + 16, y, x + 10, y );
+    heartShape.bezierCurveTo( x + 7, y, x + 5, y + 5, x + 5, y + 5 );
+    const geometry = new THREE.ShapeGeometry( heartShape );
+    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, transparent: true, opacity: .8 } );
+    const mesh = new THREE.Mesh( geometry, material ) ;
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = -120
+    scene.add( mesh )
+}
+
+function addFrame(scene) {
+    const frameShape = new THREE.Shape();
+    frameShape.moveTo( -80, 0);
+    frameShape.lineTo( -80, 100)
+    frameShape.lineTo( 80, 100)
+    frameShape.lineTo( 80, 0)
+    frameShape.lineTo( 60, 0)
+    frameShape.bezierCurveTo( 60, 60, 0, 60, -50, 40);
+    frameShape.bezierCurveTo( -50, 0, -80, 0, -80);
+    // frameShape.bezierCurveTo( 80, 0, 50, 0);
+    // frameShape.bezierCurveTo( 50, 0, 80, 500, 50, 0);
+    const geometry = new THREE.ShapeGeometry( frameShape );
+    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, transparent: true, opacity: .8 } );
+    const mesh = new THREE.Mesh( geometry, material ) ;
+    mesh.position.x = 0;
+    mesh.position.y = 0;
+    mesh.position.z = -120
+    scene.add( mesh )
 }
 
 function createDoubleFBO (w, h, filtering) {
