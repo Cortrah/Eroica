@@ -13,7 +13,7 @@ function init() {
     clock = new THREE.Clock(true);
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 50;
+    camera.position.z = 200;
 
     var light = new THREE.DirectionalLight( 0xffffff );
     light.position.set( 1, -1, 1 ).normalize();
@@ -65,15 +65,10 @@ function createParticleSystem() {
 
     // Create the vertices and add them to the particles geometry
     for (var p = 0; p < particleCount; p++) {
-
-        // This will create all the vertices in a range of -200 to 200 in all directions
         var x = Math.random() * 400 - 200;
         var y = Math.random() * 400 - 200;
-        var z = Math.random() * 400 - 200;
-
-        // Create the vertex
+        var z = 0;
         var particle = new THREE.Vector3(x, y, z);
-
         // Add the vertex to the geometry
         particles.vertices.push(particle);
     }
