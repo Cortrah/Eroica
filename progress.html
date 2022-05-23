@@ -113,7 +113,7 @@
     <br/>
     <br/>
 
-    <p class="aligncenter">
+    <p>
         <img src="img/icons/eye-sm.png" oncontextmenu="window.toggleTests(event)"/>
     </p>
     <div id="tests" style="display: none;float: right">
@@ -705,7 +705,7 @@
         const reader = new FileReader();
         reader.onload = function(e) {
             localStorage.setItem('episodes', e.target.result)
-            window.location.href="urworld_bk.html"
+            window.location.href="urworld.html"
         }
         reader.readAsText(file);
     }
@@ -731,27 +731,27 @@
         localStorage.setItem('episodes', JSON.stringify(clearAll.episodes))
         localStorage.setItem('currentAct', 'act1')
         localStorage.setItem('finaleAvailable', 'false')
-        window.location.href="urworld_bk.html"
+        window.location.href="urworld.html"
     }
 
     window.testAFewInAct1 = function(){
         localStorage.setItem('episodes', JSON.stringify(aFewInAct1.episodes))
-        window.location.href="urworld_bk.html"
+        window.location.href="urworld.html"
     }
 
     window.testAboutToFinishAct1 = function(){
         localStorage.setItem('episodes', JSON.stringify(aboutToFinishAct1.episodes))
-        window.location.href="urworld_bk.html"
+        window.location.href="urworld.html"
     }
 
     window.testAboutToFinishAct2 = function(){
         localStorage.setItem('episodes', JSON.stringify(aboutToFinishAct2.episodes))
-        window.location.href="urworld_bk.html"
+        window.location.href="urworld.html"
     }
 
     window.testEnableFinale = function(){
         localStorage.setItem('episodes', JSON.stringify(enableFinale.episodes))
-        window.location.href="urworld_bk.html"
+        window.location.href="urworld.html"
     }
 
     window.toggleTests = function (e) {
