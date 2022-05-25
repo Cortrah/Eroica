@@ -53,7 +53,6 @@
         }
         #mainWrapper {
             display: flex;
-            align-items: center;
             justify-content: center;
             height: 100%;
             width: 100%;
@@ -85,7 +84,8 @@
         <a href="about.html">About</a>
     </div>
 </div>
-<div style="color: whitesmoke; margin:20px">
+<div id="mainWrapper" >
+  <div style="color: whitesmoke; font-family: 'Century Gothic', 'Helvetica', sans-serif;max-width: 520px; align-items: center">
     <h1>Progress</h1>
 
     <p>
@@ -147,7 +147,7 @@
         <button onclick="testEnableFinale()" style="width: 260px">About to enable finale</button>
         <br/>
     </div>
-
+  </div>
 </div>
 <script>
     let clearAll = { episodes: [
