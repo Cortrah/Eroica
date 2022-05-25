@@ -87,6 +87,15 @@
 </div>
 <div style="color: whitesmoke; margin:20px">
     <h1>Progress</h1>
+
+    <p>
+        As you visit the episodes of Eroica, the Ur Map updates to represent which episodes have been viewed.
+        This progress is saved by default by the browser with which you are viewing the piece.
+        If you would like to manually save your progress as a file in order to transfer it to another browser
+        or to reload it at anohter time you may use the button below to save the current progress as a file.
+        By default it will be named eroica.txt but you can change that if you wish.
+    </p>
+
     <h3>
         Download Progress as
     </h3>
@@ -97,12 +106,20 @@
     <br/>
     <br/>
 
+    <p>
+        To upload a saved state of the progress, use the button below to select a previously saved file.
+    </p>
+
     <h3 onclick="window.uploadProgress()">
         Upload Progress from
     </h3>
     <input id='fileNameUploadInput' type="file" onchange="loadTextFromFile(event)">
     <br/>
     <br/>
+
+    <p>
+        In order to clear all progres and reset the state of the Ur World to the begining, click the "Clear" button below.
+    </p>
 
     <h3>
         Clear All Progress
