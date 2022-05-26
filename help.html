@@ -42,7 +42,6 @@
         }
         #mainWrapper {
             display: flex;
-            align-items: center;
             justify-content: center;
             height: 100%;
             width: 100%;
@@ -75,25 +74,22 @@
         <a href="about.html">About</a>
     </div>
 </div>
-
-<h1 class="content" style="font-size: 20px">
-    Help
-</h1>
-<div class="content" style="color: whitesmoke; font-family: 'Century Gothic', 'Helvetica', sans-serif;max-width: 800px; align-items: center">
-    <p style="max-width: 520px">
-        If you have a problem with video showing fullscreen (likely with the safari browser)
-        uncheck this checkbox and we wont try to show it that way.
-    </p>
-    <p>
-        <input id="showVideoFullScreenChk"
-               onclick=window.toggleVideoFullScreen()
-               type="checkbox"/>
-        <label>
-            Show Video Fullscreen
-        </label>
-    </p>
+<div id="mainWrapper">
+    <div class="content" style="color: whitesmoke; font-family: 'Century Gothic', 'Helvetica', sans-serif;max-width: 800px; align-items: center">
+        <p style="max-width: 520px">
+            If you have a problem with video showing fullscreen (likely with the safari browser)
+            uncheck this checkbox and we wont try to show it that way.
+        </p>
+        <p>
+            <input id="showVideoFullScreenChk"
+                   onclick=window.toggleVideoFullScreen()
+                   type="checkbox"/>
+            <label>
+                Show Video Fullscreen
+            </label>
+        </p>
+    </div>
 </div>
-
 <script>
     window.addEventListener("load", function (){
         // initialize whether to show video fullscreen but allow a local setting to override it
