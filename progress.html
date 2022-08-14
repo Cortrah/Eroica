@@ -53,7 +53,7 @@
         }
         #mainWrapper {
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: center;
             height: 100%;
             width: 100%;
@@ -78,76 +78,79 @@
 <div class="nav-wrapper" >
     <div id="nav">
         <a href="index.html">Eroica</a>
-        <a href="introduction.html">Introduction</a>
         <a href="urworld.html">Ur World</a>
         <a href="progress.html">Progress</a>
         <a href="help.html">Help</a>
         <a href="about.html">About</a>
     </div>
 </div>
-<div style="color: whitesmoke; margin:20px">
-    <h1>Progress</h1>
+<div id="mainWrapper"/>
+    <div id="progress" style="color: whitesmoke; font-family: 'Century Gothic', 'Helvetica', sans-serif;max-width: 800px">
 
-    <p>
-        As you visit the episodes of Eroica, the Ur Map updates to represent which episodes have been viewed.
-        This progress is saved by default by the browser with which you are viewing the piece.
-        If you would like to manually save your progress as a file in order to transfer it to another browser
-        or to reload it at anohter time you may use the button below to save the current progress as a file.
-        By default it will be named eroica.txt but you can change that if you wish.
-    </p>
+        <h1>Progress</h1>
 
-    <h3>
-        Download Progress as
-    </h3>
-    <input id="fileNameInput" value="eroica.txt"/>
-    <button onclick="window.downloadProgress()">
-        Save
-    </button>
-    <br/>
-    <br/>
+        <p>
+            As you visit the episodes of Eroica, the Ur Map updates to represent which episodes have been viewed.
+            This progress is saved by default by the browser with which you are viewing the piece.
+        </p>
+        <p>
+            If you would like to manually save your progress as a file in order to transfer it to another browser
+            or to reload it at anohter time you may use the button below to save the current progress as a file.
+            By default it will be named eroica.txt but you can change that if you wish.
+        </p>
 
-    <p>
-        To upload a saved state of the progress, use the button below to select a previously saved file.
-    </p>
-
-    <h3 onclick="window.uploadProgress()">
-        Upload Progress from
-    </h3>
-    <input id='fileNameUploadInput' type="file" onchange="loadTextFromFile(event)">
-    <br/>
-    <br/>
-
-    <p>
-        In order to clear all progres and reset the state of the Ur World to the begining, click the "Clear" button below.
-    </p>
-
-    <h3>
-        Clear All Progress
-    </h3>
-    <button onclick="window.clearProgressAndGoBack()">
-        Clear
-    </button>
-    <br/>
-    <br/>
-
-    <p>
-        <img src="img/icons/eye-sm.png" oncontextmenu="window.toggleTests(event)"/>
-    </p>
-    <div id="tests" style="display: none;float: right">
-        <br/>
-        <h3 style="text-align: center">
-            Tests
+        <h3>
+            Download Progress as
         </h3>
-        <button onclick="testAFewInAct1()" style="width: 260px">A few selected in Act 1</button>
+        <input id="fileNameInput" value="eroica.txt"/>
+        <button onclick="window.downloadProgress()">
+            Save
+        </button>
         <br/>
-        <button onclick="testAboutToFinishAct1()" style="width: 260px">About to finish Act 1</button>
         <br/>
-        <button onclick="testAboutToFinishAct2()" style="width: 260px">About to finish Act 2</button>
-        <br/>
-        <button onclick="testEnableFinale()" style="width: 260px">About to enable finale</button>
-        <br/>
-    </div>
 
+        <p>
+            To upload a saved state of the progress, use the button below to select a previously saved file.
+        </p>
+
+        <h3 onclick="window.uploadProgress()">
+            Upload Progress from
+        </h3>
+        <input id='fileNameUploadInput' type="file" onchange="loadTextFromFile(event)">
+        <br/>
+        <br/>
+
+        <p>
+            In order to clear all progres and reset the state of the Ur World to the begining, click the "Clear" button below.
+        </p>
+
+        <h3>
+            Clear All Progress
+        </h3>
+        <button onclick="window.clearProgressAndGoBack()">
+            Clear
+        </button>
+        <br/>
+        <br/>
+
+        <p>
+            <img src="img/icons/eye-sm.png" oncontextmenu="window.toggleTests(event)"/>
+        </p>
+        <div id="tests" style="display: none;float: right">
+            <br/>
+            <h3 style="text-align: center">
+                Tests
+            </h3>
+            <button onclick="testAFewInAct1()" style="width: 260px">A few selected in Act 1</button>
+            <br/>
+            <button onclick="testAboutToFinishAct1()" style="width: 260px">About to finish Act 1</button>
+            <br/>
+            <button onclick="testAboutToFinishAct2()" style="width: 260px">About to finish Act 2</button>
+            <br/>
+            <button onclick="testEnableFinale()" style="width: 260px">About to enable finale</button>
+            <br/>
+        </div>
+    </div>
 </div>
 <script>
     let clearAll = { episodes: [
