@@ -100,10 +100,10 @@
 <script>
     window.addEventListener("load", function (){
         // initialize whether to show video fullscreen but allow a local setting to override it
-        let showVideoFullScreen = true
+        let showVideoFullScreen = false
         let videoFullScreenLocal = localStorage.getItem('showVideoFullScreen')
-        if (videoFullScreenLocal === "false") {
-            showVideoFullScreen = false
+        if (videoFullScreenLocal === "true") {
+            showVideoFullScreen = true
         }
        document.getElementById("showVideoFullScreenChk").checked = showVideoFullScreen
     })

@@ -17,6 +17,7 @@
       margin: 0;
       padding: 0;
       background-image: url("img/ur/cloud-ground2.png");
+      background-color: black;
       background-repeat: repeat repeat;
     }
 
@@ -280,7 +281,7 @@
 <div id="mainWrapper">
   <div id="urMapWrapper">
 
-    <img id="urMapGround" src="img/ur/ur9-flat-top4.png" style="opacity: .8">
+    <img id="urMapGround" src="img/ur/ur9-flat-top4.png" style="opacity: .8;">
 
     <div id="particleGround" style="height: 100%; position: absolute; opacity: .4"></div>
 
@@ -1370,10 +1371,17 @@
 
     </svg>
 
-    <video id="videoPlayer" width="800" height="600" src=""  autoplay controls>
-      <source :src="source" type="video/mp4">
-      Your browser does not seem to support video.
-    </video>
+    <div>
+      <video id="videoPlayer" width="800" height="600" src=""  autoplay controls>
+        <source :src="source" type="video/mp4">
+        Your browser does not seem to support video.
+      </video>
+      <img id="closeBtn" style="display: none; opacity: .3"
+           src="img/ur/goldenbough.png" alt="Return to the Ur World"
+           onmouseover="this.style.opacity = .9"
+           onmouseout="this.style.opacity = .3"
+           onclick="window.endEpisode()" />
+    </div>
 
     <div id="glimmerer">
       <div id="glimmerGround">
@@ -1710,6 +1718,21 @@
     if(window.state.showVideoFullScreen){
       window.makeVideoFullscreen()
     }
+    document.body.style.backgroundImage = 'url(./img/ur/cloud-ground-blank.png)';
+    document.getElementById("urMapGround").style.display = "none";
+    document.getElementById("closeBtn").style.display = "block";
+  }
+
+  window.endEpisode = function() {
+    const videoPlayer = document.querySelector("#videoPlayer");
+    videoPlayer.src = ""
+    videoPlayer.style.display = 'none'
+    const urMap = document.querySelector("#urMap")
+    urMap.style.display = 'block'
+    document.body.style.backgroundImage = 'url(./img/ur/cloud-ground2.png)';
+    document.getElementById("urMapGround").style.display = "block";
+    document.exitFullscreen()
+    document.getElementById("closeBtn").style.display = "none";
   }
 
   window.clearProgress = function() {
@@ -1746,12 +1769,14 @@
 
     const videoPlayer = document.querySelector('#videoPlayer');
     videoPlayer.addEventListener('ended', (event) => {
-      console.log('video ended')
       videoPlayer.src = ""
       videoPlayer.style.display = 'none'
       const urMap = document.querySelector("#urMap")
       urMap.style.display = 'block'
+      document.body.style.backgroundImage = 'url(./img/ur/cloud-ground2.png)';
+      document.getElementById("urMapGround").style.display = "block";
       document.exitFullscreen()
+      document.getElementById("closeBtn").style.display = "none";
     });
 
     gsap.set("#glimmerer", {xPercent: -50, yPercent: -50});
