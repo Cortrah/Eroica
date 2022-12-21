@@ -13,7 +13,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background-image: url('https://cortrah.github.io/eroica-2022/2.jpg');
+            background-image: url('./img/bg-2.jpg');
             background-repeat: repeat repeat;
         }
         a {
@@ -42,7 +42,7 @@
         }
         #mainWrapper {
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: center;
             height: 100%;
             width: 100%;
@@ -68,7 +68,6 @@
 <div class="nav-wrapper" >
     <div id="nav">
         <a href="index.html">Eroica</a>
-        <a href="introduction.html">Introduction</a>
         <a href="urworld.html">Ur World</a>
         <a href="progress.html">Progress</a>
         <a href="help.html">Help</a>
@@ -76,31 +75,35 @@
     </div>
 </div>
 
-<h1 class="content" style="font-size: 20px">
-    Help
-</h1>
-<div class="content">
-    <p style="max-width: 520px">
-        If you have a problem with video showing fullscreen (likely with the safari browser)
-        uncheck this checkbox and we wont try to show it that way.
-    </p>
-    <p>
-        <input id="showVideoFullScreenChk"
-               onclick=window.toggleVideoFullScreen()
-               type="checkbox"/>
-        <label>
-            Show Video Fullscreen
-        </label>
-    </p>
+<div id="mainWrapper">
+    <div id="help" style="color: whitesmoke; font-family: 'Century Gothic', 'Helvetica', sans-serif;max-width: 800px">
+        <h1 class="content" style="font-size: 20px">
+            Help
+        </h1>
+        <div class="content">
+            <p style="max-width: 520px">
+                If you have a problem with video showing fullscreen (likely with the safari browser)
+                uncheck this checkbox and we wont try to show it that way.
+            </p>
+            <p>
+                <input id="showVideoFullScreenChk"
+                       onclick=window.toggleVideoFullScreen()
+                       type="checkbox"/>
+                <label>
+                    Show Video Fullscreen
+                </label>
+            </p>
+        </div>
+    </div>
 </div>
 
 <script>
     window.addEventListener("load", function (){
         // initialize whether to show video fullscreen but allow a local setting to override it
-        let showVideoFullScreen = true
+        let showVideoFullScreen = false
         let videoFullScreenLocal = localStorage.getItem('showVideoFullScreen')
-        if (videoFullScreenLocal === "false") {
-            showVideoFullScreen = false
+        if (videoFullScreenLocal === "true") {
+            showVideoFullScreen = true
         }
        document.getElementById("showVideoFullScreenChk").checked = showVideoFullScreen
     })

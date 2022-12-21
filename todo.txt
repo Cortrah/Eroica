@@ -12,37 +12,37 @@ X) Have Urmap and video control fade in and out as needed
 
 X) detect when a video ends and hide video and show urmap
 
-4) mouseover highlight for episode nodes
+X) mouseover highlight for episode nodes
 
-5) change episode nodes on visited state
+X) change episode nodes on visited state
 
-3) either create an SVG urmap with all episodes,
+X) either create an SVG urmap with all episodes,
     or dynamically place episode nodes
 
-6) add all glimmertext and access it based on episode node
+X) add all glimmertext and access it based on episode node
 
-7) trigger the video to go fullscreen and stop fullscrren when done
+X) trigger the video to go fullscreen and stop fullscrren when done
    or maintain the users selection
 
 ======================================================================
 Progress
 ======================================================================
-1) load progress and display episode node states from localstorage
+X) load progress and display episode node states from localstorage
 
-2) update episode node states on visitation
+X) update episode node states on visitation
 
-3) track act visitation
+X) track act visitation
 
-4) save progress to a file
+X) save progress to a file
 
 5) upload progress from a file
 
 ======================================================================
 Hosting
 ======================================================================
-1) push to github pages
+X) push to github pages
 
-2) make sure everything works technically
+X) make sure everything works technically
 
 
 ----------------------------------------------------------------------
